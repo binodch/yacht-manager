@@ -13,6 +13,8 @@ $yacht_posts = get_posts(array(
     'numberposts' => -1
 ));
 
-foreach ($yacht_posts as $post) {
-    wp_delete_post($post->ID, true);
+if( $yacht_posts ) {
+    foreach ($yacht_posts as $post) {
+        wp_delete_post($post->ID, true);
+    }
 }

@@ -25,7 +25,7 @@ function yacht_manager_register_post_type() {
             'public'            => true,
             'has_archive'       => true,
             'show_in_menu'      => true,
-            'menu_icon'         => 'dashicons-admin-generic',
+            'menu_icon'         => 'dashicons-buddicons-forums',
             'supports'          => array('title', 'editor', 'thumbnail', 'custom-fields'),
             'rewrite'           => array('slug' => 'yachts'),
         );
