@@ -15,14 +15,8 @@ if ( ! defined( 'YACHT_MANAGER_VERSION' ) ) {
 	define( 'YACHT_MANAGER_VERSION', '1.0' );
 }
 
-// Include admin register yacht posttype
-require_once plugin_dir_path(__FILE__) . 'includes/admin/yacht.php';
-
-// Include enqueue style css
-require_once plugin_dir_path(__FILE__) . 'resources/enqueue-scripts.php';
-
-// Include require files api
-require_once plugin_dir_path(__FILE__) . 'includes/api/requires.php';
+// Include require files
+require_once plugin_dir_path(__FILE__) . 'requires.php';
 
 // Activation Hook
 function yacht_manager_activate() {
