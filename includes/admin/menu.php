@@ -16,7 +16,11 @@ function yacht_manager_add_menu_page() {
 }
 add_action('admin_menu', 'yacht_manager_add_menu_page');
 
-function yacht_manager_dashboard() { ?>
+function yacht_manager_dashboard() { 
+    $company_uri = get_option('yacht_manager_company_uri'); 
+    $key_id = get_option('yacht_manager_key_id'); 
+    $private_key = get_option('yacht_manager_private_key'); ?>
+
     <div class="yacht-manager-wrap">
         <h1>Welcome to Yacht Manager</h1>
             
@@ -29,16 +33,16 @@ function yacht_manager_dashboard() { ?>
             <div class="yacht-manager-form-wrap">
                 <form id="yacht-manager-form">
                     <div class="form-row">
-                        <label for="yacht-company-url"><?php printf( __( 'Company url:', 'yacht-manager' )); ?></label>
-                        <input type="text" id="yacht-company-url" name="yacht_company_url" placeholder="" required>
+                        <label for="yacht-company-uri"><?php printf( __( 'Company uri:', 'yacht-manager' )); ?></label>
+                        <input type="text" id="yacht-company-uri" name="yacht_company_uri" value="<?php echo esc_attr($company_uri); ?>" required>
                     </div>
                     <div class="form-row">
                         <label for="yacht-key-id"><?php printf( __( 'Key id:', 'yacht-manager' )); ?></label>
-                        <input type="text" id="yacht-key-id" name="yacht_key_id" placeholder="" required>
+                        <input type="text" id="yacht-key-id" name="yacht_key_id" value="<?php echo esc_attr($key_id); ?>" required>
                     </div>
                     <div class="form-row">
-                        <label for="yacht-private-key"><?php printf( __( 'Private key:', 'yacht-manager' )); ?></label>
-                        <input type="text" id="yacht-private-key" name="yacht_private_key" placeholder="" required>
+                        <label for="yacht-private-key-upload"><?php printf( __( 'Upload Private Key (.pem):', 'yacht-manager' )); ?></label>
+                        <input type="file" id="yacht-private-key-upload" name="yacht_private_key_file" accept=".pem">
                     </div>
                     <div class="form-row">
                         <button class="button button-primary" id="yacht-manager-save-btn"><?php printf( __( 'Save', 'yacht-manager' )); ?></button>
