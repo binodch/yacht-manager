@@ -2,9 +2,6 @@
 
 jQuery(document).ready(function ($) {
     
-    let loaderDiv = '<div class="yacht-loader-wrap"><span class="yacht-loader"></span></div>';
-    // $('#wpcontent').append(loaderDiv);
-
     $('#yacht-manager-save-btn').on('click', function (e) {
         e.preventDefault();
 
