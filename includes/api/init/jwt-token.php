@@ -10,8 +10,21 @@ if( ! function_exists('yacht_manager_generate_jwt_token') ) {
         $company_uri = get_option('yacht_manager_company_uri'); 
         $key_id = get_option('yacht_manager_key_id'); 
 
-        $keyPath = __DIR__ . '/../keys/private_key.pem';
-        $private_key = file_get_contents($keyPath);
+        $keys_dir = __DIR__ . '/../keys';
+        $key_file_path = $keys_dir . '/private_key.pem';
+
+        // return false if /keys directory not found
+        if (!is_dir($keys_dir)) {
+            return false;
+        }
+        
+        // return false if /.pem file not found
+        if (!file_exists($key_file_path)) {
+            return false;
+        }
+
+        // get file content of /.pem file
+        $private_key = file_get_contents($key_file_path);
 
         $issued_at = time();
         $expires_at = $issued_at + 3600; // 1 hour expiration
@@ -19,7 +32,7 @@ if( ! function_exists('yacht_manager_generate_jwt_token') ) {
         $header = [
             "alg" => "RS256",
             "typ" => "JWT",
-            "kid" => $key_id
+            "kid" => $key_ids
         ];
 
         $payload = [
@@ -31,9 +44,14 @@ if( ! function_exists('yacht_manager_generate_jwt_token') ) {
             "exp" => $expires_at
         ];
 
-        // Generate JWT Token
-        $jwt = JWT::encode($payload, $private_key, 'RS256', $key_id); // RS256 encryption
+        try {
+            // Generate JWT Token
+            $jwt = JWT::encode($payload, $private_key, 'RS256', $key_id); 
+            return $jwt;
 
-        return $jwt;
+        } catch (Exception $e) {
+            error_log('JWT Generation Error: ' . $e->getMessage());
+            return false;
+        }
     }
 }

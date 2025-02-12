@@ -4,7 +4,14 @@ if( ! function_exists('yacht_manager_generate_access_token') ) {
     function yacht_manager_generate_access_token() {
 
         // Your JWT token
-        $jwtToken = yacht_manager_generate_jwt_token();
+        $jwt_token = yacht_manager_generate_jwt_token();
+
+        if( ! $jwt_token ) {
+            return array(
+                'success' => false,
+                'error' => "Private key not found",
+            );
+        }
         
         // API endpoint
         $url = "https://api.ankor.io/iam/oauth/token";
@@ -12,7 +19,7 @@ if( ! function_exists('yacht_manager_generate_access_token') ) {
         // POST data
         $data = http_build_query([
             'grant_type' => 'urn:ietf:params:oauth:grant-type:jwt-bearer',
-            'assertion'  => $jwtToken
+            'assertion'  => $jwt_token
         ]);
 
         // Initialize cURL
@@ -46,8 +53,6 @@ if( ! function_exists('yacht_manager_generate_access_token') ) {
 
         if( $response && $httpCode==200 ) {
             $response_arr = json_decode($response, true);
-
-            print_r($response_arr);
 
             if (isset($response_arr['access_token'])) {
                 return array(

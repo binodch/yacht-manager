@@ -1,15 +1,30 @@
 /* Script goes here */
 
 jQuery(document).ready(function ($) {
+    
     $('#yacht-manager-save-btn').on('click', function (e) {
         e.preventDefault();
+
 
         let formData = new FormData();
         let companyUri = $('#yacht-company-uri').val();
         let keyId = $('#yacht-key-id').val();
-        let privateKeyFile = $('#yacht-private-key-upload')[0].files[0]; // Get uploaded file
+        let keyFileInDir = $('#yacht-key-file-uploaded').val();
+        let privateKeyFile = '';
+        
+        // console.log(keyFileUploaded);
+        
+        if( keyFileInDir == 'no' ) {
+            privateKeyFile = $('#yacht-private-key-upload')[0].files[0]; // Get uploaded file
+            if( ! privateKeyFile ) {
+                alert('All fields are required');
+                return;
+            }
+        }
 
-        if ((companyUri.trim() == '') || (keyId.trim() == '') || !privateKeyFile) {
+        // if( (keyFileInDir=='yes') && privateKeyFile )
+
+        if ((companyUri.trim() == '') || (keyId.trim() == '')) {
             alert('All fields are required');
             return;
         }
@@ -18,6 +33,7 @@ jQuery(document).ready(function ($) {
         formData.append('action', 'admin_setting_input');
         formData.append('company_uri', companyUri);
         formData.append('key_id', keyId);
+        formData.append('key_file_in_dir', keyFileInDir);
         formData.append('nonce', ajax_object.ajax_nonce);
 
         // Append file if uploaded
