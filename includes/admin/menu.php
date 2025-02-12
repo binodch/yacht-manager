@@ -26,14 +26,13 @@ function yacht_manager_dashboard() {
 
     // return false if /keys directory not found
     $pkey_file = 'no';
-    if ( is_dir($keys_dir) || file_exists($key_file_path) ) {
+    if ( is_dir($keys_dir) && file_exists($key_file_path) ) {
         $pkey_file = 'yes';
     } ?>
 
     <div class="yacht-manager-wrap">
-        <h1>Welcome to Yacht Manager</h1>
-            
         <div class="yacht-manager-content">
+            <h1>Welcome to Yacht Manager</h1>
             <h3><?php printf(__('Enter API Credentials', 'yacht-manager')); ?></h3>
             <p>Get the details from here: <a href="https://ankorradar.productfruits.help/en/article/api-authentification-with-company-url-and-api-keys#1.-obtaining-your-api-client-credentials" target="blank">Ankor Software</a></p>
             
@@ -61,12 +60,14 @@ function yacht_manager_dashboard() {
         </div>
         
         <!-- Loader -->
-        <div class="yacht-loading-dialog">
-            <div class="yacht-loader-wrap">
-                <span class="yacht-loader"></span>
-            </div>
-            <div class="yacht-dialog-wrap">
-                <p>Verifying admin credentials</p>
+        <div class="yacht-loading">
+            <div class="yacht-loading-dialog">
+                <div class="yacht-loader-wrap">
+                    <span class="yacht-loader"></span>
+                </div>
+                <div class="yacht-dialog-wrap">
+                    <p>Verifying admin credentials</p>
+                </div>
             </div>
         </div>
 

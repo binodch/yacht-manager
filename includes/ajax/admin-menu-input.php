@@ -55,15 +55,15 @@ function yacht_manager_admin_setting_input() {
         $access_token = yacht_manager_generate_access_token();
 
         if( $access_token && isset($access_token['success']) && ($access_token['success']===true) ) {
-            wp_send_json_success( array( 'message' => 'API authentication granted', 'nnn'=>$nnn ) );
+            wp_send_json_success( array( 'message' => 'API authentication granted', 'nnn'=>'ysy' ) );
 
         } else {
-            wp_send_json_error( array( 'message' => 'Invalid API credentials', 'nnn'=>$nnn ) );
+            wp_send_json_error( array( 'message' => 'Invalid API credentials', 'nnn'=>'invalid' ) );
 
         }
 
     } else {
-        wp_send_json_error( array( 'message' => 'Invalid API credentials', 'nnn'=>$nnn ) );
+        wp_send_json_error( array( 'message' => 'Invalid API credentials', 'nnn'=>'invald' ) );
 
     }
 
