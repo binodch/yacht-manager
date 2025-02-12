@@ -29,12 +29,6 @@ if( ! function_exists('yacht_manager_generate_jwt_token') ) {
         $issued_at = time();
         $expires_at = $issued_at + 3600; // 1 hour expiration
 
-        $header = [
-            "alg" => "RS256",
-            "typ" => "JWT",
-            "kid" => $key_ids
-        ];
-
         $payload = [
             "scopes" => ["website:read:*"] ,
             "iss" => $company_uri,

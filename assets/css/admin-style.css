@@ -1,10 +1,13 @@
+.yacht-manager-wrap {
+    position: relative;
+}
+
 .yacht-manager-form-wrap {
     background: #fff;
     padding: 16px 24px;
     display: inline-block;
     width: 50%;
     border-radius: 8px;
-    position: relative;
 }
 
 .yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row {
@@ -22,13 +25,57 @@
     margin-bottom: 8px;
 }
 
-/* -- yacht-yacht-yacht-loader css -- */
-.yacht-loading-dialog {
-    /* padding */
-    position: absolute;
-    top: 180px;
-    left: 440px;
+#wpwrap {
+    /* background: rgba(0, 0, 0, 0.8); */
 }
+
+.yacht-manager-content {
+    /* display: none; */
+}
+
+/* -- yacht-yacht-yacht-loader css -- */
+.yacht-loading {
+    display: none;
+}
+.yacht-loading-dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 200px;
+    left: 480px;
+}
+@media (max-width: 1366px) {
+    .yacht-loading-dialog {
+        left: 350px;
+    }
+}
+@media (max-width: 990px) {
+    .yacht-loading-dialog {
+        left: 270px;
+    }
+}
+@media (max-width: 640px) {
+    .yacht-loading-dialog {
+        left: 220px;
+    }
+}
+@media (max-width: 560px) {
+    .yacht-loading-dialog {
+        left: 125px;
+    }
+}
+@media (max-width: 360px) {
+    .yacht-loading-dialog {
+        left: 70px;
+    }
+}
+@media (max-width: 280px) {
+    .yacht-loading-dialog {
+        left: 0;
+    }
+}
+
 .yacht-loader {
     width: 48px;
     height: 48px;

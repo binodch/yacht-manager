@@ -5,7 +5,6 @@ jQuery(document).ready(function ($) {
     $('#yacht-manager-save-btn').on('click', function (e) {
         e.preventDefault();
 
-
         let formData = new FormData();
         let companyUri = $('#yacht-company-uri').val();
         let keyId = $('#yacht-key-id').val();
@@ -41,6 +40,10 @@ jQuery(document).ready(function ($) {
             formData.append('private_key_file', privateKeyFile);
         }
 
+        $('.yacht-manager-content').hide();
+        $('.yacht-loading').show();
+
+
         $.ajax({
             url: ajax_object.ajax_url,
             type: 'POST',
@@ -48,17 +51,19 @@ jQuery(document).ready(function ($) {
             processData: false, // Important: prevent jQuery from processing data
             contentType: false, // Important: prevent jQuery from setting content-type
             success: function (response) {
+                $('.yacht-manager-content').show();
+                $('.yacht-loading').hide();
                 if (response.success) {
                     console.log(response.data.message);
-                    alert('Settings saved successfully');
                 } else {
-                    console.log('Failure: ', response.data);
-                    alert('Error saving settings');
+                    console.log('Error saving settings');
                 }
             },
             error: function (xhr, status, error) {
-                console.log('AJAX error: ', error);
-                alert('An error occurred while saving.');
+                $('.yacht-manager-content').show();
+                $('.yacht-loading').hide();
+
+                console.log('An error occurred while saving.');
             }
         });
     });
