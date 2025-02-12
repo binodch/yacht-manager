@@ -1,5 +1,51 @@
-.yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row {
-    display: flex;
-    align-items: center;
-
+.yacht-manager-form-wrap {
+    background: #fff;
+    padding: 16px 24px;
+    display: inline-block;
+    width: 50%;
+    border-radius: 8px;
+    position: relative;
 }
+
+.yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row {
+    margin-bottom: 16px;
+}
+.yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row label, 
+.yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row input {
+    display: block;
+    width: 100%;
+}
+
+.yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row label {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+/* -- yacht-yacht-yacht-loader css -- */
+.yacht-loading-dialog {
+    /* padding */
+    position: absolute;
+    top: 180px;
+    left: 440px;
+}
+.yacht-loader {
+    width: 48px;
+    height: 48px;
+    border: 5px solid #abc;
+    border-bottom-color: #2271b1;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
+/* -- yacht-yacht-yacht-loader css -- */
