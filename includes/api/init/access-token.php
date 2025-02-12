@@ -47,6 +47,8 @@ if( ! function_exists('yacht_manager_generate_access_token') ) {
         if( $response && $httpCode==200 ) {
             $response_arr = json_decode($response, true);
 
+            print_r($response_arr);
+
             if (isset($response_arr['access_token'])) {
                 return array(
                     'success' => true,
