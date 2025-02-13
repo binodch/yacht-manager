@@ -13,6 +13,7 @@
 .yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row {
     margin-bottom: 16px;
 }
+
 .yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row label, 
 .yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row input[type="text"] {
     display: block;
@@ -23,10 +24,6 @@
     font-weight: 600;
     font-size: 14px;
     margin-bottom: 8px;
-}
-
-#wpwrap {
-    /* background: rgba(0, 0, 0, 0.8); */
 }
 
 .yacht-confirm-btn {
@@ -48,9 +45,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 15px;
     color: #00BB13;
-    font-weight: 500;
 }
 
 .yacht-response-success::before {
@@ -62,21 +57,53 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .yacht-response-failure {
     display: flex;
     align-items: center;
     gap: 4px;
-    font-size: 15px;
     color: #de0000;
-    font-weight: 500;
 }
-
 .yacht-response-failure::before {
     content: "";
     display: inline-block;
     width: 20px;
     height: 20px;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0,0,256,256' width='50px' height='50px' fill-rule='nonzero'%3E%3Cg fill='%23de0000' fill-rule='nonzero' stroke='none' stroke-width='1' stroke-linecap='butt' stroke-linejoin='miter' stroke-miterlimit='10' stroke-dasharray='' stroke-dashoffset='0' font-family='none' font-weight='none' font-size='none' text-anchor='none' style='mix-blend-mode: normal'%3E%3Cg transform='scale(5.12,5.12)'%3E%3Cpath d='M25,2c-12.69047,0 -23,10.30953 -23,23c0,12.69047 10.30953,23 23,23c12.69047,0 23,-10.30953 23,-23c0,-12.69047 -10.30953,-23 -23,-23zM25,4c11.60953,0 21,9.39047 21,21c0,11.60953 -9.39047,21 -21,21c-11.60953,0 -21,-9.39047 -21,-21c0,-11.60953 9.39047,-21 21,-21zM32.99023,15.98633c-0.26377,0.00624 -0.51439,0.11645 -0.69727,0.30664l-7.29297,7.29297l-7.29297,-7.29297c-0.18827,-0.19353 -0.4468,-0.30272 -0.7168,-0.30274c-0.40692,0.00011 -0.77321,0.24676 -0.92633,0.62377c-0.15312,0.37701 -0.06255,0.80921 0.22907,1.09303l7.29297,7.29297l-7.29297,7.29297c-0.26124,0.25082 -0.36648,0.62327 -0.27512,0.97371c0.09136,0.35044 0.36503,0.62411 0.71547,0.71547c0.35044,0.09136 0.72289,-0.01388 0.97371,-0.27512l7.29297,-7.29297l7.29297,7.29297c0.25082,0.26124 0.62327,0.36648 0.97371,0.27512c0.35044,-0.09136 0.62411,-0.36503 0.71547,-0.71547c0.09136,-0.35044 -0.01388,-0.72289 -0.27512,-0.97371l-7.29297,-7.29297l7.29297,-7.29297c0.29724,-0.28583 0.38857,-0.7248 0.23,-1.10546c-0.15857,-0.38066 -0.53454,-0.62497 -0.94679,-0.61524z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.key-file-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.wrap-hide {
+    display: none;
+}
+
+.key-file-edit {
+    cursor: pointer;
+    background-color: #2271b1;
+    padding: 3px 8px;
+    border-radius: 24px;
+    color: #fff;
+}
+
+.key-file-name {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+}
+.key-file-name::before {
+    content: "";
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48' width='96px' height='96px'%3E%3Cpath d='M 13 4 C 10.250484 4 8 6.2504839 8 9 L 8 40 C 8 42.749516 10.250484 45 13 45 L 35 45 C 37.749516 45 40 42.749516 40 40 L 40 20 A 1.0001 1.0001 0 1 0 38 20 L 38 40 C 38 41.668484 36.668484 43 35 43 L 13 43 C 11.331516 43 10 41.668484 10 40 L 10 9 C 10 7.3315161 11.331516 6 13 6 L 26.757812 6 C 26.848824 6 26.910938 6.0874954 27 6.0996094 L 27 13 C 27 15.197334 28.802666 17 31 17 L 39 17 A 1.0001 1.0001 0 0 0 39.707031 15.292969 L 29.585938 5.171875 C 28.836398 4.4210018 27.818469 4 26.757812 4 L 13 4 z M 29 7.4140625 L 36.585938 15 L 31 15 C 29.883334 15 29 14.116666 29 13 L 29 7.4140625 z M 16 24 A 1.0001 1.0001 0 1 0 16 26 L 32 26 A 1.0001 1.0001 0 1 0 32 24 L 16 24 z M 16 29 A 1.0001 1.0001 0 1 0 16 31 L 32 31 A 1.0001 1.0001 0 1 0 32 29 L 16 29 z M 16 34 A 1.0001 1.0001 0 1 0 16 36 L 26 36 A 1.0001 1.0001 0 1 0 26 34 L 16 34 z'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
 }
@@ -93,8 +120,8 @@
     align-items: center;
 }
 .yacht-dialog-wrap p {
-    font-size: 15px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .yacht-loader {

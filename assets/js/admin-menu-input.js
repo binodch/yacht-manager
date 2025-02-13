@@ -1,6 +1,15 @@
 /* Script goes here */
 
 jQuery(document).ready(function ($) {
+
+    $('.key-file-edit').on('click', function (e) {
+        e.preventDefault();
+        $('#yacht-key-file-uploaded').val('no');
+        if ($('.key-upload-wrap').hasClass('wrap-hide')) {
+            $('.key-upload-wrap').removeClass('wrap-hide');
+        }
+        $('.key-file-wrap').addClass('wrap-hide');
+    });
     
     $('#yacht-manager-save-btn').on('click', function (e) {
         e.preventDefault();

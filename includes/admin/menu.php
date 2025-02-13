@@ -47,14 +47,19 @@ function yacht_manager_dashboard() {
                         <input type="text" id="yacht-key-id" name="yacht_key_id" value="<?php echo esc_attr($key_id); ?>" required>
                     </div>
                     <div class="form-row">
-                        <label for="yacht-private-key-upload"><?php printf( __( 'Upload Private Key (.pem):', 'yacht-manager' )); ?></label>
-                        <input type="file" id="yacht-private-key-upload" name="yacht_private_key_file" accept=".pem">
-                        <!-- <span id="file-name"><?php echo esc_html($key_file_name); ?></span> -->
+                        <div class="key-file-wrap <?php echo ($pkey_file=='no') ? 'wrap-hide' : ''; ?>">
+                            <span class="key-file-name"><?php echo esc_html($key_file_name); ?></span>
+                            <span class="key-file-edit">Change</span>
+                        </div>
+                        <div class="key-upload-wrap <?php echo ($pkey_file=='yes') ? 'wrap-hide' : ''; ?>">
+                            <label for="yacht-private-key-upload"><?php printf( __( 'Upload Private Key (.pem):', 'yacht-manager' )); ?></label>
+                            <input type="file" id="yacht-private-key-upload" name="yacht_private_key_file" accept=".pem">
+                        </div>
                     </div>
                     <input type="hidden" id="yacht-key-file-uploaded" value="<?php echo esc_attr($pkey_file); ?>">
                     <div class="form-row yacht-confirm-btn">
                         <div class="yacht-btn">
-                            <button class="button button-primary" id="yacht-manager-save-btn"><?php printf( __( 'Save', 'yacht-manager' )); ?></button>
+                            <button class="button button-primary yacht-manager-save-btn" id="yacht-manager-save-btn"><?php printf( __( 'Save', 'yacht-manager' )); ?></button>
                         </div>
                         <div class="yacht-loading-loader">
                             <div class="yacht-loading-dialog">
