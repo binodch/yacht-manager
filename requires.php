@@ -20,3 +20,6 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/init/access-token.php';
 
 // Include admin setting form input ajax
 require_once plugin_dir_path(__FILE__) . 'includes/ajax/admin-menu-input.php';
+
+// Include shortcode
+require_once plugin_dir_path(__FILE__) . 'includes/shortcodes/filter.php';
