@@ -1,5 +1,5 @@
 .yacht-manager-wrap {
-    position: relative;
+    /* position: relative; */
 }
 
 .yacht-manager-form-wrap {
@@ -14,7 +14,7 @@
     margin-bottom: 16px;
 }
 .yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row label, 
-.yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row input {
+.yacht-manager-wrap .yacht-manager-content .yacht-manager-form-wrap .yacht-manager-form .form-row input[type="text"] {
     display: block;
     width: 100%;
 }
@@ -29,57 +29,78 @@
     /* background: rgba(0, 0, 0, 0.8); */
 }
 
-.yacht-manager-content {
-    /* display: none; */
+.yacht-confirm-btn {
+    position: relative;    
+    display: flex;
+    align-items: center;
+}
+
+.yacht-dialog-wrap {
+    margin-left: 4px;
+}
+
+.blurred {
+    filter: blur(0.1px);
+    pointer-events: none;
+}
+
+.yacht-response-success {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 15px;
+    color: #00BB13;
+    font-weight: 500;
+}
+
+.yacht-response-success::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0,0,256,256' width='48px' height='48px' fill-rule='nonzero'%3E%3Cg fill='%2300bb13' fill-rule='nonzero' stroke='none' stroke-width='1' stroke-linecap='butt' stroke-linejoin='miter' stroke-miterlimit='10' stroke-dasharray='' stroke-dashoffset='0' font-family='none' font-weight='none' font-size='none' text-anchor='none' style='mix-blend-mode: normal'%3E%3Cg transform='scale(10.66667,10.66667)'%3E%3Cpath d='M12,2c-5.514,0 -10,4.486 -10,10c0,5.514 4.486,10 10,10c5.514,0 10,-4.486 10,-10c0,-1.126 -0.19602,-2.2058 -0.54102,-3.2168l-1.61914,1.61914c0.105,0.516 0.16016,1.05066 0.16016,1.59766c0,4.411 -3.589,8 -8,8c-4.411,0 -8,-3.589 -8,-8c0,-4.411 3.589,-8 8,-8c1.633,0 3.15192,0.49389 4.41992,1.33789l1.43164,-1.43164c-1.648,-1.194 -3.66656,-1.90625 -5.85156,-1.90625zM21.29297,3.29297l-10.29297,10.29297l-3.29297,-3.29297l-1.41406,1.41406l4.70703,4.70703l11.70703,-11.70703z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.yacht-response-failure {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 15px;
+    color: #de0000;
+    font-weight: 500;
+}
+
+.yacht-response-failure::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0,0,256,256' width='50px' height='50px' fill-rule='nonzero'%3E%3Cg fill='%23de0000' fill-rule='nonzero' stroke='none' stroke-width='1' stroke-linecap='butt' stroke-linejoin='miter' stroke-miterlimit='10' stroke-dasharray='' stroke-dashoffset='0' font-family='none' font-weight='none' font-size='none' text-anchor='none' style='mix-blend-mode: normal'%3E%3Cg transform='scale(5.12,5.12)'%3E%3Cpath d='M25,2c-12.69047,0 -23,10.30953 -23,23c0,12.69047 10.30953,23 23,23c12.69047,0 23,-10.30953 23,-23c0,-12.69047 -10.30953,-23 -23,-23zM25,4c11.60953,0 21,9.39047 21,21c0,11.60953 -9.39047,21 -21,21c-11.60953,0 -21,-9.39047 -21,-21c0,-11.60953 9.39047,-21 21,-21zM32.99023,15.98633c-0.26377,0.00624 -0.51439,0.11645 -0.69727,0.30664l-7.29297,7.29297l-7.29297,-7.29297c-0.18827,-0.19353 -0.4468,-0.30272 -0.7168,-0.30274c-0.40692,0.00011 -0.77321,0.24676 -0.92633,0.62377c-0.15312,0.37701 -0.06255,0.80921 0.22907,1.09303l7.29297,7.29297l-7.29297,7.29297c-0.26124,0.25082 -0.36648,0.62327 -0.27512,0.97371c0.09136,0.35044 0.36503,0.62411 0.71547,0.71547c0.35044,0.09136 0.72289,-0.01388 0.97371,-0.27512l7.29297,-7.29297l7.29297,7.29297c0.25082,0.26124 0.62327,0.36648 0.97371,0.27512c0.35044,-0.09136 0.62411,-0.36503 0.71547,-0.71547c0.09136,-0.35044 -0.01388,-0.72289 -0.27512,-0.97371l-7.29297,-7.29297l7.29297,-7.29297c0.29724,-0.28583 0.38857,-0.7248 0.23,-1.10546c-0.15857,-0.38066 -0.53454,-0.62497 -0.94679,-0.61524z'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 
 /* -- yacht-yacht-yacht-loader css -- */
-.yacht-loading {
+.yacht-loading-loader {
     display: none;
+    position: absolute;
+    left: 75px;
 }
+
 .yacht-loading-dialog {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    position: absolute;
-    top: 200px;
-    left: 480px;
 }
-@media (max-width: 1366px) {
-    .yacht-loading-dialog {
-        left: 350px;
-    }
-}
-@media (max-width: 990px) {
-    .yacht-loading-dialog {
-        left: 270px;
-    }
-}
-@media (max-width: 640px) {
-    .yacht-loading-dialog {
-        left: 220px;
-    }
-}
-@media (max-width: 560px) {
-    .yacht-loading-dialog {
-        left: 125px;
-    }
-}
-@media (max-width: 360px) {
-    .yacht-loading-dialog {
-        left: 70px;
-    }
-}
-@media (max-width: 280px) {
-    .yacht-loading-dialog {
-        left: 0;
-    }
+.yacht-dialog-wrap p {
+    font-size: 15px;
+    font-weight: 500;
 }
 
 .yacht-loader {
-    width: 48px;
-    height: 48px;
-    border: 5px solid #abc;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #abc;
     border-bottom-color: #2271b1;
     border-radius: 50%;
     display: inline-block;

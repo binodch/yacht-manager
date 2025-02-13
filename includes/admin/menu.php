@@ -51,9 +51,21 @@ function yacht_manager_dashboard() {
                         <input type="file" id="yacht-private-key-upload" name="yacht_private_key_file" accept=".pem">
                         <!-- <span id="file-name"><?php echo esc_html($key_file_name); ?></span> -->
                     </div>
-                    <div class="form-row">
-                        <input type="hidden" id="yacht-key-file-uploaded" value="<?php echo esc_attr($pkey_file); ?>">
-                        <button class="button button-primary" id="yacht-manager-save-btn"><?php printf( __( 'Save', 'yacht-manager' )); ?></button>
+                    <input type="hidden" id="yacht-key-file-uploaded" value="<?php echo esc_attr($pkey_file); ?>">
+                    <div class="form-row yacht-confirm-btn">
+                        <div class="yacht-btn">
+                            <button class="button button-primary" id="yacht-manager-save-btn"><?php printf( __( 'Save', 'yacht-manager' )); ?></button>
+                        </div>
+                        <div class="yacht-loading-loader">
+                            <div class="yacht-loading-dialog">
+                                <div class="yacht-loader-wrap">
+                                    <span class="yacht-loader"></span>
+                                </div>
+                                <div class="yacht-dialog-wrap">
+                                    <p>Verifying admin credentials</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -61,15 +73,6 @@ function yacht_manager_dashboard() {
         
         <!-- Loader -->
         <div class="yacht-loading">
-            <div class="yacht-loading-dialog">
-                <div class="yacht-loader-wrap">
-                    <span class="yacht-loader"></span>
-                </div>
-                <div class="yacht-dialog-wrap">
-                    <p>Verifying admin credentials</p>
-                </div>
-            </div>
-        </div>
 
         
         <!-- Loader -->
