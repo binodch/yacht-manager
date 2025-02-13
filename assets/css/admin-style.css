@@ -84,6 +84,11 @@
     display: none;
 }
 
+.key-uploaded .key-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .key-file-edit {
     cursor: pointer;
     background-color: #2271b1;
@@ -108,7 +113,7 @@
     background-repeat: no-repeat;
 }
 
-/* -- yacht-yacht-yacht-loader css -- */
+/* -- yacht-loader css -- */
 .yacht-loading-loader {
     display: none;
     position: absolute;
@@ -133,14 +138,14 @@
     display: inline-block;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
-    }
+}
 
     @keyframes rotation {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
     } 
-/* -- yacht-yacht-yacht-loader css -- */
+/* -- yacht-loader css -- */

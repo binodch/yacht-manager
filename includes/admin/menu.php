@@ -47,9 +47,12 @@ function yacht_manager_dashboard() {
                         <input type="text" id="yacht-key-id" name="yacht_key_id" value="<?php echo esc_attr($key_id); ?>" required>
                     </div>
                     <div class="form-row">
-                        <div class="key-file-wrap <?php echo ($pkey_file=='no') ? 'wrap-hide' : ''; ?>">
-                            <span class="key-file-name"><?php echo esc_html($key_file_name); ?></span>
-                            <span class="key-file-edit">Change</span>
+                        <div class="key-uploaded <?php echo ($pkey_file=='no') ? 'wrap-hide' : ''; ?>">
+                            <p class="key-text">Private key file</p>
+                            <div class="key-file-wrap">
+                                <span class="key-file-name"><?php echo esc_html($key_file_name); ?></span>
+                                <span class="key-file-edit">Change</span>
+                            </div>
                         </div>
                         <div class="key-upload-wrap <?php echo ($pkey_file=='yes') ? 'wrap-hide' : ''; ?>">
                             <label for="yacht-private-key-upload"><?php printf( __( 'Upload Private Key (.pem):', 'yacht-manager' )); ?></label>
@@ -75,13 +78,6 @@ function yacht_manager_dashboard() {
                 </form>
             </div>
         </div>
-        
-        <!-- Loader -->
-        <div class="yacht-loading">
-
-        
-        <!-- Loader -->
-        <!-- <div class="yacht-manager-dialog"></div> -->
     </div> 
 
 <?php 

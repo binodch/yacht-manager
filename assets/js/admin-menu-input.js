@@ -8,7 +8,7 @@ jQuery(document).ready(function ($) {
         if ($('.key-upload-wrap').hasClass('wrap-hide')) {
             $('.key-upload-wrap').removeClass('wrap-hide');
         }
-        $('.key-file-wrap').addClass('wrap-hide');
+        $('.key-uploaded').addClass('wrap-hide');
     });
     
     $('#yacht-manager-save-btn').on('click', function (e) {
