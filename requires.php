@@ -22,7 +22,10 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/init/access-token.php';
 require_once plugin_dir_path(__FILE__) . 'includes/ajax/admin-menu-input.php';
 
 // Include fetch yacht list
-require_once plugin_dir_path(__FILE__) . 'includes/api/fetch/yacht-list.php';
+require_once plugin_dir_path(__FILE__) . 'includes/api/functions/yacht-list.php';
+
+// Include curl entry list
+require_once plugin_dir_path(__FILE__) . 'includes/api/fetch/entry-list.php';
 
 // signature
 require_once plugin_dir_path(__FILE__) . 'includes/hash/signature.php';

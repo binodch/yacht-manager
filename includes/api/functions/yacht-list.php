@@ -6,7 +6,7 @@
 function yacht_manager_fetch_yacht_list() {
 
     ///////////////////////////////////
-    // integrate API call
+    // sample json data
     ///////////////////////////////////
     $sample_yacht_file = dirname(__DIR__, 2) . '/data/sample-yachts.json';
     if (!file_exists($sample_yacht_file)) {
@@ -15,7 +15,13 @@ function yacht_manager_fetch_yacht_list() {
     $yacht_data = file_get_contents($sample_yacht_file);
     ///////////////////////////////////
     
-    if( $yacht_data ) {
+    ///////////////////////////////////
+    // api response
+    ///////////////////////////////////
+    // $yacht_data = yacht_manager_curl_entity_list();
+    ///////////////////////////////////
+    
+    if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
         $yacht_arr = json_decode($yacht_data, true);
         if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
             return $yacht_arr;
