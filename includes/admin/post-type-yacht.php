@@ -26,11 +26,21 @@ function yacht_manager_register_post_type() {
             'has_archive'       => true,
             'show_in_menu'      => true,
             'menu_icon'         => 'dashicons-buddicons-forums',
-            'supports'          => array('title', 'editor', 'thumbnail', 'custom-fields'),
+            'supports'          => array('title', 'thumbnail', 'custom-fields'),
             'rewrite'           => array('slug' => 'yachts'),
         );
 
         register_post_type('yacht', $args);
+        
+        register_taxonomy(
+            'yacht-type',
+            'yacht',
+            [
+                'label'        => __('Yacht Types', 'yacht-manager'),
+                'rewrite'      => ['slug' => 'yacht-type'],
+                'hierarchical' => true,
+            ]
+        );
     }
 }
 

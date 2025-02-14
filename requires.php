@@ -4,7 +4,7 @@
 */
 
 // Include admin register yacht posttype
-require_once plugin_dir_path(__FILE__) . 'includes/admin/yacht.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin/post-type-yacht.php';
 
 // Include admin register yacht posttype
 require_once plugin_dir_path(__FILE__) . 'includes/admin/menu.php';
@@ -21,5 +21,18 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/init/access-token.php';
 // Include admin setting form input ajax
 require_once plugin_dir_path(__FILE__) . 'includes/ajax/admin-menu-input.php';
 
+// Include fetch yacht list
+require_once plugin_dir_path(__FILE__) . 'includes/api/fetch/yacht-list.php';
+
+// signature
+require_once plugin_dir_path(__FILE__) . 'includes/hash/signature.php';
+
 // Include shortcode
 require_once plugin_dir_path(__FILE__) . 'includes/shortcodes/filter.php';
+
+
+function pr($arr) {
+    echo '<pre>';
+    print_r($arr);
+    echo '</pre>';
+}
