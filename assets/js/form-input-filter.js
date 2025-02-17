@@ -1,0 +1,133 @@
+document.addEventListener('DOMContentLoaded', function() {
+    // Prevent form submission
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+    });
+
+    // Destination Dropdown
+    document.querySelectorAll('.form-element-destination .dropdown-item').forEach(function(item) {
+        item.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent default anchor behavior
+            
+            var destination = item.textContent.trim();
+
+            // Update the destination dropdown button text
+            document.getElementById('destinationDropdown').textContent = destination;
+
+            // Update the hidden input value
+            document.getElementById('destination').value = destination;
+        });
+    });
+
+    // Yacht Selection Dropdown
+    document.querySelectorAll('.form-element-yacht .yacht-checkbox').forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            var selectedYachts = [];
+
+            // Collect selected yachts
+            document.querySelectorAll('.form-element-yacht .yacht-checkbox:checked').forEach(function(checkedBox) {
+                selectedYachts.push(checkedBox.value);
+            });
+
+            // Update the yacht dropdown button text
+            document.getElementById('yachtDropdown').textContent = selectedYachts.join(', ') || "Choose a yacht";
+
+            // Update the hidden input value with selected yachts
+            document.getElementById('yacht').value = selectedYachts.join(', ');
+        });
+    });
+
+    // Function to update the total guest count and button text
+    function updateTotalGuests() {
+        var adultCount = parseInt(document.getElementById('adultCount').textContent);
+        var childCount = parseInt(document.getElementById('childCount').textContent);
+        var infantCount = parseInt(document.getElementById('infantCount').textContent);
+
+        var totalGuests = adultCount + childCount;
+
+        if (totalGuests === 0 && infantCount === 0) {
+            document.getElementById('customerCount').textContent = 'Add guest';
+        } else {
+            var totalGuestsText = totalGuests + " Guest" + (totalGuests !== 1 ? "s" : "");
+            if (infantCount > 0) {
+                totalGuestsText += ", " + infantCount + " Infant" + (infantCount !== 1 ? "s" : "");
+            }
+            document.getElementById('customerCount').textContent = totalGuestsText;
+        }
+
+        document.getElementById('totalGuestsInput').value = totalGuests;
+    }
+
+    // Increase/Decrease Adult Count
+    document.getElementById('increaseAdultBtn').addEventListener('click', function() {
+        var adultCount = parseInt(document.getElementById('adultCount').textContent);
+        document.getElementById('adultCount').textContent = adultCount + 1;
+        updateTotalGuests();
+    });
+
+    document.getElementById('decreaseAdultBtn').addEventListener('click', function() {
+        var adultCount = parseInt(document.getElementById('adultCount').textContent);
+        var childCount = parseInt(document.getElementById('childCount').textContent);
+        var infantCount = parseInt(document.getElementById('infantCount').textContent);
+
+        if (childCount > 0 || infantCount > 0) return;
+
+        if (adultCount > 0) {
+            document.getElementById('adultCount').textContent = adultCount - 1;
+            updateTotalGuests();
+        }
+    });
+
+    // Increase/Decrease Child Count
+    document.getElementById('increaseChildBtn').addEventListener('click', function() {
+        var childCount = parseInt(document.getElementById('childCount').textContent);
+        var adultCount = parseInt(document.getElementById('adultCount').textContent);
+
+        if (adultCount < 1) {
+            document.getElementById('adultCount').textContent = 1;
+        }
+
+        document.getElementById('childCount').textContent = childCount + 1;
+        updateTotalGuests();
+    });
+
+    document.getElementById('decreaseChildBtn').addEventListener('click', function() {
+        var childCount = parseInt(document.getElementById('childCount').textContent);
+        if (childCount > 0) {
+            document.getElementById('childCount').textContent = childCount - 1;
+            updateTotalGuests();
+        }
+    });
+
+    // Increase/Decrease Infant Count
+    document.getElementById('increaseInfantBtn').addEventListener('click', function() {
+        var infantCount = parseInt(document.getElementById('infantCount').textContent);
+        var adultCount = parseInt(document.getElementById('adultCount').textContent);
+
+        if (adultCount < 1) {
+            document.getElementById('adultCount').textContent = 1;
+        }
+
+        document.getElementById('infantCount').textContent = infantCount + 1;
+        updateTotalGuests();
+    });
+
+    document.getElementById('decreaseInfantBtn').addEventListener('click', function() {
+        var infantCount = parseInt(document.getElementById('infantCount').textContent);
+        if (infantCount > 0) {
+            document.getElementById('infantCount').textContent = infantCount - 1;
+            updateTotalGuests();
+        }
+    });
+
+    // Prevent the dropdown from closing when the plus or minus buttons are clicked
+    document.querySelectorAll('#decreaseAdultBtn, #increaseAdultBtn, #decreaseChildBtn, #increaseChildBtn, #decreaseInfantBtn, #increaseInfantBtn').forEach(function(button) {
+        button.addEventListener('click', function(event) {
+            event.stopPropagation();
+            event.preventDefault();
+        });
+    });
+
+    // Initialize the total on page load
+    updateTotalGuests();
+});

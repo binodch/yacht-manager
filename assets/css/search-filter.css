@@ -1,0 +1,52 @@
+/* Sidebar Container */
+.sidebar-filter {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 300px;
+    background: #fff;
+    box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    z-index: 999;
+    overflow-y: auto;
+}
+
+/* Ensure filter items are displayed horizontally */
+.filter-section .filter-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Make sure elements align properly */
+.filter-element {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style dropdowns */
+.dropdown-menu {
+    width: 100%;
+}
+
+/* Ensure button full width */
+.button-wrap {
+    text-align: center;
+}
+.button-wrap .btn {
+    width: 100%;
+}
+
+/* Media Query for Mobile */
+@media (max-width: 768px) {
+    .sidebar-filter {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .filter-section .filter-wrap {
+        flex-direction: column;
+    }
+}
