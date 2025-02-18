@@ -3,9 +3,8 @@
 function yacht_manager_filter_select() {
     $message = '';
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['user_name'])) {
-        $user_name = sanitize_text_field($_POST['user_name']);
-        $message = '<p>Hello, ' . esc_html($user_name) . '! Welcome.</p>';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        pr($_POST);
     }
 
     $yacht_args = array(
@@ -25,23 +24,26 @@ function yacht_manager_filter_select() {
                     </div>
                     <div class="ytm-item-content">
                         <div class="ytm-item-name">
-                            <h3>' . get_the_title() . '
+                            Molo 63
+                        </div>
+                        <div class="ytm-item-name">
+                            <h3>' . get_the_title() . '</h3>
                         </div>
                         <div class="ytm-item-cost">
                             <p>Day: <span>From $2,500</span></p>
                             <p>Week: <span>From $15,000</span></p>
                         </div>
                         <div class="ytm-item-meta">
-                            <div class="meta-make-year">
+                            <div class="ytm-meta-item meta-make-year">
                                 <span>2018</span>
                             </div>
-                            <div class="meta-length">
+                            <div class="ytm-meta-item meta-length">
                                 <span>13m (43ft)</span>
                             </div>
-                            <div class="meta-sleeps">
+                            <div class="ytm-meta-item meta-sleeps">
                                 <span>1</span>
                             </div>
-                            <div class="meta-charter-type">
+                            <div class="ytm-meta-item meta-charter-type">
                                 <span>Eco Yachts</span>
                             </div>
                         </div>
@@ -60,7 +62,7 @@ function yacht_manager_filter_select() {
             <div class="row">
                 <div class="col-md-3">
                     <div class="filter-main">
-                        <form method="post">
+                        <form method="post" action="">
                             <div class="filter-section">
                                 <div class="d-flex align-items-center filter-wrap">
                                     <!-- Destination -->

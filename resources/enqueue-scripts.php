@@ -6,6 +6,12 @@
 // Frontend style
 function yacht_manager_enqueue_public_assets() {
     wp_enqueue_style(
+        'yacht-manager-global',
+        plugin_dir_url(__FILE__) . '../assets/css/global.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
         'yacht-manager-public',
         plugin_dir_url(__FILE__) . '../assets/css/style.min.css',
         [],
@@ -56,6 +62,12 @@ function yacht_manager_enqueue_public_assets() {
     wp_enqueue_script(
         'yacht-manager-homepagefilter',
         plugin_dir_url(__FILE__) . '../assets/js/form-input-filter.js',
+        [],
+        YACHT_MANAGER_VERSION
+    ); 
+    wp_enqueue_script(
+        'yacht-manager-filter-submit',
+        plugin_dir_url(__FILE__) . '../assets/js/filter-submit.js',
         [],
         YACHT_MANAGER_VERSION
     ); 

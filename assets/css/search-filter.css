@@ -1,5 +1,5 @@
 /* Sidebar Container */
-.sidebar-filter {
+/* .sidebar-filter {
     position: fixed;
     left: 0;
     top: 0;
@@ -10,17 +10,18 @@
     padding: 20px;
     z-index: 999;
     overflow-y: auto;
-}
+} */
 
 /* Ensure filter items are displayed horizontally */
-.filter-section .filter-wrap {
+.ytm-filter-section .ytm-filter-sidebar {
     display: flex;
+    align-items: center;
     flex-direction: column;
     gap: 15px;
 }
 
 /* Make sure elements align properly */
-.filter-element {
+.ytm-filter-element {
     display: flex;
     flex-direction: column;
 }
@@ -40,13 +41,63 @@
 
 /* Media Query for Mobile */
 @media (max-width: 768px) {
-    .sidebar-filter {
+    /* .sidebar-filter {
         width: 100%;
         height: auto;
         position: relative;
-    }
+    } */
 
-    .filter-section .filter-wrap {
+    /* .filter-section .filter-wrap {
         flex-direction: column;
-    }
+    } */
 }
+
+/* pagination */
+.ytm-entity-pagination .paginate-list-prev, .ytm-entity-pagination .paginate-list-next {
+    display: flex;
+    align-items: center;
+    /* gap: 4px; */
+}
+.ytm-entity-pagination .paginate-list-prev::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg width='13' height='18' viewBox='0 0 13 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.75 16.6489L1.75 8.64892L11.75 0.648926' stroke='%236A6A6A' stroke-width='1.5'/%3E%3C/svg%3E%0A");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.ytm-entity-pagination .paginate-list-next::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg width='13' height='18' viewBox='0 0 13 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.25 0.648926L11.25 8.64893L1.25 16.6489' stroke='%236A6A6A' stroke-width='1.5'/%3E%3C/svg%3E%0A");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.ytm-entity-pagination ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.ytm-entity-pagination ul li {
+    cursor: pointer;
+    list-style: none;
+}
+.ytm-entity-pagination .paginate-list {
+    color: var(--secondary-color);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20.34px;
+    letter-spacing: -1.1%;
+    text-align: center;
+}
+.ytm-entity-pagination .paginate-list.active {
+    color: var(--body-text);
+    padding: 10px 15px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+/* pagination */
