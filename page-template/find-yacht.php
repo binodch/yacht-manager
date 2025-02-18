@@ -5,8 +5,6 @@ Template Name: Find Yacht
 
 get_header(); 
 
-
-
 $entity_list = yacht_manager_curl_search_entity_list();
 
 $total_entity = 0;
