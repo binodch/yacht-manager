@@ -21,8 +21,13 @@ $yacht_item = '';
 if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
     $total_entity = count($entity_list);
     $count = 0;
-    foreach( $entity_list as $elist ) {
-        if( ($total_entity>$count) && ($count>8) ) {
+
+    $entity_from = ($current_page - 1) * $entity_per_page;
+
+    $entity_range_list = array_slice($entity_list, $entity_from, $entity_per_page, true);
+
+    foreach( $entity_range_list as $elist ) {
+        if( ($total_entity>$count) && ($count>($entity_per_page-1)) ) {
             break;
         }
 
