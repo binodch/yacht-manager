@@ -4,9 +4,6 @@
 */
 
 // Include admin register yacht posttype
-require_once plugin_dir_path(__FILE__) . 'includes/admin/post-type-yacht.php';
-
-// Include admin register yacht posttype
 require_once plugin_dir_path(__FILE__) . 'includes/admin/menu.php';
 
 // Include enqueue style css
