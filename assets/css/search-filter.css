@@ -96,7 +96,7 @@
 }
 .ytm-entity-pagination .paginate-list.active {
     color: var(--body-text);
-    padding: 10px 15px;
+    padding: 10px 14px;
     border-radius: 50%;
     background-color: var(--primary-color);
 }
