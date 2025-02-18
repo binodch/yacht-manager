@@ -27,11 +27,17 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/functions/yacht-list.php'
 // Include curl entry list
 require_once plugin_dir_path(__FILE__) . 'includes/api/fetch/entry-list.php';
 
+// Include curl entity list
+require_once plugin_dir_path(__FILE__) . 'includes/api/search/entity-list.php';
+
 // signature
 require_once plugin_dir_path(__FILE__) . 'includes/hash/signature.php';
 
 // Include shortcode
 require_once plugin_dir_path(__FILE__) . 'includes/shortcodes/filter.php';
+
+// find yacht page template
+require_once plugin_dir_path(__FILE__) . 'page-template/register-page-template.php';
 
 
 function pr($arr) {
