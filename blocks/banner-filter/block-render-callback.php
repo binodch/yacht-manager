@@ -10,7 +10,7 @@ function render_banner_filter_block($attributes) {
 		$banner_filter .= '<div class="container">
 			<div class="section-heading text-center">';
                 if( $banner_filter != '' ) {
-                    $banner_filter .= '<h1 class="fs-hero section-banner__title">
+                    $banner_filter .= '<h1 class="section-banner__title">
                         Paradise Awaits					
                     </h1>';
                 }
@@ -23,7 +23,7 @@ function render_banner_filter_block($attributes) {
         $banner_filter .= '</div>';
 
         $banner_filter .= '<div class="background-image">
-                <img fetchpriority="high" decoding="async" width="1396" height="854" src="http://localhost:8888/ahoy-club-wp/wp-content/uploads/2025/01/Rectangle-2.png" class="attachment-background-image size-background-image" alt="" loading="eager" srcset="http://localhost:8888/ahoy-club-wp/wp-content/uploads/2025/01/Rectangle-2.png 1396w, http://localhost:8888/ahoy-club-wp/wp-content/uploads/2025/01/Rectangle-2-300x184.png 300w, http://localhost:8888/ahoy-club-wp/wp-content/uploads/2025/01/Rectangle-2-1024x626.png 1024w, http://localhost:8888/ahoy-club-wp/wp-content/uploads/2025/01/Rectangle-2-768x470.png 768w" sizes="(max-width: 1396px) 100vw, 1396px">				<!-- banner social icon -->
+                <img fetchpriority="high" decoding="async" width="1396" height="854" src="' .plugin_dir_url(dirname(__FILE__, 2)) . 'assets/css/yacht.jpg' .'" class="attachment-background-image size-background-image" alt="" loading="eager">
             </div>';
 		
 		// filter section

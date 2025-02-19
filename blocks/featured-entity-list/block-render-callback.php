@@ -35,7 +35,7 @@ function render_featured_entity_block($attributes) {
                 $featured_entity .= '<div class="' . $col . '">';
                 $featured_entity .= '<div class="ytm-entity-list">';
                 $featured_entity .= '<div class="ytm-entity-image '. $img_class .'">';
-                $featured_entity .= '<img decoding="async" src="'. plugin_dir_url(dirname(__FILE__, 2)) . 'assets/css/yacht.jpg' .'" alt="'. $entity['title'] .'">';
+                $featured_entity .= '<img decoding="async" src="'. plugin_dir_url(dirname(__FILE__, 2)) . 'assets/css/yacht.jpg' .'" alt="p">';
                 $featured_entity .= '</div>';
                 
                 $featured_entity .= '<div class="ytm-entity-content">';
