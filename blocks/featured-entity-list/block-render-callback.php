@@ -1,7 +1,7 @@
 <?php
 
 // Server-side Render Function
-function render_featured_entity_block($attributes) {
+function yacht_manager_render_featured_entity_block($attributes) {
     $title = esc_html($attributes['title']);
     $description = esc_html($attributes['description']);
 
