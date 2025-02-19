@@ -20,7 +20,7 @@ function render_featured_entity_block($attributes) {
             $featured_entity .= '</div>';
         }
 
-        $entity_list = yacht_manager_curl_featured_dentity_list();
+        $entity_list = yacht_manager_curl_featured_entity_list();
 
         if( $entity_list && is_array($entity_list) && count($entity_list)>0 ) {
             $count = 1;

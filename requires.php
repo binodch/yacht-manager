@@ -30,11 +30,14 @@ require_once plugin_dir_path(__FILE__) . 'includes/hash/signature.php';
 // find yacht page template
 require_once plugin_dir_path(__FILE__) . 'page-template/register-page-template.php';
 
-// register block
+// register custom block
 require_once plugin_dir_path(__FILE__) . 'blocks/register-custom-blocks.php';
 
-// register block
+// render callback featured.entity.list block
 require_once plugin_dir_path(__FILE__) . 'blocks/featured-entity-list/block-render-callback.php';
+
+// render callback block.filter block
+require_once plugin_dir_path(__FILE__) . 'blocks/banner-filter/block-render-callback.php';
 
 
 function pr($arr) {

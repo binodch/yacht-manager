@@ -1,5 +1,5 @@
-wp.blocks.registerBlockType('custom/featured-entity-block', {
-    title: 'Featured Entity Block',
+wp.blocks.registerBlockType('custom/banner-filter-block', {
+    title: 'Banner Filter Block',
     icon: 'admin-comments',
     category: 'widgets',
 
@@ -18,7 +18,7 @@ wp.blocks.registerBlockType('custom/featured-entity-block', {
         }
 
         return (
-            wp.element.createElement('div', { className: 'custom-featured-entity-block' },
+            wp.element.createElement('div', { className: 'custom-banner-filter-block' },
                 wp.element.createElement('input', {
                     type: 'text',
                     value: props.attributes.title,
