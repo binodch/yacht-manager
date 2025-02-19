@@ -21,6 +21,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/ajax/admin-menu-input.php';
 // Include curl entity list
 require_once plugin_dir_path(__FILE__) . 'includes/api/search/entity-list.php';
 
+// Include curl featured entity list
+require_once plugin_dir_path(__FILE__) . 'includes/api/search/featured-entity-list.php';
+
 // signature
 require_once plugin_dir_path(__FILE__) . 'includes/hash/signature.php';
 
@@ -31,7 +34,7 @@ require_once plugin_dir_path(__FILE__) . 'page-template/register-page-template.p
 require_once plugin_dir_path(__FILE__) . 'blocks/register-custom-blocks.php';
 
 // register block
-require_once plugin_dir_path(__FILE__) . 'blocks/block-render-callback.php';
+require_once plugin_dir_path(__FILE__) . 'blocks/featured-entity-list/block-render-callback.php';
 
 
 function pr($arr) {

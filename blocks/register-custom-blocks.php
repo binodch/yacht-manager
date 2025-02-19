@@ -9,10 +9,17 @@ if (!defined('ABSPATH')) {
 
 // Register the block
 function yacht_manager_register_featured_entity_block() {
+    wp_enqueue_style(
+        'yacht-maanger-featured-entity-block-styl',
+        plugin_dir_url(__FILE__) . 'featured-entity-list/block.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
     wp_enqueue_script(
         'yacht-maanger-featured-entity-block-editor',
         plugin_dir_url(__FILE__) . 'featured-entity-list/block.js',
-        array('wp-blocks', 'wp-editor', 'wp-components', 'wp-element')
+        array('wp-blocks', 'wp-editor', 'wp-components', 'wp-element'),
+        YACHT_MANAGER_VERSION
     );
 
     register_block_type('custom/featured-entity-block', array(
