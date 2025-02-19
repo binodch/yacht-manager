@@ -39,7 +39,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                 <div class="ytm-item-content">';
 
                     if( isset($elist['subname']) ) {
-                        $yacht_item .= '<div class="ytm-item-name">
+                        $yacht_item .= '<div class="ytm-item-symbol">
                             Molo 63
                         </div>';
                     }
