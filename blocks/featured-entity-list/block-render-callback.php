@@ -33,6 +33,7 @@ function render_featured_entity_block($attributes) {
                 $col = ( ($count == 1) || ($count == 6) ) ? 'col-md-6 col-lg-4 col-xl-6' : 'col-md-6 col-lg-4 col-xl-3';
                 $img_class = ( ($count == 1) || ($count == 6) ) ? 'image-large' : 'image-fit';
                 $featured_entity .= '<div class="' . $col . '">';
+                $featured_entity .= '<div class="ytm-entity-item">';
                 $featured_entity .= '<div class="ytm-entity-list">';
                 $featured_entity .= '<div class="ytm-entity-image '. $img_class .'">';
                 $featured_entity .= '<img decoding="async" src="'. plugin_dir_url(dirname(__FILE__, 2)) . 'assets/css/yacht.jpg' .'" alt="p">';
@@ -52,7 +53,7 @@ function render_featured_entity_block($attributes) {
                         </div>';
                     }
 
-                    if( isset($entity['cost']) ) {
+                    if( !isset($entity['cost']) ) {
                         $featured_entity .= '<div class="ytm-item-cost">
                             <p>Day: <span>From $2,500</span></p>
                             <p>Week: <span>From $15,000</span></p>
@@ -95,6 +96,7 @@ function render_featured_entity_block($attributes) {
 
                 $featured_entity .= '</div>';
 
+                $featured_entity .= '</div>';
                 $featured_entity .= '</div>';
                 $featured_entity .= '</div>';
                 $count++;
