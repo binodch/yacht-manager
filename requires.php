@@ -27,6 +27,12 @@ require_once plugin_dir_path(__FILE__) . 'includes/hash/signature.php';
 // find yacht page template
 require_once plugin_dir_path(__FILE__) . 'page-template/register-page-template.php';
 
+// register block
+require_once plugin_dir_path(__FILE__) . 'blocks/register-custom-blocks.php';
+
+// register block
+require_once plugin_dir_path(__FILE__) . 'blocks/block-render-callback.php';
+
 
 function pr($arr) {
     echo '<pre>';
