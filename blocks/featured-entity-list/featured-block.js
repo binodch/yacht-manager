@@ -1,4 +1,4 @@
-wp.blocks.registerBlockType('custom/banner-filter-block', {
+wp.blocks.registerBlockType('custom/featured-entity-block', {
     title: 'Featured Entity Block',
     icon: 'admin-comments',
     category: 'widgets',

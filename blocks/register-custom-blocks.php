@@ -23,7 +23,7 @@ function yacht_manager_register_custom_block() {
         YACHT_MANAGER_VERSION
     );
     register_block_type('custom/featured-entity-block', array(
-        'editor_script' => 'featured-entity-block-editor',
+        'editor_script' => 'yacht-maanger-featured-entity-block-editor',
         'render_callback' => 'render_featured_entity_block',
         'attributes' => array(
             'title' => array(
@@ -57,7 +57,7 @@ function yacht_manager_register_custom_block() {
         YACHT_MANAGER_VERSION
     );
     register_block_type('custom/banner-filter-block', array(
-        'editor_script' => 'banner-filter-block-editor',
+        'editor_script' => 'yacht-maanger-banner-filter-block-editor',
         'render_callback' => 'render_banner_filter_block',
         'attributes' => array(
             'title' => array(
