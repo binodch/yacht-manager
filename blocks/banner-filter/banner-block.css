@@ -1,6 +1,7 @@
 .section-banner {
     min-height: 854px;
     position: relative;
+    margin-bottom: 120px;
 }
 .section-banner .background-image, .section-banner .background-video {
     position: absolute;
