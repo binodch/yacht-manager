@@ -34,62 +34,65 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
         $yacht_item .= '
         <div class="col-md-4">
             <div class="ytm-list-item">
-                <div class="ytm-item-image">
-                </div>
-                <div class="ytm-item-content">';
+                <div class="ytm-item-single">
+                    <div class="ytm-item-image">
+                        <img decoding="async" src="'. plugin_dir_url(dirname(__FILE__, 1)) . 'assets/css/yacht.jpg' .'" alt="p">
+                    </div>
+                    <div class="ytm-item-content">';
 
-                    if( isset($elist['subname']) ) {
-                        $yacht_item .= '<div class="ytm-item-symbol">
-                            Molo 63
-                        </div>';
-                    }
+                        if( !isset($elist['subname']) ) {
+                            $yacht_item .= '<div class="ytm-item-symbol">
+                                Molo 63
+                            </div>';
+                        }
 
-                    if( isset($elist['name']) ) {
-                        $yacht_item .= '<div class="ytm-item-name">
-                            <h3>' . esc_html($elist['name']) . '</h3>
-                        </div>';
-                    }
+                        if( isset($elist['name']) ) {
+                            $yacht_item .= '<div class="ytm-item-name">
+                                <h3>' . esc_html($elist['name']) . '</h3>
+                            </div>';
+                        }
 
-                    if( isset($elist['cost']) ) {
-                        $yacht_item .= '<div class="ytm-item-cost">
-                            <p>Day: <span>From $2,500</span></p>
-                            <p>Week: <span>From $15,000</span></p>
-                        </div>';
-                    }
+                        if( isset($elist['cost']) ) {
+                            $yacht_item .= '<div class="ytm-item-cost">
+                                <p>Day: <span>From $2,500</span></p>
+                                <p>Week: <span>From $15,000</span></p>
+                            </div>';
+                        }
 
-                    $yacht_item .= '<div class="ytm-item-meta">';
+                        $yacht_item .= '<div class="ytm-item-meta">';
 
-                    if( isset($elist['builtYear']) ) {
-                        $built_year = $elist['builtYear'] ? $elist['builtYear'] : '-';
-                        $yacht_item .= '<div class="ytm-meta-item meta-builtyear">
-                            <span>' . $built_year . '</span>
-                        </div>';
-                    }
+                        if( isset($elist['builtYear']) ) {
+                            $built_year = $elist['builtYear'] ? $elist['builtYear'] : '-';
+                            $yacht_item .= '<div class="ytm-meta-item meta-builtyear">
+                                <span>' . $built_year . '</span>
+                            </div>';
+                        }
 
-                    if( isset($elist['length']) ) {
-                        $unit_ft = $elist['length'] ? $elist['length'] : '-';
-                        $unit_m = $elist['length'] ? round($unit_ft/3.281, 2) : '';
-                        $unit_length = $unit_m ? $unit_m.'m' . ' (' . $unit_ft . 'ft)' : '-';
-                        $yacht_item .= '<div class="ytm-meta-item meta-length">
-                            <span>' . $unit_length . '</span>
-                        </div>';
-                    }
+                        if( isset($elist['length']) ) {
+                            $unit_ft = $elist['length'] ? $elist['length'] : '-';
+                            $unit_m = $elist['length'] ? round($unit_ft/3.281, 2) : '';
+                            $unit_length = $unit_m ? $unit_m.'m' . ' (' . $unit_ft . 'ft)' : '-';
+                            $yacht_item .= '<div class="ytm-meta-item meta-length">
+                                <span>' . $unit_length . '</span>
+                            </div>';
+                        }
 
-                    if( isset($elist['cabins']) ) {
-                        $cabins = $elist['cabins'] ? $elist['cabins'] : '-';
-                        $yacht_item .= '<div class="ytm-meta-item meta-cabins">
-                            <span>' . $cabins . '</span>
-                        </div>';
-                    }
+                        if( isset($elist['cabins']) ) {
+                            $cabins = $elist['cabins'] ? $elist['cabins'] : '-';
+                            $yacht_item .= '<div class="ytm-meta-item meta-cabins">
+                                <span>' . $cabins . '</span>
+                            </div>';
+                        }
 
-                    if( isset($elist['make']) ) {
-                        $make = $elist['make'] ? $elist['make'] : '-';
-                        $yacht_item .= '<div class="ytm-meta-item meta-make">
-                            <span>' . $make . '</span>
-                        </div>';
-                    }
-                        
-                    $yacht_item .= '</div>
+                        if( isset($elist['make']) ) {
+                            $make = $elist['make'] ? $elist['make'] : '-';
+                            $yacht_item .= '<div class="ytm-meta-item meta-make">
+                                <span>' . $make . '</span>
+                            </div>';
+                        }
+                            
+                        $yacht_item .= '</div>
+                    </div>
                 </div>
             </div>
         </div>';

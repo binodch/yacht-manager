@@ -1,17 +1,102 @@
-.generic-filter-block .filter-wrap .row {
-    margin-right: 0;
+
+.ytm-filter-main {
+    background-color: var(--body-background);
 }
+
+.ytm-filter-main .ytm-entity-result .row {
+    row-gap: 10px;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-list-item {
+    background-color: #fff;
+    border-radius: 18px;
+    padding: 4px;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single {
+    background-color: #f9f9f9;
+    border-radius: 18px;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image {
+    /* border-radius: 18px; */
+    padding: 8px 8px 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image img {
+    border-radius: 18px;
+}
+
+/* item content */
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content {
+    padding: 12px 6px 18px;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-symbol {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.011em;
+    color: #c3c3c3;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-name {
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  letter-spacing: -0.011em;
+  color: #000;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-cost p {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.011em;
+  margin-bottom: 0;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-cost p:not(:last-child) {
+  margin-bottom: 2px;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-cost p span {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.011em;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-meta {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-meta .ytm-meta-item {
+  border: 1px solid #dfdfdf;
+  border-radius: 8px;
+  padding: 4px;
+}
+/* item content */
 
 .ytm-list-item .ytm-item-content .ytm-item-meta .ytm-meta-item {
     padding: 4px;
     border: 1px solid #dfdfdf;
     border-radius: 8px;
 }
+
+/* span meta icon */
 .ytm-list-item .ytm-item-content .ytm-item-meta span {
     display: flex;
     align-items: center;
     gap: 4px;
 }
+
 .ytm-list-item .ytm-item-content .ytm-item-meta .meta-builtyear span::before {
     content: "";
     display: inline-block;
@@ -21,6 +106,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .ytm-list-item .ytm-item-content .ytm-item-meta .meta-length span::before {
     content: "";
     display: inline-block;
@@ -30,6 +116,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .ytm-list-item .ytm-item-content .ytm-item-meta .meta-cabins span::before {
     content: "";
     display: inline-block;
@@ -39,6 +126,7 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .ytm-list-item .ytm-item-content .ytm-item-meta .meta-make span::before {
     content: "";
     display: inline-block;
@@ -48,3 +136,4 @@
     background-size: contain;
     background-repeat: no-repeat;
 }
+/* span meta icon */
