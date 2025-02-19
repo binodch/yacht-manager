@@ -95,5 +95,6 @@ function yacht_manager_enqueue_admin_assets() {
             'ajax_nonce' => wp_create_nonce('ajax_nonce'),
         ));
     }
+
 }
 add_action('admin_enqueue_scripts', 'yacht_manager_enqueue_admin_assets');
