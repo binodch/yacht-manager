@@ -1,6 +1,7 @@
 
 .ytm-filter-main {
     background-color: var(--body-background);
+    padding: 80px 0;
 }
 
 .ytm-filter-main .ytm-entity-result .row {
@@ -15,23 +16,19 @@
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single {
     background-color: #f9f9f9;
-    border-radius: 18px;
+    border-radius: 9px;
+    padding: 8px;
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image {
-    /* border-radius: 18px; */
-    padding: 8px 8px 0;
+    border-radius: 18px;
     width: 100%;
     overflow: hidden;
 }
 
-.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image img {
-    border-radius: 18px;
-}
-
 /* item content */
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content {
-    padding: 12px 6px 18px;
+    margin-top: 12px;
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-symbol {
