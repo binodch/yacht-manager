@@ -258,6 +258,10 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                             </div>
                                         </div>
                                         <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="<?php echo absint($current_page); ?>">
+                                        <input type="hidden" name="ytm_charter_type[]" id="ytm-charter-type" value="">
+                                        <input type="hidden" name="ytm_cabin" id="ytm-cabin" value="2">
+                                        <input type="hidden" name="ytm_manufacture_from" id="ytm-manufacture-from" value="">
+                                        <input type="hidden" name="ytm_manufacture_to" id="ytm-manufacture-to" value="">
                                         <!-- Submit Button -->
                                         <div class="button-wrap">
                                             <button type="submit" class="btn btn-primary">Find a charter</button>
@@ -337,7 +341,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                             <span class="form-label">Cabin</span>
                             <div class="form-element-range">
                                 <input type="range" id="yachtRange" class="form-range" min="1" max="20" step="1" value="10" oninput="ytmUpdateRangeValue(this.value)">
-                                <span id="rangeValue">10</span>
+                                <span id="rangeValue">2</span>
                             </div>
                         </div>
                     </div>
@@ -365,7 +369,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
             </div>
             <div class="modal-footer">
                 <!-- <button type="button" class="btn ytm-modal-close" data-dismiss="ytm-advanced-filter-modal">Close</button> -->
-                <button type="button" class="btn">Apply filter</button>
+                <button type="button" class="btn ytm-advanced-btn-submit">Apply filter</button>
             </div>
         </div>
     </div>
