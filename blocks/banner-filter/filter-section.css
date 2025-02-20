@@ -63,95 +63,16 @@
 }
 .filter-section .filter-wrap .button-wrap {
     min-width: 161px;
+    font-weight: 500;
+    font-size: 18.19px;
+    line-height: 27.28px;
+    letter-spacing: -0.011em;
 }
 .filter-section .filter-wrap .button-wrap .btn {
     width: 100%;
+    border-radius: 1136.65px;
+    border: 1.14px solid rgba(185, 234, 255, 0.2);
+    background-color: #b9eaff;
+    color: #1d2b46;
+    padding: 12px 28px;
 }
-
-
-/* .filter-section{
-    position: absolute;
-    bottom: -50px;
-    min-width: 1107px;
-    max-width: 1107px;
-    left: 50%;
-    transform: translateX(-50%px;
-    background: $white;
-    border-radius: 18px;
-    box-shadow: 2px 3px 58.7px 2px rgba(0, 0, 0, 0.25px;
-    z-index: 9;
-    padding: 14 27px;
-
-    .filter-wrap{
-        position: relative;
-        gap: 35px;
-        .vertical-line{
-            background: #DFDFDF;
-            display: block;
-            width: 1px;
-            height: 62px;
-        }
-        .filter-element{
-            .form-label{
-                font-family: $font-family-base;
-                color: #AFAFAF;
-                font-size: $font-size-xs;
-                font-weight: 500;
-                line-height: 1.5;
-                letter-spacing: -0.154px;
-                margin: 0;
-            }
-            .dropdown{
-                position: relative;
-                .button{
-                    background: none;
-                    border: none;
-                }
-
-                ul{
-                    padding: 0 ;
-                    margin: 0;
-                }
-                .dropdown-toggle{
-                    &:after{
-                        content: none;
-                    }
-                }
-
-                .dropdown-menu{
-                    position: absolute;
-                    top: 100%;
-                }
-                .form-element-destination{
-
-                }
-            }
-            button, input[type="text"]{
-                padding: 3.5) 0;
-                background: none;
-                border: none;
-                font-size: $font-size-lg;
-                color: #1A1A1A;
-                font-weight: 500;
-                line-height: 1.5;
-                letter-spacing: -0.198px;
-                height: auto;
-                outline: none;
-                box-shadow: none;
-            }
-            input[type="text"]::placeholder{
-                color: #1A1A1A;
-            }
-
-        }
-        .button-wrap{
-            min-width: 161px;
-            .btn{
-                width: 100%;
-                &:hover{
-                    color: $btn-outline-color;
-                }
-            }
-        }
-    }
-} */
