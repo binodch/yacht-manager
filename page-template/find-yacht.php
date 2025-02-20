@@ -310,15 +310,57 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
             </div>
             <div class="modal-body">
                 <div class="modal-option modal-charter-type">
-                    charty type
+                <div class="ytm-filter-element">
+                    <div class="ytm-element-item">
+                        <span class="form-label">Charter Type</span>
+                        <div class="form-element-yacht">
+                            <?php if ($charter_types && is_array($charter_types) && count($charter_types) > 0) { ?>
+                                <ul class="checkbox-list p-2">
+                                    <?php foreach ($charter_types as $ctype) { ?>
+                                        <li class="checkbox-item">
+                                            <label>
+                                                <input type="checkbox" class="yacht-checkbox-ct" value="<?php echo esc_attr($ctype); ?>">
+                                                <?php echo esc_html($ctype); ?>
+                                            </label>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                            <?php } ?>
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <span class="border-line"></span>
                 <div class="modal-option modal-cabin">
-                    cabin
+                    <div class="ytm-filter-element">
+                        <div class="ytm-element-item">
+                            <span class="form-label">Cabin</span>
+                            <div class="form-element-range">
+                                <input type="range" id="yachtRange" class="form-range" min="1" max="20" step="1" value="10" oninput="ytmUpdateRangeValue(this.value)">
+                                <span id="rangeValue">10</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <span class="border-line"></span>
                 <div class="modal-option modal-manufacture-year">
-                    manudfasdtu ryaise
+                    <div class="ytm-filter-element">
+                        <div class="ytm-element-item">
+                            <span class="form-label">Manufacture year</span>
+                            <div class="form-element-dates">
+                                <div class="form-start-date">
+                                    <label for="start-date" class="form-label">
+                                        <input type="date" id="startDate" name="start-date" class="form-control" placeholder="From">
+                                    </label>
+                                </div>
+                                <div class="form-end-date">
+                                    <label for="end-date" class="form-label">
+                                        <input type="date" id="endDate" name="end-date" class="form-control" placeholder="To">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
