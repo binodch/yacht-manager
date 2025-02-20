@@ -251,7 +251,10 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                         <!-- advanced filter -->
                                         <div class="ytm-filter-element advanced-filters">
                                             <div class="ytm-element-item input-text">
-                                                Advanced filters  
+                                                <!-- Button trigger modal -->
+                                                <button type="button" class="btn ytm-modal-popup" data-toggle="modal" data-target="#ytm-advanced-filter-modal">
+                                                    Advanced filters
+                                                </button>
                                             </div>
                                         </div>
                                         <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="<?php echo absint($current_page); ?>">
@@ -290,6 +293,37 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal ytm-advanced-filter-modal fade" id="ytm-advanced-filter-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Advanced Filters</h5>
+                <button type="button" class="close" data-dismiss="ytm-advanced-filter-modal" aria-label="Close">
+                <span aria-hidden="true">x</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-option modal-charter-type">
+                    charty type
+                </div>
+                <span class="border-line"></span>
+                <div class="modal-option modal-cabin">
+                    cabin
+                </div>
+                <span class="border-line"></span>
+                <div class="modal-option modal-manufacture-year">
+                    manudfasdtu ryaise
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn ytm-modal-close" data-dismiss="ytm-advanced-filter-modal">Close</button> -->
+                <button type="button" class="btn">Apply filter</button>
             </div>
         </div>
     </div>

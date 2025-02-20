@@ -19,13 +19,13 @@ function yacht_manager_enqueue_public_assets() {
     );
     wp_enqueue_style(
         'yacht-manager-search-filter',
-        plugin_dir_url(__FILE__) . '../assets/css/search-filter.css',
+        plugin_dir_url(__FILE__) . '../assets/css/filter-template/search-filter.css',
         [],
         YACHT_MANAGER_VERSION
     );
     wp_enqueue_style(
         'yacht-manager-filter-results',
-        plugin_dir_url(__FILE__) . '../assets/css/filter-results.css',
+        plugin_dir_url(__FILE__) . '../assets/css/filter-template/filter-results.css',
         [],
         YACHT_MANAGER_VERSION
     );
@@ -38,6 +38,12 @@ function yacht_manager_enqueue_public_assets() {
     wp_enqueue_style(
         'yacht-manager-flatpickr-styl',
         'https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-advanced-filter-styl',
+        plugin_dir_url(__FILE__) . '../assets/css/filter-template/advanced-filter.css',
         [],
         YACHT_MANAGER_VERSION
     );
@@ -68,6 +74,12 @@ function yacht_manager_enqueue_public_assets() {
     wp_enqueue_script(
         'yacht-manager-filter-submit',
         plugin_dir_url(__FILE__) . '../assets/js/filter-submit.js',
+        [],
+        YACHT_MANAGER_VERSION
+    ); 
+    wp_enqueue_script(
+        'yacht-manager-advanced-filter-modal',
+        plugin_dir_url(__FILE__) . '../assets/js/advanced-filter-modal.js',
         [],
         YACHT_MANAGER_VERSION
     ); 
