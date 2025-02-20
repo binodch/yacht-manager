@@ -6,7 +6,7 @@ function render_banner_filter_block($attributes) {
 
     $section_padding = 'mt-0';
 
-    $banner_filter = '<section id="" class="section section-banner d-flex flex-column justify-content-center p-medium ">';
+    $banner_filter = '<section id="" class="section ytm-section-banner d-flex flex-column justify-content-center p-medium ">';
 		$banner_filter .= '<div class="container">
 			<div class="section-heading text-center">';
                 if( $banner_filter != '' ) {
