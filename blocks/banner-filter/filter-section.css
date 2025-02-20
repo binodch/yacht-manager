@@ -76,3 +76,6 @@
     color: #1d2b46;
     padding: 12px 28px;
 }
+.filter-section .filter-wrap .button-wrap .btn.nofilter {
+    pointer-events: none;
+}

@@ -39,6 +39,18 @@ require_once plugin_dir_path(__FILE__) . 'blocks/featured-entity-list/block-rend
 // render callback block.filter block
 require_once plugin_dir_path(__FILE__) . 'blocks/banner-filter/block-render-callback.php';
 
+// functions
+require_once plugin_dir_path(__FILE__) . 'includes/functions.php';
+
+// yacht destinations
+require_once plugin_dir_path(__FILE__) . 'includes/api/select/destinations.php';
+
+// yacht types
+require_once plugin_dir_path(__FILE__) . 'includes/api/select/yacht-types.php';
+
+// charter types
+require_once plugin_dir_path(__FILE__) . 'includes/api/select/charter-types.php';
+
 
 function pr($arr) {
     echo '<pre>';

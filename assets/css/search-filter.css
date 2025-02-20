@@ -15,7 +15,8 @@
 .ytm-filter-main .ytm-filter-wrap .filter-main {
     background-color: #fff;
     padding: 24px 20px;
-    border-radius: 18px;;
+    border-radius: 18px;
+    box-shadow: 0px 4px 67.8px 0px rgba(0, 0, 0, 0.15);
 }
 
 .ytm-filter-section .ytm-filter-sidebar {
@@ -68,16 +69,25 @@
     content: none;
 }
 
-/* Make sure elements align properly */
-.ytm-filter-element {
-    /* display: flex;
-    flex-direction: column; */
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.advanced-filters {
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-/* Style dropdowns */
-.dropdown-menu {
-    width: 100%;
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.advanced-filters .ytm-element-item {
+    display: flex;
+    align-items: center;
 }
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.advanced-filters .ytm-element-item::before {
+    content: "";
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='15' viewBox='0 0 16 15' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.64309 7.87957C3.77676 6.48421 2.44673 4.94937 1.7205 4.0865C1.4957 3.8194 1.42204 3.62392 1.37774 3.2796C1.22609 2.1006 1.15026 1.5111 1.49597 1.13055C1.84167 0.75 2.45303 0.75 3.67574 0.75H12.3243C13.547 0.75 14.1583 0.75 14.504 1.13055C14.8497 1.5111 14.7739 2.1006 14.6223 3.2796C14.578 3.62393 14.5043 3.8194 14.2795 4.0865C13.5522 4.95046 12.2196 6.48803 10.3494 7.88516C10.1802 8.01156 10.0687 8.21755 10.048 8.44605C9.86276 10.494 9.69192 11.6157 9.58559 12.1831C9.41394 13.0993 8.11487 13.6504 7.41951 14.1423C7.00554 14.435 6.50322 14.0865 6.44958 13.6334C6.34732 12.7696 6.1547 11.0148 5.94446 8.44605C5.92556 8.21545 5.81364 8.00706 5.64309 7.87957Z' stroke='%23141B34' stroke-width='1.125' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 4px;
+  }
 
 /* submit button */
 .ytm-filter-section .ytm-filter-sidebar .button-wrap {
