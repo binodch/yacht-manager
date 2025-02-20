@@ -12,9 +12,10 @@ $paginate = 1;
 $entity_per_page = 12;
 $current_page = 1;
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $current_page = isset($_POST['ytm_paginate']) ? $_POST['ytm_paginate'] : 1;
-}
+$destination = isset($_POST['destination']) ? sanitize_text_field($_POST['destination']) : '';
+$start_date = isset($_POST['start-date']) ? sanitize_text_field($_POST['start-date']) : '';
+$end_date = isset($_POST['end-date']) ? sanitize_text_field($_POST['end-date']) : '';
+$total_guests = isset($_POST['totalGuests']) ? sanitize_text_field($_POST['totalGuests']) : '';
 
 $yacht_item = '';
 
@@ -25,6 +26,10 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
     $entity_from = ($current_page - 1) * $entity_per_page;
 
     $entity_range_list = array_slice($entity_list, $entity_from, $entity_per_page, true);
+
+    $destinations = yacht_manager_curl_destinations();
+    $yacht_types = yacht_manager_curl_yacht_types();
+    $charter_types = yacht_manager_curl_charter_types();
 
     foreach( $entity_range_list as $elist ) {
         if( ($total_entity>$count) && ($count>($entity_per_page-1)) ) {
@@ -128,22 +133,21 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                     <button class="btn input-text dropdown-toggle w-100" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                                         Search destinations
                                                     </button>
-                                                    <ul class="dropdown-menu w-100" aria-labelledby="destinationDropdown">
-                                                        <li>
-                                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                Bahamas
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                Caribbean
-                                                            </a>
-                                                        <li>
-                                                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                                                california
-                                                            </a>
-                                                        </li>
-                                                    </ul>
+                                                    <?php 
+                                                    if( $destinations && is_array($destinations) && count($destinations)>0 ) { ?>
+                                                        <ul class="dropdown-menu w-100" aria-labelledby="destinationDropdown">
+                                                            <?php 
+                                                            foreach( $destinations as $dest ) { ?>
+                                                                <li>
+                                                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                                                        <?php echo esc_html($dest); ?>
+                                                                    </a>
+                                                                </li>
+                                                            <?php 
+                                                            } ?>
+                                                        </ul>
+                                                    <?php 
+                                                    } ?>
                                                     <input type="hidden" name="destination" id="destination" value="">
                                                 </div>
                                             </div>
@@ -155,7 +159,6 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                 <input type="date" id="startDate" name="start-date" class="form-control input-text" placeholder="Add date">
                                             </div>
                                         </div>
-                                        <!-- <span class="vertical-line"></span> -->
                                         <!-- End Date -->
                                         <div class="ytm-filter-element">
                                             <div class="ytm-element-item">
@@ -226,37 +229,32 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                     <button class="btn dropdown-toggle input-text w-100 text-start" type="button" id="yachtDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                                         Select a yacht
                                                     </button>
-                                                    <ul class="dropdown-menu w-100 p-2" aria-labelledby="yachtDropdown">
-                                                        <li>
-                                                            <label class="dropdown-item">
-                                                                Yacht 1 <input type="checkbox" class="yacht-checkbox" value="Yacht 1">
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label class="dropdown-item">
-                                                                Yacht 2 <input type="checkbox" class="yacht-checkbox" value="Yacht 2">
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label class="dropdown-item">
-                                                                Yacht 3 <input type="checkbox" class="yacht-checkbox" value="Yacht 3">
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label class="dropdown-item">
-                                                                Yacht 4 <input type="checkbox" class="yacht-checkbox" value="Yacht 4">
-                                                            </label>
-                                                        </li>
-                                                        <li>
-                                                            <label class="dropdown-item">
-                                                                Yacht 5 <input type="checkbox" class="yacht-checkbox" value="Yacht 5">
-                                                            </label>
-                                                        </li>
-                                                    </ul>
-                                                    <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="<?php echo absint($current_page); ?>">
+                                                    <?php
+                                                    if( $yacht_types && is_array($yacht_types) && count($yacht_types)>0 ) { ?>
+                                                        <ul class="dropdown-menu w-100 p-2" aria-labelledby="yachtDropdown">
+                                                            <?php 
+                                                            foreach( $yacht_types as $ytype ) { ?>
+                                                                <li>
+                                                                    <label class="dropdown-item">
+                                                                        <?php echo esc_html($ytype); ?> <input type="checkbox" class="yacht-checkbox" value="<?php echo esc_html($ytype); ?>">
+                                                                    </label>
+                                                                </li>
+                                                            <?php 
+                                                            } ?>
+                                                        </ul>
+                                                    <?php 
+                                                    } ?>
                                                 </div>
                                             </div>
                                         </div>
+
+                                        <!-- advanced filter -->
+                                        <div class="ytm-filter-element advanced-filters">
+                                            <div class="ytm-element-item input-text">
+                                                Advanced filters  
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="<?php echo absint($current_page); ?>">
                                         <!-- Submit Button -->
                                         <div class="button-wrap">
                                             <button type="submit" class="btn btn-primary">Find a charter</button>
