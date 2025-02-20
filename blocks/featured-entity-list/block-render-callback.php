@@ -41,7 +41,7 @@ function render_featured_entity_block($attributes) {
                 
                 $featured_entity .= '<div class="ytm-entity-content">';
 
-                    if( !isset($entity['symbol']) ) {
+                    if( isset($entity['symbol']) ) {
                         $featured_entity .= '<div class="ytm-item-symbol">
                             Molo 63
                         </div>';
@@ -53,7 +53,7 @@ function render_featured_entity_block($attributes) {
                         </div>';
                     }
 
-                    if( !isset($entity['cost']) ) {
+                    if( isset($entity['cost']) ) {
                         $featured_entity .= '<div class="ytm-item-cost">
                             <p>Day: <span>From $2,500</span></p>
                             <p>Week: <span>From $15,000</span></p>

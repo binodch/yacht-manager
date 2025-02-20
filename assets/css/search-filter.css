@@ -12,18 +12,66 @@
     overflow-y: auto;
 } */
 
-/* Ensure filter items are displayed horizontally */
+.ytm-filter-main .ytm-filter-wrap .filter-main {
+    background-color: #fff;
+    padding: 24px 20px;
+    border-radius: 18px;;
+}
+
 .ytm-filter-section .ytm-filter-sidebar {
     display: flex;
-    align-items: center;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element {
+    padding: 12px;
+    border: 1px solid #dfdfdf;
+    border-radius: 12px;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element input[type="text"] {
+    border: none;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-label {
+    margin-bottom: unset;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .input-text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: -0.011em;
+    color: #1a1a1a;
+    padding: unset;
+    text-align: left;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .input-text::placeholder {
+    color: #1a1a1a;
+}
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-label {
+    color: #afafaf;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.011em;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .btn {
+    padding: unset;
+    border: none;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .dropdown-toggle::after {
+    content: none;
 }
 
 /* Make sure elements align properly */
 .ytm-filter-element {
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 /* Style dropdowns */
@@ -31,13 +79,24 @@
     width: 100%;
 }
 
-/* Ensure button full width */
-.button-wrap {
+/* submit button */
+.ytm-filter-section .ytm-filter-sidebar .button-wrap {
     text-align: center;
+    font-weight: 500;
+    font-size: 18.19px;
+    line-height: 27.28px;
+    letter-spacing: -0.011em;
 }
-.button-wrap .btn {
+
+.ytm-filter-section .ytm-filter-sidebar .button-wrap .btn {
+    border-radius: 1136.65px;
+    border: 1.14px solid rgba(185, 234, 255, 0.2);
+    background-color: #b9eaff;
+    color: #1d2b46;
+    padding: 12px 28px;
     width: 100%;
 }
+/* submit button */
 
 /* Media Query for Mobile */
 @media (max-width: 768px) {
@@ -51,53 +110,3 @@
         flex-direction: column;
     } */
 }
-
-/* pagination */
-.ytm-entity-pagination .paginate-list-prev, .ytm-entity-pagination .paginate-list-next {
-    display: flex;
-    align-items: center;
-    /* gap: 4px; */
-}
-.ytm-entity-pagination .paginate-list-prev::before {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 16px;
-    background-image: url("data:image/svg+xml,%3Csvg width='13' height='18' viewBox='0 0 13 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.75 16.6489L1.75 8.64892L11.75 0.648926' stroke='%236A6A6A' stroke-width='1.5'/%3E%3C/svg%3E%0A");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.ytm-entity-pagination .paginate-list-next::before {
-    content: "";
-    display: inline-block;
-    width: 10px;
-    height: 16px;
-    background-image: url("data:image/svg+xml,%3Csvg width='13' height='18' viewBox='0 0 13 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.25 0.648926L11.25 8.64893L1.25 16.6489' stroke='%236A6A6A' stroke-width='1.5'/%3E%3C/svg%3E%0A");
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-.ytm-entity-pagination ul {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-.ytm-entity-pagination ul li {
-    cursor: pointer;
-    list-style: none;
-}
-.ytm-entity-pagination .paginate-list {
-    color: var(--secondary-color);
-    font-weight: 500;
-    font-size: 18px;
-    line-height: 20.34px;
-    letter-spacing: -1.1%;
-    text-align: center;
-}
-.ytm-entity-pagination .paginate-list.active {
-    color: var(--body-text);
-    padding: 10px 14px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-}
-/* pagination */

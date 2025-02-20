@@ -122,135 +122,141 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                     <div class="ytm-filter-sidebar">
                                         <!-- Destination -->
                                         <div class="ytm-filter-element">
-                                            <span for="destination" class="form-label">Where</span>
-                                            <div class="dropdown form-element-destination">
-                                                <button class="btn btn-outline-secondary dropdown-toggle w-100" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Search destination
-                                                </button>
-                                                <ul class="dropdown-menu w-100" aria-labelledby="destinationDropdown">
-                                                    <li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Bahamas
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            Caribbean
-                                                        </a>
-                                                    <li>
-                                                        <a class="dropdown-item d-flex align-items-center" href="#">
-                                                            california
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                                <input type="hidden" name="destination" id="destination" value="">
+                                            <div class="ytm-element-item">
+                                                <span for="destination" class="form-label">Where</span>
+                                                <div class="dropdown form-element-destination">
+                                                    <button class="btn input-text dropdown-toggle w-100" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Search destinations
+                                                    </button>
+                                                    <ul class="dropdown-menu w-100" aria-labelledby="destinationDropdown">
+                                                        <li>
+                                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                                Bahamas
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                                Caribbean
+                                                            </a>
+                                                        <li>
+                                                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                                                california
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <input type="hidden" name="destination" id="destination" value="">
+                                                </div>
                                             </div>
                                         </div>
-                                        <span class="vertical-line"></span>
                                         <!-- Start Date -->
-                                        <div class="filter-element">
-                                            <label for="start-date" class="form-label">Check in</label>
-                                            <input type="date" id="startDate" name="start-date" class="form-control" placeholder="Add Dates">
+                                        <div class="ytm-filter-element">
+                                            <div class="ytm-element-item">
+                                                <label for="start-date" class="form-label">Check in</label>
+                                                <input type="date" id="startDate" name="start-date" class="form-control input-text" placeholder="Add date">
+                                            </div>
                                         </div>
-                                        <span class="vertical-line"></span>
+                                        <!-- <span class="vertical-line"></span> -->
                                         <!-- End Date -->
-                                        <div class="filter-element">
-                                            <label for="end-date" class="form-label">Check out</label>
-                                            <input type="date" id="endDate" name="end-date" class="form-control" placeholder="Add Dates">
+                                        <div class="ytm-filter-element">
+                                            <div class="ytm-element-item">
+                                                <label for="end-date" class="form-label">Check out</label>
+                                                <input type="date" id="endDate" name="end-date" class="form-control input-text" placeholder="Add date">
+                                            </div>
                                         </div>
-                                        <span class="vertical-line"></span>
                                         <!-- Number of Guests -->
-                                        <div class="filter-element">
-                                            <span for="destination" class="form-label">Where</span>
-                                            <!-- Bootstrap Dropdown -->
-                                            <div class="dropdown">
-                                                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="customerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    <span id="customerCount">Add guest</span>
-                                                </button>
-                                                <ul class="dropdown-menu p-3" aria-labelledby="customerDropdown">
-                                                    <li class="d-flex align-items-center">
-                                                        <div class="guest-type">
-                                                            <span class="guest-type-title">Adults</span>
-                                                            <span class="guest-type-count">Ages 16 or above</span>
-                                                        </div>
-                                                        <div class="plus-minus-counter">
-                                                            <label>
-                                                                <button class="btn btn-sm btn-outline-danger me-2" id="decreaseAdultBtn" aria-label="Decrease adults">−</button>
-                                                                <span id="adultCount">0</span>
-                                                                <button class="btn btn-sm btn-outline-success ms-2" id="increaseAdultBtn" aria-label="Increase adults">+</button>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li class="d-flex align-items-center">
-                                                        <div class="guest-type">
-                                                            <span class="guest-type-title">Children</span>
-                                                            <span class="guest-type-count">Ages 2 or above</span>
-                                                        </div>
-                                                        <div class="plus-minus-counter">
-                                                            <label>
-                                                                <button class="btn btn-sm btn-outline-danger me-2" id="decreaseChildBtn" aria-label="Decrease children">−</button>
-                                                                <span id="childCount">0</span>
-                                                                <button class="btn btn-sm btn-outline-success ms-2" id="increaseChildBtn" aria-label="Increase children">+</button>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                    <li class="d-flex align-items-center">
-                                                        <div class="guest-type">
-                                                            <span class="guest-type-title">Infants</span>
-                                                            <span class="guest-type-count">Ages 0 - 2</span>
-                                                        </div>
-                                                        <div class="plus-minus-counter">
-                                                            <label>
-                                                                <button class="btn btn-sm btn-outline-danger me-2" id="decreaseInfantBtn" aria-label="Decrease infants">−</button>
-                                                                <span id="infantCount">0</span>
-                                                                <button class="btn btn-sm btn-outline-success ms-2" id="increaseInfantBtn" aria-label="Increase infants">+</button>
-                                                            </label>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                <!-- Single hidden input for total number of guests -->
-                                                <input type="hidden" name="totalGuests" id="totalGuestsInput" value="1">
+                                        <div class="ytm-filter-element">
+                                            <div class="ytm-element-item">
+                                                <span for="destination" class="form-label">Where</span>
+                                                <!-- Bootstrap Dropdown -->
+                                                <div class="dropdown">
+                                                    <button class="btn dropdown-toggle" type="button" id="customerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <span id="customerCount" class="input-text">Add guests</span>
+                                                    </button>
+                                                    <ul class="dropdown-menu p-3" aria-labelledby="customerDropdown">
+                                                        <li class="d-flex align-items-center">
+                                                            <div class="guest-type">
+                                                                <span class="guest-type-title">Adults</span>
+                                                                <span class="guest-type-count">Ages 16 or above</span>
+                                                            </div>
+                                                            <div class="plus-minus-counter">
+                                                                <label>
+                                                                    <button class="btn btn-sm btn-outline-danger me-2" id="decreaseAdultBtn" aria-label="Decrease adults">−</button>
+                                                                    <span id="adultCount">0</span>
+                                                                    <button class="btn btn-sm btn-outline-success ms-2" id="increaseAdultBtn" aria-label="Increase adults">+</button>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        <li class="d-flex align-items-center">
+                                                            <div class="guest-type">
+                                                                <span class="guest-type-title">Children</span>
+                                                                <span class="guest-type-count">Ages 2 or above</span>
+                                                            </div>
+                                                            <div class="plus-minus-counter">
+                                                                <label>
+                                                                    <button class="btn btn-sm btn-outline-danger me-2" id="decreaseChildBtn" aria-label="Decrease children">−</button>
+                                                                    <span id="childCount">0</span>
+                                                                    <button class="btn btn-sm btn-outline-success ms-2" id="increaseChildBtn" aria-label="Increase children">+</button>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                        <li class="d-flex align-items-center">
+                                                            <div class="guest-type">
+                                                                <span class="guest-type-title">Infants</span>
+                                                                <span class="guest-type-count">Ages 0 - 2</span>
+                                                            </div>
+                                                            <div class="plus-minus-counter">
+                                                                <label>
+                                                                    <button class="btn btn-sm btn-outline-danger me-2" id="decreaseInfantBtn" aria-label="Decrease infants">−</button>
+                                                                    <span id="infantCount">0</span>
+                                                                    <button class="btn btn-sm btn-outline-success ms-2" id="increaseInfantBtn" aria-label="Increase infants">+</button>
+                                                                </label>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                    <!-- Single hidden input for total number of guests -->
+                                                    <input type="hidden" name="totalGuests" id="totalGuestsInput" value="1">
+                                                </div>
                                             </div>
                                         </div>
-                                        <span class="vertical-line"></span>
                                         <!-- Select Yacht -->
-                                        <div class="filter-element">
-                                            <span for="yacht" class="form-label">Yacht type</span>
-                                            <div class="dropdown form-element-yacht">
-                                                <button class="btn btn-outline-secondary dropdown-toggle w-100 text-start" type="button" id="yachtDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Select a yacht
-                                                </button>
-                                                <ul class="dropdown-menu w-100 p-2" aria-labelledby="yachtDropdown">
-                                                    <li>
-                                                        <label class="dropdown-item">
-                                                            Yacht 1 <input type="checkbox" class="yacht-checkbox" value="Yacht 1">
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="dropdown-item">
-                                                            Yacht 2 <input type="checkbox" class="yacht-checkbox" value="Yacht 2">
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="dropdown-item">
-                                                            Yacht 3 <input type="checkbox" class="yacht-checkbox" value="Yacht 3">
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="dropdown-item">
-                                                            Yacht 4 <input type="checkbox" class="yacht-checkbox" value="Yacht 4">
-                                                        </label>
-                                                    </li>
-                                                    <li>
-                                                        <label class="dropdown-item">
-                                                            Yacht 5 <input type="checkbox" class="yacht-checkbox" value="Yacht 5">
-                                                        </label>
-                                                    </li>
-                                                </ul>
-                                                <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="<?php echo absint($current_page); ?>">
+                                        <div class="ytm-filter-element">
+                                            <div class="ytm-element-item">
+                                                <span for="yacht" class="form-label">Yacht type</span>
+                                                <div class="dropdown form-element-yacht">
+                                                    <button class="btn dropdown-toggle input-text w-100 text-start" type="button" id="yachtDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        Select a yacht
+                                                    </button>
+                                                    <ul class="dropdown-menu w-100 p-2" aria-labelledby="yachtDropdown">
+                                                        <li>
+                                                            <label class="dropdown-item">
+                                                                Yacht 1 <input type="checkbox" class="yacht-checkbox" value="Yacht 1">
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="dropdown-item">
+                                                                Yacht 2 <input type="checkbox" class="yacht-checkbox" value="Yacht 2">
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="dropdown-item">
+                                                                Yacht 3 <input type="checkbox" class="yacht-checkbox" value="Yacht 3">
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="dropdown-item">
+                                                                Yacht 4 <input type="checkbox" class="yacht-checkbox" value="Yacht 4">
+                                                            </label>
+                                                        </li>
+                                                        <li>
+                                                            <label class="dropdown-item">
+                                                                Yacht 5 <input type="checkbox" class="yacht-checkbox" value="Yacht 5">
+                                                            </label>
+                                                        </li>
+                                                    </ul>
+                                                    <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="<?php echo absint($current_page); ?>">
+                                                </div>
                                             </div>
                                         </div>
-                                        <span class="vertical-line"></span>
                                         <!-- Submit Button -->
                                         <div class="button-wrap">
                                             <button type="submit" class="btn btn-primary">Find a charter</button>

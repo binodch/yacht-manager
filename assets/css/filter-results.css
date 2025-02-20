@@ -52,7 +52,7 @@
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.011em;
-  margin-bottom: 0;
+  margin-bottom: unset;
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-cost p:not(:last-child) {
@@ -134,3 +134,66 @@
     background-repeat: no-repeat;
 }
 /* span meta icon */
+
+/* pagination */
+.ytm-entity-result .ytm-entity-pagination {
+    margin-top: 36px;
+}
+
+.ytm-entity-result .ytm-entity-pagination ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    padding: unset;
+}
+
+.ytm-entity-result .ytm-entity-pagination ul li {
+    cursor: pointer;
+    list-style: none;
+}
+
+.ytm-entity-result .ytm-entity-pagination .paginate-list {
+    color: var(--secondary-color);
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20.34px;
+    letter-spacing: -0.011em;
+    text-align: center;
+}
+
+.ytm-entity-result .ytm-entity-pagination .paginate-list.active {
+    color: var(--body-text);
+    padding: 10px 14px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+}
+/* pagination */
+
+/* pagination prev next */
+.ytm-entity-result .ytm-entity-pagination .paginate-list-prev, 
+.ytm-entity-result .ytm-entity-pagination .paginate-list-next {
+    display: flex;
+    align-items: center;
+    /* gap: 4px; */
+}
+.ytm-entity-result .ytm-entity-pagination .paginate-list-prev::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg width='13' height='18' viewBox='0 0 13 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11.75 16.6489L1.75 8.64892L11.75 0.648926' stroke='%236A6A6A' stroke-width='1.5'/%3E%3C/svg%3E%0A");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.ytm-entity-result .ytm-entity-pagination .paginate-list-next::before {
+    content: "";
+    display: inline-block;
+    width: 10px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg width='13' height='18' viewBox='0 0 13 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.25 0.648926L11.25 8.64893L1.25 16.6489' stroke='%236A6A6A' stroke-width='1.5'/%3E%3C/svg%3E%0A");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+/* pagination prev next */
