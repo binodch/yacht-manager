@@ -13,3 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
+
+function ytmUpdateRangeValue(value) {
+  document.getElementById("rangeValue").textContent = value;
+}
