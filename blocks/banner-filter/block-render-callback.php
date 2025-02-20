@@ -134,7 +134,7 @@ function render_banner_filter_block($attributes) {
                                 </button>';
                                 
                                 if( $yacht_types && is_array($yacht_types) && count($yacht_types)>0 ) {
-                                    $banner_filter .= '<ul class="dropdown-menu p-2" aria-labelledby="yachtDropdown">';
+                                    $banner_filter .= '<ul class="dropdown-menu" aria-labelledby="yachtDropdown">';
                                         foreach ($yacht_types as $ytype) {
                                             $banner_filter .= '<li>
                                                 <label class="dropdown-item">
