@@ -4,30 +4,12 @@
  * function to fetch yacht data via API
  */
 function yacht_manager_fetch_yacht_list() {
-
-    ///////////////////////////////////
-    // sample json data
-    ///////////////////////////////////
-    // $sample_yacht_file = dirname(__DIR__, 1) . '/data/sample-yachts.json';
-    // if (!file_exists($sample_yacht_file)) {
-    //     return false;
-    // }
-    // $yacht_data = file_get_contents($sample_yacht_file);
-    ///////////////////////////////////
+    $yacht_data = yacht_manager_curl_search_entity_list();
     
-    ///////////////////////////////////
-    // api response
-    ///////////////////////////////////
-    $yacht_data = yacht_manager_curl_search_entity_list(); pr($yacht_data);
-    ///////////////////////////////////
-    
-    // if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
-        // $yacht_arr = json_decode($yacht_data, true);
-        $yacht_arr = $yacht_data;
-        if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
-            return $yacht_arr;
-        }
-    // }
+    $yacht_arr = $yacht_data;
+    if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
+        return $yacht_arr;
+    }
     return false;
 }
 
