@@ -31,10 +31,13 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/search/featured-entity-li
 require_once plugin_dir_path(__FILE__) . 'includes/api/select/destinations.php';
 
 // yacht types
-require_once plugin_dir_path(__FILE__) . 'includes/api/entity-list.php';
+require_once plugin_dir_path(__FILE__) . 'includes/api/insert-update-entity.php';
 
-// Include curl entity list
-require_once plugin_dir_path(__FILE__) . 'includes/api/search/entity-list.php';
+// Include curl register uri
+require_once plugin_dir_path(__FILE__) . 'includes/api/entity/register-uri.php';
+
+// Include curl get entity
+require_once plugin_dir_path(__FILE__) . 'includes/api/entity/get-entity.php';
 
 // signature
 require_once plugin_dir_path(__FILE__) . 'includes/hash/signature.php';
