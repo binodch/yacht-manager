@@ -59,66 +59,77 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Increase/Decrease Adult Count
-    document.getElementById('increaseAdultBtn').addEventListener('click', function() {
-        var adultCount = parseInt(document.getElementById('adultCount').textContent);
-        document.getElementById('adultCount').textContent = adultCount + 1;
-        updateTotalGuests();
-    });
-
-    document.getElementById('decreaseAdultBtn').addEventListener('click', function() {
-        var adultCount = parseInt(document.getElementById('adultCount').textContent);
-        var childCount = parseInt(document.getElementById('childCount').textContent);
-        var infantCount = parseInt(document.getElementById('infantCount').textContent);
-
-        if (childCount > 0 || infantCount > 0) return;
-
-        if (adultCount > 0) {
-            document.getElementById('adultCount').textContent = adultCount - 1;
+    if( document.getElementById('increaseAdultBtn') ) {
+        document.getElementById('increaseAdultBtn').addEventListener('click', function() {
+            var adultCount = parseInt(document.getElementById('adultCount').textContent);
+            document.getElementById('adultCount').textContent = adultCount + 1;
             updateTotalGuests();
-        }
-    });
+        });
+    }
+    if (document.getElementById('decreaseAdultBtn') ) {
+        document.getElementById('decreaseAdultBtn').addEventListener('click', function() {
+            var adultCount = parseInt(document.getElementById('adultCount').textContent);
+            var childCount = parseInt(document.getElementById('childCount').textContent);
+            var infantCount = parseInt(document.getElementById('infantCount').textContent);
+
+            if (childCount > 0 || infantCount > 0) return;
+
+            if (adultCount > 0) {
+                document.getElementById('adultCount').textContent = adultCount - 1;
+                updateTotalGuests();
+            }
+        });
+    }
 
     // Increase/Decrease Child Count
-    document.getElementById('increaseChildBtn').addEventListener('click', function() {
-        var childCount = parseInt(document.getElementById('childCount').textContent);
-        var adultCount = parseInt(document.getElementById('adultCount').textContent);
+    if (document.getElementById('increaseChildBtn') ) {
+        document.getElementById('increaseChildBtn').addEventListener('click', function() {
+            var childCount = parseInt(document.getElementById('childCount').textContent);
+            var adultCount = parseInt(document.getElementById('adultCount').textContent);
 
-        if (adultCount < 1) {
-            document.getElementById('adultCount').textContent = 1;
-        }
+            if (adultCount < 1) {
+                document.getElementById('adultCount').textContent = 1;
+            }
 
-        document.getElementById('childCount').textContent = childCount + 1;
-        updateTotalGuests();
-    });
-
-    document.getElementById('decreaseChildBtn').addEventListener('click', function() {
-        var childCount = parseInt(document.getElementById('childCount').textContent);
-        if (childCount > 0) {
-            document.getElementById('childCount').textContent = childCount - 1;
+            document.getElementById('childCount').textContent = childCount + 1;
             updateTotalGuests();
-        }
-    });
+        });
+    }
+
+    if (document.getElementById('decreaseChildBtn') ) {
+        document.getElementById('decreaseChildBtn').addEventListener('click', function() {
+            var childCount = parseInt(document.getElementById('childCount').textContent);
+            if (childCount > 0) {
+                document.getElementById('childCount').textContent = childCount - 1;
+                updateTotalGuests();
+            }
+        });
+    }
 
     // Increase/Decrease Infant Count
-    document.getElementById('increaseInfantBtn').addEventListener('click', function() {
-        var infantCount = parseInt(document.getElementById('infantCount').textContent);
-        var adultCount = parseInt(document.getElementById('adultCount').textContent);
+    if (document.getElementById('increaseInfantBtn') ) {
+        document.getElementById('increaseInfantBtn').addEventListener('click', function() {
+            var infantCount = parseInt(document.getElementById('infantCount').textContent);
+            var adultCount = parseInt(document.getElementById('adultCount').textContent);
 
-        if (adultCount < 1) {
-            document.getElementById('adultCount').textContent = 1;
-        }
+            if (adultCount < 1) {
+                document.getElementById('adultCount').textContent = 1;
+            }
 
-        document.getElementById('infantCount').textContent = infantCount + 1;
-        updateTotalGuests();
-    });
-
-    document.getElementById('decreaseInfantBtn').addEventListener('click', function() {
-        var infantCount = parseInt(document.getElementById('infantCount').textContent);
-        if (infantCount > 0) {
-            document.getElementById('infantCount').textContent = infantCount - 1;
+            document.getElementById('infantCount').textContent = infantCount + 1;
             updateTotalGuests();
-        }
-    });
+        });
+    }
+
+    if (document.getElementById('decreaseInfantBtn') ) {
+        document.getElementById('decreaseInfantBtn').addEventListener('click', function() {
+            var infantCount = parseInt(document.getElementById('infantCount').textContent);
+            if (infantCount > 0) {
+                document.getElementById('infantCount').textContent = infantCount - 1;
+                updateTotalGuests();
+            }
+        });
+    }
 
     // Prevent the dropdown from closing when the plus or minus buttons are clicked
     document.querySelectorAll('#decreaseAdultBtn, #increaseAdultBtn, #decreaseChildBtn, #increaseChildBtn, #decreaseInfantBtn, #increaseInfantBtn').forEach(function(button) {
