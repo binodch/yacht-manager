@@ -4,35 +4,33 @@
 */
 function yacht_manager_curl_get_entity($uri) {
     $get_token = yacht_manager_generate_access_token();
-    if( $get_token && isset($get_token['success']) && $get_token['success'] && isset($get_token['token']) ) {
+    
+    if ($get_token && isset($get_token['success']) && $get_token['success'] && isset($get_token['token'])) {
         $access_token = $get_token['token'];
 
         $endpoint = 'https://api.ankor.io/website/entity';
-        $endpoint_url = $endpoint .'/'. $uri;
-        
-        $curl = curl_init();
+        $endpoint_url = $endpoint . '/' . $uri;
 
-        curl_setopt_array($curl, array(
-        CURLOPT_URL => $endpoint_url,
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
-        CURLOPT_HTTPHEADER => array(
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $endpoint_url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_ENCODING, '');
+        curl_setopt($ch, CURLOPT_MAXREDIRS, 10);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 0);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
+        curl_setopt($ch, CURLOPT_HTTPGET, true); // Using CURLOPT_HTTPGET instead of CURLOPT_CUSTOMREQUEST
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'accept: application/json',
             'Authorization: Bearer ' . $access_token
-        ),
         ));
-        
-        $response = curl_exec($curl);
-        $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-        
-        curl_close($curl);
-        
-        if( $http_code == 200 ) {
+
+        $response = curl_exec($ch);
+        $http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        curl_close($ch);
+
+        if ($http_code == 200) {
             return $response;
         }
     }
