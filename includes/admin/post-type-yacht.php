@@ -2,7 +2,6 @@
 /**
  * Register Custom Post Type: Yacht
  */
-
 function yacht_manager_register_post_type() {
     if ( !post_type_exists('yacht') ) {
         $labels = array(
@@ -26,7 +25,7 @@ function yacht_manager_register_post_type() {
             'has_archive'       => true,
             'show_in_menu'      => true,
             'menu_icon'         => 'dashicons-buddicons-forums',
-            'supports'          => array('title', 'thumbnail', 'custom-fields'),
+            'supports'          => array('title', 'editor', 'thumbnail', 'custom-fields'),
             'rewrite'           => array('slug' => 'yachts'),
         );
 

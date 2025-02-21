@@ -27,11 +27,12 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/search/entity-list.php';
 // Include curl featured entity list
 require_once plugin_dir_path(__FILE__) . 'includes/api/search/featured-entity-list.php';
 
-// yacht destinations
-require_once plugin_dir_path(__FILE__) . 'includes/api/select/destinations.php';
 
-// yacht types
-require_once plugin_dir_path(__FILE__) . 'includes/api/insert-update-entity.php';
+// insert update entity
+require_once plugin_dir_path(__FILE__) . 'includes/api/functions/insert-update-entity.php';
+
+// update entity meta
+require_once plugin_dir_path(__FILE__) . 'includes/api/functions/update-entity-meta.php';
 
 // Include curl register uri
 require_once plugin_dir_path(__FILE__) . 'includes/api/entity/register-uri.php';
@@ -57,6 +58,11 @@ require_once plugin_dir_path(__FILE__) . 'blocks/banner-filter/block-render-call
 // functions
 require_once plugin_dir_path(__FILE__) . 'includes/functions.php';
 
+// yacht destinations
+require_once plugin_dir_path(__FILE__) . 'includes/api/select/destinations.php';
+
+// yacht types
+require_once plugin_dir_path(__FILE__) . 'includes/api/select/yacht-types.php';
 
 // charter types
 require_once plugin_dir_path(__FILE__) . 'includes/api/select/charter-types.php';
