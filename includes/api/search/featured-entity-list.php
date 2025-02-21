@@ -1,5 +1,4 @@
 <?php
-
 /*
 * curl to get featured entity lists
 */
@@ -7,7 +6,7 @@ function yacht_manager_curl_featured_entity_list() {
     $get_token = yacht_manager_generate_access_token();
     if( $get_token && isset($get_token['success']) && $get_token['success'] && isset($get_token['token']) ) {
         $access_token = $get_token['token'];
-        
+
         $endpoint = 'https://api.ankor.io/website/search';
 
         $curl = curl_init();
