@@ -112,7 +112,7 @@ $entity_args = [
     'post_type'      => 'yacht',
     'post_status'    => 'publish',
     'posts_per_page' => -1,
-    'meta_query'     => array_filter([$sleeps_query, $cabins_query]), // Remove empty conditions
+    'meta_query'     => array_filter([$sleeps_query, $cabins_query]),
 ];
 
 if (!empty($region_list_arr)) {
@@ -161,6 +161,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
     $destinations = yacht_manager_curl_destinations();
     $yacht_types = yacht_manager_curl_yacht_types();
     $charter_types = yacht_manager_curl_charter_types();
+    $charter_types = [];
 
     foreach( $entity_range_list as $elist ) {
         if( ($total_entity>$count) && ($count>($entity_per_page-1)) ) {
@@ -455,28 +456,31 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                 </button>
             </div>
             <div class="modal-body">
-                <div class="modal-option modal-charter-type">
-                <div class="ytm-filter-element">
-                    <div class="ytm-element-item">
-                        <span class="form-label">Charter Type</span>
-                        <div class="form-element-yacht">
-                            <?php if ($charter_types && is_array($charter_types) && count($charter_types) > 0) { ?>
-                                <ul class="checkbox-list p-2">
-                                    <?php foreach ($charter_types as $ctype) { ?>
-                                        <li class="checkbox-item">
-                                            <label>
-                                                <input type="checkbox" class="yacht-checkbox-ct" value="<?php echo esc_attr($ctype); ?>">
-                                                <?php echo esc_html($ctype); ?>
-                                            </label>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
-                            <?php } ?>
+                <?php 
+                if ($charter_types && is_array($charter_types) && count($charter_types) > 0) { ?>
+                    <div class="modal-option modal-charter-type">
+                        <div class="ytm-filter-element">
+                            <div class="ytm-element-item">
+                                <span class="form-label">Charter Type</span>
+                                <div class="form-element-yacht">
+                                    <ul class="checkbox-list p-2">
+                                        <?php 
+                                        foreach ($charter_types as $ctype) { ?>
+                                            <li class="checkbox-item">
+                                                <label>
+                                                    <input type="checkbox" class="yacht-checkbox-ct" value="<?php echo esc_attr($ctype); ?>">
+                                                    <?php echo esc_html($ctype); ?>
+                                                </label>
+                                            </li>
+                                        <?php 
+                                        } ?>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                </div>
-                <span class="border-line"></span>
+                <?php 
+                } ?>
                 <div class="modal-option modal-cabin">
                     <div class="ytm-filter-element">
                         <div class="ytm-element-item">
