@@ -524,7 +524,6 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                 <div class="ytm-manufacture-to">
                                     <div class="ytm-filter-element">
                                         <div class="ytm-element-item">
-                                            <!-- <span for="yacht" class="form-label">Yacht type</span> -->
                                             <select class="form-select" name="yacht_manufacture_to" id="yacht-manufacture-to">
                                                 <option value="" disabled>Select year</option>
                                                 <?php if( $manufacture_year && is_array($manufacture_year) && count($manufacture_year) > 0 ) { 
