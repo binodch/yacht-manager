@@ -67,6 +67,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/select/yacht-types.php';
 // charter types
 require_once plugin_dir_path(__FILE__) . 'includes/api/select/charter-types.php';
 
+// manufactuer year
+require_once plugin_dir_path(__FILE__) . 'includes/api/select/manufacture-year.php';
+
 
 function pr($arr) {
     echo '<pre>';

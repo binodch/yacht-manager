@@ -25,6 +25,10 @@
     margin-bottom: unset;
 }
 
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-element-destination .dropdown-active {
+    background-color: #e4e4e4;
+}
+
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .input-text {
     font-weight: 500;
     font-size: 18px;
@@ -47,6 +51,9 @@
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .btn {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: max-content;
     padding: unset;
     border: none;
 }

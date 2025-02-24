@@ -1,6 +1,5 @@
 <?php
-
-// Server-side Render Function
+// banner filter render function
 function render_banner_filter_block($attributes) {
     $title = esc_html($attributes['title']);
 
@@ -135,17 +134,19 @@ function render_banner_filter_block($attributes) {
                                 
                                 if( $yacht_types && is_array($yacht_types) && count($yacht_types)>0 ) {
                                     $banner_filter .= '<ul class="dropdown-menu" aria-labelledby="yachtDropdown">';
-                                        foreach ($yacht_types as $ytype) {
+                                        foreach ($yacht_types as $key=>$ytype) {
                                             $banner_filter .= '<li>
                                                 <label class="dropdown-item">
-                                                    '. $ytype .' <input type="checkbox" class="yacht-checkbox" value="'. $ytype .'">
+                                                    '. $ytype .' <input type="checkbox" class="yacht-checkbox" data-ytype="'. $key. '" value="'. $ytype .'">
                                                 </label>
                                             </li>';
                                         }
                                     $banner_filter .= '</ul>';
                                 }
                                 
-                                $banner_filter .= '<input type="hidden" name="yacht" id="yacht">
+                                $banner_filter .= '<input type="hidden" name="entity_banner_filter" id="entity-banner-filter">';
+                                $banner_filter .= '<input type="hidden" name="ytm_yacht_type" id="ytm-yacht-type" value="">
+                                
                             </div>
                         </div>
                         <span class="vertical-line"></span>
