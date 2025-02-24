@@ -53,6 +53,72 @@
     padding-bottom: 0;
 }
 
+.ytm-advanced-filter-modal .modal-body .ytm-element-item .form-label {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: -0.011em;
+}
+
+.ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-dates {
+    margin-top: 14px;
+}
+
+.ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-range {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9.5px;
+}
+
+.ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-range .form-range {
+    padding: unset;
+    border: none;
+    border-radius: 0;
+}
+
+.ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-range #rangeValue {
+    display: block;
+    text-align: center;
+    border: 1px solid #f0f0f0;
+    border-radius: 8px;
+    padding: 0.5px 8.5px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 27px;
+    letter-spacing: -0.011em;
+
+}
+
+.ytm-advanced-filter-modal .modal-body .modal-manufacture-year .form-element-dates {
+    display: flex;
+    gap: 25px;    
+}
+
+.ytm-advanced-filter-modal .modal-body .modal-manufacture-year .form-element-dates .ytm-manufacture-from,
+.ytm-advanced-filter-modal .modal-body .modal-manufacture-year .form-element-dates .ytm-manufacture-to {
+    width: 100%;
+}
+
+.ytm-advanced-filter-modal .modal-body .modal-manufacture-year .form-element-dates .ytm-manufacture-from .form-select,
+.ytm-advanced-filter-modal .modal-body .modal-manufacture-year .form-element-dates .ytm-manufacture-to .form-select {
+    appearance: none; /* Hides the default arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg width='13' height='12' viewBox='0 0 13 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0.5 8.66663L3.16667 11.3333M3.16667 11.3333L5.83333 8.66663M3.16667 11.3333V0.666626M12.5 3.33329L9.83333 0.666626M9.83333 0.666626L7.16667 3.33329M9.83333 0.666626V11.3333' stroke='%2318181B' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 30px;
+}
+
+
+.ytm-advanced-filter-modal .form-element-dates .ytm-manufacture-from .form-select:hover,
+.ytm-advanced-filter-modal .form-element-dates .ytm-manufacture-to .form-select:hover {
+    cursor: pointer;
+}
+
 .ytm-advanced-filter-modal .modal-footer {
     justify-content: center;
     padding: 24px 25px 24px 22px;
