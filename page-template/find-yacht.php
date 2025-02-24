@@ -362,7 +362,11 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                         </div>
                                         <!-- Select Yacht -->
                                         <?php
-                                        $yacht_types_arr = array_map('trim', explode(',', $yachttype)); ?>
+                                        if( !empty($yachttype) ) {
+                                            $yacht_types_arr = array_map('trim', explode(',', $yachttype));
+                                        } else {
+                                            $yacht_types_arr = [];
+                                        } ?>
                                         <div class="ytm-filter-element">
                                             <div class="ytm-element-item">
                                                 <span for="yacht" class="form-label">Yacht type</span>
@@ -387,7 +391,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                         </ul>
                                                     <?php 
                                                     } ?>
-                                                </div>
+                                             </div>
                                             </div>
                                         </div>
                                         <!-- advanced filter -->
@@ -492,7 +496,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                         </div>
                     </div>
                 </div>
-                <span class="border-line"></span>
+                <!-- <span class="border-line"></span> -->
                 <div class="modal-option modal-manufacture-year">
                     <div class="ytm-filter-element">
                         <div class="ytm-element-item">
@@ -502,16 +506,17 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                 <div class="ytm-manufacture-from">
                                     <div class="ytm-filter-element">
                                         <div class="ytm-element-item">
-                                            <!-- <span for="yacht" class="form-label">Yacht type</span> -->
                                             <select class="form-select" name="yacht_manufacture_from" id="yacht-manufacture-from">
                                                 <option value="" disabled>Select year</option>
                                                 <?php if( $manufacture_year && is_array($manufacture_year) && count($manufacture_year) > 0 ) { 
                                                     foreach( $manufacture_year as $myear ) { 
                                                         $selected_attr = ($myear==$manufacture_from) ? 'selected' : ''; ?>
-                                                    <option value="<?php echo absint($myear); ?>" <?php echo $selected_attr; ?>>
-                                                        <?php echo esc_html($myear); ?>
-                                                    </option>
-                                                <?php } } ?>
+                                                        <option value="<?php echo absint($myear); ?>" <?php echo $selected_attr; ?>>
+                                                            <?php echo esc_html($myear); ?>
+                                                        </option>
+                                                    <?php 
+                                                    } 
+                                                } ?>
                                             </select>
                                         </div>
                                     </div>
