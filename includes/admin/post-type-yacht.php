@@ -7,7 +7,7 @@ function yacht_manager_register_post_type() {
         $labels = array(
             'name'               => __('Yachts', 'yacht-manager'),
             'singular_name'      => __('Yacht', 'yacht-manager'),
-            'menu_name'          => __('Yacht Manager', 'yacht-manager'),
+            'menu_name'          => __('Yacht', 'yacht-manager'),
             'add_new'            => __('Add New Yacht', 'yacht-manager'),
             'add_new_item'       => __('Add New Yacht', 'yacht-manager'),
             'edit_item'          => __('Edit Yacht', 'yacht-manager'),
