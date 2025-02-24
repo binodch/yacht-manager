@@ -5,40 +5,143 @@ Template Name: Find Yacht
 
 get_header(); 
 
-if ( $_SERVER["REQUEST_METHOD"] !== "POST" ) {
-    $entity_list = yacht_manager_curl_search_entity_list(); 
-
-} else {
-    $entity_args = array(
-        'post_type' => 'yacht',
-        'post_status' => 'publish',
-        'posts_per_page' => $entity_per_page,
-    );
-    $entity_query = new WP_Query($entity_args);
-    if( $entity_query->have_posts() ) {
-        while( $entity_query->have_posts() ) { $entity_query->the_post();
-            $entity_id = get_the_ID();
-            $entity_name = get_the_title();
-            $entity_cost = get_field('yacht_cost');
-            $entity_builtYear = get_field('yacht_built_year');
-            $entity_length = get_field('yacht_length');
-            $entity_cabins = get_field('yacht_cabins');
-            $entity_list[] = array(
-                'name' => $entity_name,
-                'cost' => $entity_cost,
-                'builtYear' => $entity_builtYear,
-                'length' => $entity_length,
-                'cabins' => $entity_cabins,
-                'make' => $entity_make,
-            );
-        } wp_reset_postdata();
-    }
-}
+// pr($_POST);
 
 $total_entity = 0;
 $paginate = 1;
 $entity_per_page = 12;
 $current_page = 1;
+
+$destination = $total_guests = $cabins = $start_date = $end_date = $manufacture_from = $manufacture_to = '';
+$sleeps_query = $cabins_query = $yacht_type_query = [];
+$region_list_arr = [];
+
+if( isset($_POST['entity_banner_filter']) ) {
+    $destination = $_POST['destination'] ?? '';
+    $total_guests = $_POST['totalGuests'] ?? '';
+    $manufacture_from = $_POST['ytm_manufacture_from'] ?? '';
+    $manufacture_to = $_POST['ytm_manufacture_to'] ?? '';
+    $yachttype = $_POST['ytm_yacht_type'] ?? '';
+
+    // Fetch region list if destination is provided
+    if (!empty($destination)) {
+        $search_arr = json_encode(['region' => $destination]);
+        $search_region = yacht_manager_curl_search_entity_list($search_arr);
+        
+        if (!empty($search_region) && is_array($search_region)) {
+            foreach ($search_region as $region) {
+                if (!empty($region['uri'])) {
+                    $entity_id = yacht_manager_get_yacht_id($region['uri']);
+                    if (!empty($entity_id)) {
+                        $region_list_arr = array_merge($region_list_arr, (array) $entity_id);
+                    }
+                }
+            }
+        }
+    }
+
+    // Meta queries
+    if (!empty($total_guests)) {
+        $sleeps_query = ['key' => 'yacht_sleeps', 'value' => $total_guests, 'compare' => '='];
+    }
+    if (!empty($cabins)) {
+        $cabins_query = ['key' => 'yacht_cabins', 'value' => $cabins, 'compare' => '='];
+    }
+
+    // Taxonomy Query
+    if (!empty($yachttype)) {
+        $yacht_type_query = [
+            [
+                'taxonomy' => 'yacht-type',
+                'field'    => 'term_id',
+                'terms'    => array_map('trim', explode(',', $yachttype)),
+                'operator' => 'IN',
+            ]
+        ];
+    }
+
+} else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $destination = $_POST['destination'] ?? '';
+    $total_guests = $_POST['totalGuests'] ?? '';
+    $yachttype = $_POST['ytm_yacht_type'] ?? '';
+    $cabins = $_POST['ytm_cabin'] ?? '';
+    $manufacture_from = $_POST['ytm_manufacture_from'] ?? '';
+    $manufacture_to = $_POST['ytm_manufacture_to'] ?? '';
+
+    // Fetch region list if destination is provided
+    if (!empty($destination)) {
+        $search_arr = json_encode(['region' => $destination]);
+        $search_region = yacht_manager_curl_search_entity_list($search_arr);
+        
+        if (!empty($search_region) && is_array($search_region)) {
+            foreach ($search_region as $region) {
+                if (!empty($region['uri'])) {
+                    $entity_id = yacht_manager_get_yacht_id($region['uri']);
+                    if (!empty($entity_id)) {
+                        $region_list_arr = array_merge($region_list_arr, (array) $entity_id);
+                    }
+                }
+            }
+        }
+    }
+
+    // Meta queries
+    if (!empty($total_guests)) {
+        $sleeps_query = ['key' => 'yacht_sleeps', 'value' => $total_guests, 'compare' => '='];
+    }
+    if (!empty($cabins)) {
+        $cabins_query = ['key' => 'yacht_cabins', 'value' => $cabins, 'compare' => '='];
+    }
+
+    // Taxonomy Query
+    if (!empty($yachttype)) {
+        $yacht_type_query = [
+            [
+                'taxonomy' => 'yacht-type',
+                'field'    => 'term_id',
+                'terms'    => array_map('trim', explode(',', $yachttype)),
+                'operator' => 'IN',
+            ]
+        ];
+    }
+} else {
+}
+
+// WP_Query Arguments
+$entity_args = [
+    'post_type'      => 'yacht',
+    'post_status'    => 'publish',
+    'posts_per_page' => -1,
+    'meta_query'     => array_filter([$sleeps_query, $cabins_query]), // Remove empty conditions
+];
+
+if (!empty($region_list_arr)) {
+    $entity_args['post__in'] = $region_list_arr;
+}
+if (!empty($yacht_type_query)) {
+    $entity_args['tax_query'] = $yacht_type_query;
+}
+
+// pr($entity_args);
+
+$entity_query = new WP_Query($entity_args);
+$entity_list = [];
+
+if ($entity_query->have_posts()) {
+    while ($entity_query->have_posts()) {
+        $entity_query->the_post();
+        
+        $entity_list[] = [
+            'name'      => get_the_title(),
+            'cost'      => get_field('yacht_cost'),
+            'builtYear' => get_field('yacht_built_year'),
+            'length'    => get_field('yacht_length'),
+            'cabins'    => get_field('yacht_cabins'),
+            'make'      => get_field('yacht_make'),
+        ];
+    }
+    wp_reset_postdata();
+}
 
 $destination = isset($_POST['destination']) ? sanitize_text_field($_POST['destination']) : '';
 $start_date = isset($_POST['start-date']) ? sanitize_text_field($_POST['start-date']) : '';
@@ -117,6 +220,13 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                             </div>';
                         }
 
+                        if( isset($elist['sleeps']) ) {
+                            $cabins = $elist['sleeps'] ? $elist['sleeps'] : '-';
+                            $yacht_item .= '<div class="ytm-meta-item meta-cabins">
+                                <span>' . $cabins . '..</span>
+                            </div>';
+                        }
+
                         if( isset($elist['make']) ) {
                             $make = $elist['make'] ? $elist['make'] : '-';
                             $yacht_item .= '<div class="ytm-meta-item meta-make">
@@ -159,14 +269,14 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                 <span for="destination" class="form-label">Where</span>
                                                 <div class="dropdown form-element-destination">
                                                     <button class="btn input-text dropdown-toggle w-100" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        Search destinations
+                                                        <?php echo $destination ? $destination : 'Search destinations'; ?>
                                                     </button>
                                                     <?php 
                                                     if( $destinations && is_array($destinations) && count($destinations)>0 ) { ?>
                                                         <ul class="dropdown-menu w-100" aria-labelledby="destinationDropdown">
                                                             <?php 
                                                             foreach( $destinations as $dest ) { ?>
-                                                                <li>
+                                                                <li <?php echo ($destination==$dest) ? 'class="dropdown-active"': ''; ?>>
                                                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                                                         <?php echo esc_html($dest); ?>
                                                                     </a>
@@ -250,6 +360,8 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                             </div>
                                         </div>
                                         <!-- Select Yacht -->
+                                        <?php
+                                        $yacht_types_arr = array_map('trim', explode(',', $yachttype)); ?>
                                         <div class="ytm-filter-element">
                                             <div class="ytm-element-item">
                                                 <span for="yacht" class="form-label">Yacht type</span>
@@ -257,14 +369,16 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                     <button class="btn dropdown-toggle input-text w-100 text-start" type="button" id="yachtDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                                         Select a yacht
                                                     </button>
-                                                    <?php
-                                                    if( $yacht_types && is_array($yacht_types) && count($yacht_types)>0 ) { ?>
+                                                    <?php 
+                                                    if( $yacht_types && is_array($yacht_types) && count($yacht_types) > 0 ) { ?>
                                                         <ul class="dropdown-menu w-100 p-2" aria-labelledby="yachtDropdown">
                                                             <?php 
-                                                            foreach( $yacht_types as $ytype ) { ?>
+                                                            foreach( $yacht_types as $key => $ytype ) { 
+                                                                $checked = in_array($key, $yacht_types_arr) ? 'checked' : ''; ?>
                                                                 <li>
                                                                     <label class="dropdown-item">
-                                                                        <?php echo esc_html($ytype); ?> <input type="checkbox" class="yacht-checkbox" value="<?php echo esc_html($ytype); ?>">
+                                                                        <?php echo esc_html($ytype); ?> 
+                                                                        <input type="checkbox" class="yacht-checkbox" data-ytype="<?php echo absint($key); ?>" value="<?php echo esc_html($ytype); ?>" <?php echo $checked; ?>>
                                                                     </label>
                                                                 </li>
                                                             <?php 
@@ -275,7 +389,6 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                 </div>
                                             </div>
                                         </div>
-
                                         <!-- advanced filter -->
                                         <div class="ytm-filter-element advanced-filters">
                                             <div class="ytm-element-item input-text">
@@ -286,8 +399,9 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                             </div>
                                         </div>
                                         <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="<?php echo absint($current_page); ?>">
-                                        <input type="hidden" name="ytm_charter_type[]" id="ytm-charter-type" value="">
-                                        <input type="hidden" name="ytm_cabin" id="ytm-cabin" value="2">
+                                        <input type="hidden" name="ytm_yacht_type" id="ytm-yacht-type" value="">
+                                        <!-- <input type="hidden" name="ytm_charter_type[]" id="ytm-charter-type" value=""> -->
+                                        <input type="hidden" name="ytm_cabin" id="ytm-cabin" value="0">
                                         <input type="hidden" name="ytm_manufacture_from" id="ytm-manufacture-from" value="">
                                         <input type="hidden" name="ytm_manufacture_to" id="ytm-manufacture-to" value="">
                                         <!-- Submit Button -->
@@ -307,7 +421,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                 </div>
                             </div>
                             <?php 
-                            if( $total_entity ) { ?>
+                            if( $total_entity > $count ) { ?>
                                 <div class="ytm-entity-pagination">
                                     <ul>
                                         <li class="paginate-list-prev" onclick="yachtManagerSubmitForm('<?php echo ($current_page==1) ? 1 : $current_page-1; ?>')"><span class="paginate-prev"></span></li>
@@ -368,8 +482,8 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                         <div class="ytm-element-item">
                             <span class="form-label">Cabin</span>
                             <div class="form-element-range">
-                                <input type="range" id="yachtRange" class="form-range" min="1" max="20" step="1" value="10" oninput="ytmUpdateRangeValue(this.value)">
-                                <span id="rangeValue">2</span>
+                                <input type="range" id="yachtRange" class="form-range" min="1" max="20" step="1" value="0" oninput="ytmUpdateRangeValue(this.value)">
+                                <span id="rangeValue">0</span>
                             </div>
                         </div>
                     </div>
@@ -379,16 +493,41 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                     <div class="ytm-filter-element">
                         <div class="ytm-element-item">
                             <span class="form-label">Manufacture year</span>
+                            <?php $manufacture_year = yacht_manager_manufacture_year(); ?>
                             <div class="form-element-dates">
-                                <div class="form-start-date">
-                                    <label for="start-date" class="form-label">
-                                        <input type="date" id="startDate" name="start-date" class="form-control" placeholder="From">
-                                    </label>
+                                <div class="ytm-manufacture-from">
+                                    <div class="ytm-filter-element">
+                                        <div class="ytm-element-item">
+                                            <!-- <span for="yacht" class="form-label">Yacht type</span> -->
+                                            <select class="form-select" name="yacht_manufacture_from" id="yacht-manufacture-from">
+                                                <option value="" disabled>Select year</option>
+                                                <?php if( $manufacture_year && is_array($manufacture_year) && count($manufacture_year) > 0 ) { 
+                                                    foreach( $manufacture_year as $myear ) { 
+                                                        $selected_attr = ($myear==$manufacture_from) ? 'selected' : ''; ?>
+                                                    <option value="<?php echo absint($myear); ?>" <?php echo $selected_attr; ?>>
+                                                        <?php echo esc_html($myear); ?>
+                                                    </option>
+                                                <?php } } ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="form-end-date">
-                                    <label for="end-date" class="form-label">
-                                        <input type="date" id="endDate" name="end-date" class="form-control" placeholder="To">
-                                    </label>
+                                <div class="ytm-manufacture-to">
+                                    <div class="ytm-filter-element">
+                                        <div class="ytm-element-item">
+                                            <!-- <span for="yacht" class="form-label">Yacht type</span> -->
+                                            <select class="form-select" name="yacht_manufacture_to" id="yacht-manufacture-to">
+                                                <option value="" disabled>Select year</option>
+                                                <?php if( $manufacture_year && is_array($manufacture_year) && count($manufacture_year) > 0 ) { 
+                                                    foreach( $manufacture_year as $myear ) { 
+                                                        $selected_attr = ($myear==$manufacture_to) ? 'selected' : ''; ?>
+                                                    <option value="<?php echo absint($myear); ?>" <?php echo $selected_attr; ?>>
+                                                        <?php echo esc_html($myear); ?>
+                                                    </option>
+                                                <?php } } ?>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -396,8 +535,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                 </div>
             </div>
             <div class="modal-footer">
-                <!-- <button type="button" class="btn ytm-modal-close" data-dismiss="ytm-advanced-filter-modal">Close</button> -->
-                <button type="button" class="btn ytm-advanced-btn-submit">Apply filter</button>
+                <button type="button" class="btn ytm-advanced-btn-submit ytm-modal-close">Apply filter</button>
             </div>
         </div>
     </div>

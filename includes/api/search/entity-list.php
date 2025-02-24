@@ -2,12 +2,31 @@
 /*
 * curl to get entity lists
 */
-function yacht_manager_curl_search_entity_list() {
+function yacht_manager_curl_search_entity_list($params = '') {
     $get_token = yacht_manager_generate_access_token();
     if( $get_token && isset($get_token['success']) && $get_token['success'] && isset($get_token['token']) ) {
         $access_token = $get_token['token'];
-        
+
         $endpoint = 'https://api.ankor.io/website/search';
+        
+        $param_str = '';
+        if ($params) {
+            $param_arr = json_decode($params, true);
+            if (!empty($param_arr)) {
+                $param_str .= '?';
+                $query_parts = [];
+
+                foreach ($param_arr as $key => $value) {
+                    if ($value !== '') {
+                        $query_parts[] = $key . '=' . rawurlencode($value);
+                    }
+                }
+
+                $param_str .= implode('&', $query_parts);
+            }
+        }
+
+        $endpoint .= $param_str;
 
         $curl = curl_init();
 

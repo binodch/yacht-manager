@@ -58,6 +58,11 @@
     outline: none;
     box-shadow: none;
 }
+.filter-section .filter-wrap .filter-element .form-element-yacht button {
+    width: 108px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .filter-section .filter-wrap .filter-element input[type="text"]::placeholder {
     color: #1a1a1a;
 }

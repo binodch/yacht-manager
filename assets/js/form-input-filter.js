@@ -23,17 +23,20 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.form-element-yacht .yacht-checkbox').forEach(function(checkbox) {
         checkbox.addEventListener('change', function() {
             var selectedYachts = [];
+            var selectedYAttr = [];
 
             // Collect selected yachts
             document.querySelectorAll('.form-element-yacht .yacht-checkbox:checked').forEach(function(checkedBox) {
                 selectedYachts.push(checkedBox.value);
+                selectedYAttr.push(checkedBox.getAttribute("data-ytype"));
+
             });
 
             // Update the yacht dropdown button text
-            document.getElementById('yachtDropdown').textContent = selectedYachts.join(', ') || "Choose a yacht";
+            document.getElementById('yachtDropdown').textContent = selectedYachts.join(',') || "Choose a yacht";
 
             // Update the hidden input value with selected yachts
-            document.getElementById('yacht').value = selectedYachts.join(', ');
+            document.getElementById('ytm-yacht-type').value = selectedYAttr.join(',');
         });
     });
 
@@ -141,4 +144,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize the total on page load
     updateTotalGuests();
+
+    // manufacture year from
+    let selectElementFrom = document.getElementById("yacht-manufacture-from");
+    let hiddenInputFrom = document.getElementById("ytm-manufacture-from");
+    // Update hidden input when select changes
+    selectElementFrom.addEventListener("change", function () {
+        hiddenInputFrom.value = this.value;
+    });
+    hiddenInputFrom.value = selectElementFrom.value;
+
+    // manufacture year to
+    let selectElementTo = document.getElementById("yacht-manufacture-to");
+    let hiddenInputTo = document.getElementById("ytm-manufacture-to");
+    // Update hidden input when select changes
+    selectElementTo.addEventListener("change", function () {
+        hiddenInputTo.value = this.value;
+    });
+    hiddenInputTo.value = selectElementTo.value;
 });
