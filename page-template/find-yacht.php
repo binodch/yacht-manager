@@ -5,7 +5,35 @@ Template Name: Find Yacht
 
 get_header(); 
 
-$entity_list = yacht_manager_curl_search_entity_list();
+if ( $_SERVER["REQUEST_METHOD"] !== "POST" ) {
+    $entity_list = yacht_manager_curl_search_entity_list(); 
+
+} else {
+    $entity_args = array(
+        'post_type' => 'yacht',
+        'post_status' => 'publish',
+        'posts_per_page' => $entity_per_page,
+    );
+    $entity_query = new WP_Query($entity_args);
+    if( $entity_query->have_posts() ) {
+        while( $entity_query->have_posts() ) { $entity_query->the_post();
+            $entity_id = get_the_ID();
+            $entity_name = get_the_title();
+            $entity_cost = get_field('yacht_cost');
+            $entity_builtYear = get_field('yacht_built_year');
+            $entity_length = get_field('yacht_length');
+            $entity_cabins = get_field('yacht_cabins');
+            $entity_list[] = array(
+                'name' => $entity_name,
+                'cost' => $entity_cost,
+                'builtYear' => $entity_builtYear,
+                'length' => $entity_length,
+                'cabins' => $entity_cabins,
+                'make' => $entity_make,
+            );
+        } wp_reset_postdata();
+    }
+}
 
 $total_entity = 0;
 $paginate = 1;
@@ -45,7 +73,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                     </div>
                     <div class="ytm-item-content">';
 
-                        if( !isset($elist['subname']) ) {
+                        if( isset($elist['subname']) ) {
                             $yacht_item .= '<div class="ytm-item-symbol">
                                 Molo 63
                             </div>';

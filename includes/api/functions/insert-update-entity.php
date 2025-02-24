@@ -15,10 +15,10 @@ function yacht_manager_fetch_yacht_list() {
 /**
  * function to save yacht post to yacht post type
  */
-function yacht_manager_insert_update_yacht_post_type() { $count = 0;
+function yacht_manager_insert_update_yacht_post_type() {
     $yacht_arr = yacht_manager_fetch_yacht_list();
     if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
-        foreach( $yacht_arr as $yarr ) { $count++; if( $count==2 ) break; //pr($yarr);
+        foreach( $yacht_arr as $yarr ) {
             $yacht_hash = yacht_manager_generate_hash_signature($yarr);
 
             $yacht_uri = isset($yarr['uri']) ? $yarr['uri'] : '';
