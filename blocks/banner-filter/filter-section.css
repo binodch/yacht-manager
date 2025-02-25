@@ -41,19 +41,108 @@
     border: none;
 }
 
-.filter-section .filter-wrap .filter-element .dropdown ul {
-    padding: 0;
-    margin: 0;
-}
-
 .filter-section .filter-wrap .filter-element .dropdown .dropdown-toggle:after {
     content: none;
 }
 
-.filter-section .filter-wrap .filter-element .dropdown .dropdown-menu {
+/* select destination */
+.filter-section .filter-wrap .filter-element.filter-destination .dropdown-menu {
     position: absolute;
     top: 100%;
+    transform: translate(0, 55px) !important;
+    inset: 0px auto auto -28px !important;
+    border-radius: 24px;
+    padding: 22px 18px 0;
 }
+
+.filter-section .filter-wrap .filter-element.filter-destination .dropdown-menu .dropdown-text {
+    color: #afafaf;
+    margin-bottom: 10px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.011em;
+}
+
+.filter-section .filter-wrap .filter-element.filter-destination .dropdown-menu li:not(:last-of-type) {
+    margin-bottom: 10px;
+}
+
+.filter-section .filter-wrap .filter-element.filter-destination .dropdown-menu .dropdown-item {
+    color: #3c3c3c;
+    border: 1px solid #f3f3f3;
+    border-radius: 12px; 
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.011em;
+    padding: 13px;
+}
+
+.filter-section .filter-wrap .filter-element.filter-destination .dropdown-menu .dropdown-item:hover {
+    background-color: var(--primary-color);
+}
+/* select destination */
+
+/* guests dropdown */
+.filter-section .filter-wrap .filter-element.filter-guests .dropdown-menu {
+    margin: 0;
+    inset: 20px auto auto -36px !important;
+    padding: 21px 18px;
+}
+
+.filter-section .filter-wrap .filter-element.filter-guests .dropdown .btn {
+    width: 60px;
+}
+
+.filter-section .filter-wrap .filter-element.filter-guests .dropdown-menu {
+    width: 307px;
+}
+
+.filter-section .filter-element.filter-guests .dropdown-menu .guest-dropdown {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-section .filter-element.filter-guests .dropdown-menu .guest-dropdown:not(:last-of-type) {
+    margin-bottom: 8px;
+}
+
+.filter-section .filter-element.filter-guests .dropdown-menu .guest-type {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-section .filter-element.filter-guests .dropdown-menu .guest-dropdown .plus-minus-counter label {
+    display: flex;
+    align-items: center;
+}
+
+.filter-section .filter-element.filter-guests .dropdown-menu .guest-dropdown .plus-minus-counter .btn {
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
+    width: 25px;
+    padding: revert;
+}
+
+.filter-section .filter-element.filter-guests .guest-type .guest-type-title {
+    color: #000000;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.011em;
+}
+
+.filter-section .filter-element.filter-guests .guest-type .guest-type-count {
+    color: #afafaf;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: -0.011em;
+
+}
+/* guests dropdown */
 
 .filter-section .filter-wrap .filter-element button, .filter-section .filter-wrap .filter-element input[type="text"] {
     padding: 3.5px 0;
@@ -68,11 +157,52 @@
     box-shadow: none;
 }
 
-.filter-section .filter-wrap .filter-element .form-element-yacht button {
+/* yacht type */
+.filter-section .filter-wrap .filter-element.filter-yacht .form-element-yacht button {
     width: 108px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+    
+.filter-section .filter-wrap .filter-element.filter-yacht .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    transform: translate(0, 55px) !important;
+    inset: -2px auto auto -28px !important;
+    border-radius: 24px;
+    padding: 22px 18px;
+}
+
+.filter-section .filter-wrap .filter-element.filter-yacht .dropdown-menu .dropdown-item {
+    color: #000000;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.011em;
+    padding: 0;
+    background: transparent;
+}
+
+.filter-section .filter-wrap .filter-element.filter-yacht ul li:not(:last-of-type) .dropdown-item {
+    margin-bottom: 12px;
+}
+
+.filter-section .filter-wrap .filter-element.filter-yacht .dropdown-item input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+}
+
+.filter-section .filter-wrap .filter-element.filter-yacht .dropdown-item input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+}
+/* yacht type */
 
 .filter-section .filter-wrap .filter-element input[type="text"]::placeholder {
     color: #1a1a1a;
