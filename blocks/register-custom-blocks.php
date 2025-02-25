@@ -7,6 +7,23 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
+// register block category
+function yacht_manager_register_yacht_manager_block_category( $categories, $post ) {
+    $new_widget = [
+        [
+            'slug'  => 'yacht-manager',
+            'title' => __( 'Yacht Manager', 'yacht-manager' ),
+            // 'icon'  => 'admin-site',
+        ],
+    ];
+    return array_merge(
+        $new_widget,
+        $categories,
+    );
+}
+add_filter( 'block_categories_all', 'yacht_manager_register_yacht_manager_block_category', 10, 2 );
+
+
 // Register the block
 function yacht_manager_register_custom_block() {
     // featured entity list block
