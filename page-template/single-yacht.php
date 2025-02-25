@@ -5,30 +5,33 @@ get_header(); ?>
 <section class="single-yacht">
     <div class='container'>
         <div class="yacht-single-banner">
-            <div clas="yacht-single-heading">
-                <?php the_title('<h1>', '</h1>'); ?>
+            <div class="yacht-single-heading">
+                <div class="single-about">
+                    Yachts for Charter
+                </div>
+                <h1 class="single-heading"><?php the_title(); ?></h1>
                 <div class="yacht-heading-main">
-                    <div clas="yacht-heading-builts">
+                    <div class="yacht-heading-builts">
                         <div class="builts-length">150'8 / 40m</div>
                         <div class="builts-material">Golden Yachts</div>
                         <div class="builts-year">2020</div>
                     </div>
-                    <div clas="yacht-heading-region">
+                    <div class="yacht-heading-region">
                         <span>Turkey</span>
                         <span>Greece</span>
                         <span>East Mediterranean</span>
                         <span>Aegan Sea</span>
                     </div>
-                    <div clas="yacht-heading-pricing">
+                    <div class="yacht-heading-pricing">
                         From $115,000 / Week
                     </div>
-                    <div clas="yacht-heading-link">
-                        <a href="#book-now" class="btn btn-primary">Book now</a>
+                    <div class="yacht-heading-link">
+                        <a href="#book-now" class="btn">Book now</a>
                     </div>
                 </div>
             </div>
-            <div clas="yacht-single-image">
-                <div clas="yacht-single-thumb">
+            <div class="yacht-single-image">
+                <div class="yacht-single-thumb">
                     <img decoding="async" src="<?php echo plugin_dir_url(dirname(__FILE__, 1)) . 'assets/css/yacht.jpg' ?> .'" alt="p">
                 </div>
                 <div class="yacht-single-blueprint">
