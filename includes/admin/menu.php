@@ -104,13 +104,10 @@ function yacht_manager_myplugin_register_settings() {
 add_action('admin_init', 'yacht_manager_myplugin_register_settings');
 
 function yacht_manager_myplugin_settings_page() { ?>
-
     <div class="wrap">
-        <h2>My Plugin Settings</h2>
+        <h2>Color Settings</h2>
         <form method="post" action="options.php">
-            <?php
-            settings_fields('ytm_setting_color');
-            ?>
+            <?php settings_fields('ytm_setting_color'); ?>
             <table class="form-table">
                 <tr valign="top">
                     <th scope="row">Primary Color:</th>

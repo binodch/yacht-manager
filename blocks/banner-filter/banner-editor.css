@@ -25,9 +25,6 @@
 
 .custom-banner-filter-block .banner-image-wrap button[type="button"] {
     width: max-content;
-}
-
-.banner-image-wrap button {
-    /* color: #00f; */
-    color: var(--mycolor);
+    font-size: 14px;
+    padding: 4px 8px;
 }
