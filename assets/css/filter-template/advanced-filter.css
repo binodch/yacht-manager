@@ -43,16 +43,6 @@
     border-top: none;
 }
 
-.ytm-advanced-filter-modal .modal-body .modal-cabin {
-    border-top: 1px solid #efefef;
-    padding-bottom: 24px;
-}
-
-.ytm-advanced-filter-modal .modal-body .modal-manufacture-year {
-    border-top: 1px solid #efefef;
-    padding-bottom: 0;
-}
-
 .ytm-advanced-filter-modal .modal-body .ytm-element-item .form-label {
     font-weight: 500;
     font-size: 18px;
@@ -60,8 +50,10 @@
     letter-spacing: -0.011em;
 }
 
-.ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-dates {
-    margin-top: 14px;
+/* cabin range */
+.ytm-advanced-filter-modal .modal-body .modal-cabin {
+    /* border-top: 1px solid #efefef; */
+    padding-bottom: 24px;
 }
 
 .ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-range {
@@ -90,10 +82,31 @@
     letter-spacing: -0.011em;
 
 }
+/* cabin range */
+
+/* manufacture year */
+.ytm-advanced-filter-modal .modal-body .modal-manufacture-year {
+    border-top: 1px solid #efefef;
+    padding-bottom: 0;
+}
+
+
+.ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-dates {
+    margin-top: 14px;
+}
 
 .ytm-advanced-filter-modal .modal-body .modal-manufacture-year .form-element-dates {
     display: flex;
     gap: 25px;    
+}
+
+.ytm-advanced-filter-modal .modal-body .modal-manufacture-year .form-element-dates .form-select {
+    border-radius: 12px;
+    border: 1px solid #f3f3f3;
+}
+.ytm-advanced-filter-modal .modal-body .modal-manufacture-year .form-element-dates .form-select:focus {
+    border: 1px solid #f3f3f3;
+    box-shadow: unset;
 }
 
 .ytm-advanced-filter-modal .modal-body .modal-manufacture-year .form-element-dates .ytm-manufacture-from,
@@ -118,6 +131,7 @@
 .ytm-advanced-filter-modal .form-element-dates .ytm-manufacture-to .form-select:hover {
     cursor: pointer;
 }
+/* manufacture year */
 
 .ytm-advanced-filter-modal .modal-footer {
     justify-content: center;

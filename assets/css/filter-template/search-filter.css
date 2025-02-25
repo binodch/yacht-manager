@@ -25,9 +25,15 @@
     margin-bottom: unset;
 }
 
-.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-element-destination .dropdown-active {
-    background-color: #e4e4e4;
+/* search destinations */
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-element-destination .dropdown-active a {
+    background-color: var(--primary-color);
 }
+    
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-element-destination ul li:hover a {
+    background-color: var(--primary-color) !important;
+}
+/* search destinations */
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .input-text {
     font-weight: 500;
@@ -82,6 +88,53 @@
     margin-right: 4px;
   }
 
+/* calender css */
+.flatpickr-calendar .dayContainer .flatpickr-day:hover,
+.flatpickr-calendar .dayContainer .flatpickr-day.selected {
+    background: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    color: #000;
+}
+/* calender css */
+
+/* select yacht */
+.ytm-filter-sidebar .ytm-element-item .form-element-yacht .dropdown-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0; /* Changed from 'unset' to '0' */
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    letter-spacing: -0.011em;
+    background-color: transparent;
+}
+.ytm-filter-sidebar .ytm-element-item .form-element-yacht .dropdown-item:active {
+    background-color: transparent;
+}
+
+.ytm-filter-sidebar .ytm-element-item .form-element-yacht .dropdown-item:not(:last-child) {
+    margin-bottom: 12px;
+}
+
+.ytm-filter-sidebar .ytm-element-item .form-element-yacht .dropdown-menu {
+    padding: 20px 18px;
+}
+
+.ytm-element-item .form-element-yacht .dropdown-item input[type="checkbox"] {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--primary-color);
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+}
+
+.ytm-element-item .form-element-yacht .dropdown-item input[type="checkbox"]:checked {
+    background-color: var(--primary-color);
+}
+/* select yacht */
+
 /* submit button */
 .ytm-filter-section .ytm-filter-sidebar .button-wrap {
     text-align: center;
@@ -94,22 +147,9 @@
 .ytm-filter-section .ytm-filter-sidebar .button-wrap .btn {
     border-radius: 1136.65px;
     border: 1.14px solid rgba(185, 234, 255, 0.2);
-    background-color: #b9eaff;
+    background-color: var(--primary-color);
     color: #1d2b46;
     padding: 12px 28px;
     width: 100%;
 }
 /* submit button */
-
-/* Media Query for Mobile */
-@media (max-width: 768px) {
-    /* .sidebar-filter {
-        width: 100%;
-        height: auto;
-        position: relative;
-    } */
-
-    /* .filter-section .filter-wrap {
-        flex-direction: column;
-    } */
-}

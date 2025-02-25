@@ -274,7 +274,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                     </button>
                                                     <?php 
                                                     if( $destinations && is_array($destinations) && count($destinations)>0 ) { ?>
-                                                        <ul class="dropdown-menu w-100" aria-labelledby="destinationDropdown">
+                                                        <ul class="dropdown-menu" aria-labelledby="destinationDropdown">
                                                             <?php 
                                                             foreach( $destinations as $dest ) { ?>
                                                                 <li <?php echo ($destination==$dest) ? 'class="dropdown-active"': ''; ?>>
@@ -376,7 +376,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                     </button>
                                                     <?php 
                                                     if( $yacht_types && is_array($yacht_types) && count($yacht_types) > 0 ) { ?>
-                                                        <ul class="dropdown-menu w-100 p-2" aria-labelledby="yachtDropdown">
+                                                        <ul class="dropdown-menu w-100" aria-labelledby="yachtDropdown">
                                                             <?php 
                                                             foreach( $yacht_types as $key => $ytype ) { 
                                                                 $checked = in_array($key, $yacht_types_arr) ? 'checked' : ''; ?>
@@ -391,7 +391,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                         </ul>
                                                     <?php 
                                                     } ?>
-                                             </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <!-- advanced filter -->
