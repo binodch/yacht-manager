@@ -11,16 +11,19 @@
     z-index: 9;
     padding: 14px 27px;
 }
+
 .filter-section .filter-wrap {
     position: relative;
     gap: 35px;
 }
+
 .filter-section .filter-wrap .vertical-line {
     background: #dfdfdf;
     display: block;
     width: 1px;
     height: 62px;
 }
+
 .filter-section .filter-wrap .filter-element .form-label {
     color: #afafaf;
     font-weight: 500;
@@ -28,24 +31,30 @@
     letter-spacing: -0.154px;
     margin: 0;
 }
+
 .filter-section .filter-wrap .filter-element .dropdown {
     position: relative;
 }
+
 .filter-section .filter-wrap .filter-element .dropdown .button {
     background: none;
     border: none;
 }
+
 .filter-section .filter-wrap .filter-element .dropdown ul {
     padding: 0;
     margin: 0;
 }
+
 .filter-section .filter-wrap .filter-element .dropdown .dropdown-toggle:after {
     content: none;
 }
+
 .filter-section .filter-wrap .filter-element .dropdown .dropdown-menu {
     position: absolute;
     top: 100%;
 }
+
 .filter-section .filter-wrap .filter-element button, .filter-section .filter-wrap .filter-element input[type="text"] {
     padding: 3.5px 0;
     background: none;
@@ -58,14 +67,17 @@
     outline: none;
     box-shadow: none;
 }
+
 .filter-section .filter-wrap .filter-element .form-element-yacht button {
     width: 108px;
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
 .filter-section .filter-wrap .filter-element input[type="text"]::placeholder {
     color: #1a1a1a;
 }
+
 .filter-section .filter-wrap .button-wrap {
     min-width: 161px;
     font-weight: 500;
@@ -73,6 +85,7 @@
     line-height: 27.28px;
     letter-spacing: -0.011em;
 }
+
 .filter-section .filter-wrap .button-wrap .btn {
     width: 100%;
     border-radius: 1136.65px;
@@ -81,6 +94,7 @@
     color: #1d2b46;
     padding: 12px 28px;
 }
+
 .filter-section .filter-wrap .button-wrap .btn.nofilter {
     pointer-events: none;
 }
