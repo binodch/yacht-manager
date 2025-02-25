@@ -69,7 +69,7 @@ wp.blocks.registerBlockType('custom/banner-filter-block', {
                         type: 'text',
                         value: attributes.buttonUrl,
                         onChange: updateButtonUrl,
-                        placeholder: 'Button URL'
+                        placeholder: 'Button url'
                     })
                 )
             )

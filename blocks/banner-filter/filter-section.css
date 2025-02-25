@@ -77,7 +77,7 @@
     width: 100%;
     border-radius: 1136.65px;
     border: 1.14px solid rgba(185, 234, 255, 0.2);
-    background-color: #b9eaff;
+    background-color: var(--primary-color);
     color: #1d2b46;
     padding: 12px 28px;
 }

@@ -27,7 +27,6 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/search/entity-list.php';
 // Include curl featured entity list
 require_once plugin_dir_path(__FILE__) . 'includes/api/search/featured-entity-list.php';
 
-
 // insert update entity
 require_once plugin_dir_path(__FILE__) . 'includes/api/functions/insert-update-entity.php';
 

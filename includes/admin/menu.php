@@ -9,14 +9,26 @@ function yacht_manager_add_menu_page() {
         'Yacht Manager',
         'manage_options',
         'yacht-manager',
-        'yacht_manager_dashboard',
+        'yacht_manager_dashboard_menu',
         'dashicons-admin-tools',
         99                        
+    );
+
+    // Add a Submenu Page under "Yacht Manager"
+    add_submenu_page(
+        'yacht-manager',           // Parent Slug
+        'Yacht Settings',          // Page Title
+        'Yacht Settings',          // Menu Title
+        'manage_options',          // Capability
+        'yacht-settings',          // Menu Slug
+        'yacht_manager_myplugin_settings_page' // Callback function
     );
 }
 add_action('admin_menu', 'yacht_manager_add_menu_page');
 
-function yacht_manager_dashboard() { 
+
+// yacht manager mennu options
+function yacht_manager_dashboard_menu() { 
     $company_uri = get_option('yacht_manager_company_uri'); 
     $key_id = get_option('yacht_manager_key_id'); 
     $key_file_name = get_option('yacht_key_file_name', 'No file uploaded'); 
@@ -81,4 +93,34 @@ function yacht_manager_dashboard() {
     </div> 
 
 <?php 
+}
+
+
+// color setting options
+function yacht_manager_myplugin_register_settings() {
+    add_option('ytm_primary_color', '#b9eaff');
+    register_setting('ytm_setting_color', 'ytm_primary_color');
+}
+add_action('admin_init', 'yacht_manager_myplugin_register_settings');
+
+function yacht_manager_myplugin_settings_page() { ?>
+
+    <div class="wrap">
+        <h2>My Plugin Settings</h2>
+        <form method="post" action="options.php">
+            <?php
+            settings_fields('ytm_setting_color');
+            ?>
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row">Primary Color:</th>
+                    <td>
+                        <input type="text" id="ytm_primary_color" name="ytm_primary_color" value="<?php echo esc_attr(get_option('ytm_primary_color')); ?>" class="ytm-color-picker" />
+                    </td>
+                </tr>
+            </table>
+            <?php submit_button(); ?>
+        </form>
+    </div>
+    <?php
 }
