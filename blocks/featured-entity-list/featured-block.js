@@ -19,17 +19,27 @@ wp.blocks.registerBlockType('custom/featured-entity-block', {
 
         return (
             wp.element.createElement('div', { className: 'custom-featured-entity-block' },
-                wp.element.createElement('input', {
-                    type: 'text',
-                    value: props.attributes.title,
-                    onChange: updateTitle,
-                    placeholder: 'Title'
-                }),
-                wp.element.createElement('textarea', {
-                    value: props.attributes.description,
-                    onChange: updateDescription,
-                    placeholder: 'Description'
-                })
+                wp.element.createElement('div', { className: 'featured-title-wrapper block-featured-label' },
+                    wp.element.createElement('label', { htmlFor: 'featured-title-element' }, 'Title'),
+                    wp.element.createElement('input', {
+                        id: 'featured-title-element',
+                        type: 'text',
+                        value: props.attributes.title,
+                        onChange: updateTitle,
+                        placeholder: 'Title'
+                    }),
+                ),
+                wp.element.createElement('div', { className: 'featured-textarea-wrapper' },
+                    wp.element.createElement('label', { htmlFor: 'featured-textarea-element' }, 'Description'), 
+                    wp.element.createElement('textarea', {
+                        id: 'featured-textarea-element',
+                        value: props.attributes.description,
+                        onChange: updateDescription,
+                        placeholder: 'Description',
+                        rows: 5
+                    })
+                )
+                
             )
         );
     },
