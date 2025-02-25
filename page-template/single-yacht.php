@@ -13,7 +13,9 @@ get_header(); ?>
                 <div class="yacht-heading-main">
                     <div class="yacht-heading-builts">
                         <div class="builts-length">150'8 / 40m</div>
+                        <span class="single-border"></span>
                         <div class="builts-material">Golden Yachts</div>
+                        <span class="single-border"></span>
                         <div class="builts-year">2020</div>
                     </div>
                     <div class="yacht-heading-region">

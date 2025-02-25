@@ -1,7 +1,7 @@
 wp.blocks.registerBlockType('custom/featured-entity-block', {
     title: 'Featured Entity Block',
-    icon: 'admin-comments',
-    category: 'widgets',
+    icon: 'admin-appearance',
+    category: 'yacht-manager',
 
     attributes: {
         title: { type: 'string', default: '' },

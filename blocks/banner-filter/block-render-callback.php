@@ -2,6 +2,9 @@
 // banner filter render function
 function render_banner_filter_block($attributes) {
     $title = esc_html($attributes['title']);
+    $image_url = esc_html($attributes['imageUrl']);
+    $btn_text = esc_html($attributes['buttonText']);
+    $btn_url = esc_url($attributes['buttonUrl']);
 
     $page_template = yacht_manager_template_assigned('find-yacht.php');
     $btn_status = $page_template ? 'isfilter' : 'nofilter';
@@ -12,21 +15,26 @@ function render_banner_filter_block($attributes) {
     $banner_filter = '<section id="ytm-banner-filter" class="section ytm-section-banner d-flex flex-column justify-content-center p-medium">';
 		$banner_filter .= '<div class="container">
 			<div class="section-heading text-center">';
-                if( $banner_filter != '' ) {
-                    $banner_filter .= '<h1 class="section-banner__title">
-                        Paradise Awaits					
-                    </h1>';
+                
+                if( $title != '' ) {
+                    $banner_filter .= '<h1 class="section-banner__title">';
+                    $banner_filter .= esc_html($title);
+                    $banner_filter .= '</h1>';
                 }
-                $banner_filter .= '<div class="section-heading__btn btn-wrapper d-flex justify-content-center">
-                    <a href="#start" class="btn btn-primary">
-                        Start your journey
-                    </a>
-                </div>';
-            $banner_filter .= '</div>';
-        $banner_filter .= '</div>';
+                
+                if( $btn_text != '' && $btn_url != '' ) {
+                    $banner_filter .= '<div class="section-heading__btn btn-wrapper d-flex justify-content-center">';
+                    $banner_filter .= '<a href="'. esc_url($btn_url) .'" class="section-banner__btn btn btn-primary">';
+                    $banner_filter .= esc_html($btn_text);
+                    $banner_filter .= '</a>';
+                    $banner_filter .= '</div>';
+                }
+
+            $banner_filter .= '</div>
+            </div>';
 
         $banner_filter .= '<div class="background-image">
-                <img fetchpriority="high" decoding="async" width="1396" height="854" src="' .plugin_dir_url(dirname(__FILE__, 2)) . 'assets/css/yacht.jpg' .'" class="attachment-background-image size-background-image" alt="" loading="eager">
+                <img fetchpriority="high" decoding="async" width="1396" height="854" src="' . $image_url .'" class="attachment-background-image size-background-image" alt="" loading="eager">
             </div>';
 		
 		// filter section
