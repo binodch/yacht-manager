@@ -31,35 +31,47 @@ wp.blocks.registerBlockType('custom/banner-filter-block', {
 
         return (
             wp.element.createElement('div', { className: 'custom-banner-filter-block' },
-                wp.element.createElement('input', {
-                    type: 'text',
-                    value: attributes.title,
-                    onChange: updateTitle,
-                    placeholder: 'Title'
-                }),
+                wp.element.createElement('div', { className: 'banner-title-wrapper block-banner-label' },
+                    wp.element.createElement('label', { htmlFor: 'banner-title-element' }, 'Title'),
+                    wp.element.createElement('input', {
+                        id: 'banner-title-element',
+                        type: 'text',
+                        value: attributes.title,
+                        onChange: updateTitle,
+                        placeholder: 'Title'
+                    })
+                ),
                 wp.element.createElement(wp.blockEditor.MediaUpload, {
                     onSelect: onSelectImage,
                     allowedTypes: ['image'],
                     render: ({ open }) => (
-                        wp.element.createElement('div', null,
+                        wp.element.createElement('div', { className: 'banner-image-wrap' },
                             attributes.imageUrl &&
-                            wp.element.createElement('img', { src: attributes.imageUrl, alt: 'Selected Image', style: { maxWidth: '125%', height: 'auto' } }),
+                            wp.element.createElement('img', { src: attributes.imageUrl, alt: 'Selected Image', style: { maxWidth: '25%', height: 'auto' } }),
                             wp.element.createElement('button', { type: 'button', onClick: open }, 'Select Image')
                         )
                     )
                 }),
-                wp.element.createElement('input', {
-                    type: 'text',
-                    value: attributes.buttonText,
-                    onChange: updateButtonText,
-                    placeholder: 'Button Text'
-                }),
-                wp.element.createElement('input', {
-                    type: 'text',
-                    value: attributes.buttonUrl,
-                    onChange: updateButtonUrl,
-                    placeholder: 'Button URL'
-                })
+                wp.element.createElement('div', { className: 'banner-button-title block-banner-label' },
+                    wp.element.createElement('label', { htmlFor: 'banner-button-text' }, 'Button Text'),
+                    wp.element.createElement('input', {
+                        id: 'banner-button-text',
+                        type: 'text',
+                        value: attributes.buttonText,
+                        onChange: updateButtonText,
+                        placeholder: 'Button Text'
+                    })
+                ),
+                wp.element.createElement('div', { className: 'banner-button-url block-banner-label' },
+                    wp.element.createElement('label', { htmlFor: 'banner-button-url' }, 'Button URL'),
+                    wp.element.createElement('input', {
+                        id: 'banner-button-url',
+                        type: 'text',
+                        value: attributes.buttonUrl,
+                        onChange: updateButtonUrl,
+                        placeholder: 'Button URL'
+                    })
+                )
             )
         );
     },

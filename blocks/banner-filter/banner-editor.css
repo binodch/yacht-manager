@@ -1,5 +1,28 @@
-.custom-title-description-block {
-    border: 2px dashed #0073aa;
-    padding: 10px;
-    background-color: #f0f0f0;
+.custom-banner-filter-block {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 20px 0;
+}
+
+.custom-banner-filter-block .banner-title-wrapper input[type="text"],
+.custom-banner-filter-block .banner-button-title input[type="text"],
+.custom-banner-filter-block .banner-button-url input[type="text"] {
+    width: 60%;
+}
+
+.custom-banner-filter-block .block-banner-label {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-banner-filter-block .banner-image-wrap {
+    display: flex;
+    gap: 16px;
+    flex-direction: column;
+}
+
+
+.custom-banner-filter-block .banner-image-wrap button[type="button"] {
+    width: max-content;
 }

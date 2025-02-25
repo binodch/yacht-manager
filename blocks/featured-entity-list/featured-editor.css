@@ -1,5 +1,17 @@
-.custom-title-description-block {
-    border: 2px dashed #0073aa;
-    padding: 10px;
-    background-color: #f0f0f0;
+.custom-featured-entity-block {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 20px 0;
+}
+
+.custom-featured-entity-block .featured-title-wrapper input[type="text"],
+.custom-featured-entity-block .featured-textarea-wrapper textarea {
+    width: 60%;
+}
+
+.custom-featured-entity-block .block-featured-label,
+.custom-featured-entity-block textarea {
+    display: flex;
+    flex-direction: column;
 }
