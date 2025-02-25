@@ -112,7 +112,7 @@
     background-color: transparent;
 }
 
-.ytm-filter-sidebar .ytm-element-item .form-element-yacht .dropdown-item:not(:last-child) {
+.ytm-filter-sidebar .ytm-element-item .form-element-yacht ul li:not(:last-of-type) .dropdown-item {
     margin-bottom: 12px;
 }
 
@@ -129,6 +129,8 @@
     cursor: pointer;
     position: relative;
 }
+
+
 
 .ytm-element-item .form-element-yacht .dropdown-item input[type="checkbox"]:checked {
     background-color: var(--primary-color);

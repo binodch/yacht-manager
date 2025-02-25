@@ -47,6 +47,13 @@ function yacht_manager_enqueue_public_assets() {
         [],
         YACHT_MANAGER_VERSION
     );
+    wp_enqueue_style(
+        'yacht-manager-yacht-single-styl',
+        plugin_dir_url(__FILE__) . '../assets/css/yacht-single/detail.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+
     wp_enqueue_script(
         'yacht-manager-btstap-script',
         'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js',
