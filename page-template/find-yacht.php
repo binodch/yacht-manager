@@ -17,15 +17,15 @@ $sleeps_query = $cabins_query = $yacht_type_query = [];
 $region_list_arr = [];
 
 if( isset($_POST['entity_banner_filter']) ) {
-    $destination = $_POST['destination'] ?? '';
+    $selected_destination = $_POST['destination'] ?? '';
     $total_guests = $_POST['totalGuests'] ?? '';
     $manufacture_from = $_POST['ytm_manufacture_from'] ?? '';
     $manufacture_to = $_POST['ytm_manufacture_to'] ?? '';
     $yachttype = $_POST['ytm_yacht_type'] ?? '';
 
     // Fetch region list if destination is provided
-    if (!empty($destination)) {
-        $search_arr = json_encode(['region' => $destination]);
+    if (!empty($selected_destination)) {
+        $search_arr = json_encode(['region' => $selected_destination]);
         $search_region = yacht_manager_curl_search_entity_list($search_arr);
         
         if (!empty($search_region) && is_array($search_region)) {
@@ -61,7 +61,7 @@ if( isset($_POST['entity_banner_filter']) ) {
     }
 
 } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $destination = $_POST['destination'] ?? '';
+    $selected_destination = $_POST['destination'] ?? '';
     $total_guests = $_POST['totalGuests'] ?? '';
     $yachttype = $_POST['ytm_yacht_type'] ?? '';
     $cabins = $_POST['ytm_cabin'] ?? '';
@@ -69,8 +69,8 @@ if( isset($_POST['entity_banner_filter']) ) {
     $manufacture_to = $_POST['ytm_manufacture_to'] ?? '';
 
     // Fetch region list if destination is provided
-    if (!empty($destination)) {
-        $search_arr = json_encode(['region' => $destination]);
+    if (!empty($selected_destination)) {
+        $search_arr = json_encode(['region' => $selected_destination]);
         $search_region = yacht_manager_curl_search_entity_list($search_arr);
         
         if (!empty($search_region) && is_array($search_region)) {
@@ -143,25 +143,24 @@ if ($entity_query->have_posts()) {
     wp_reset_postdata();
 }
 
-$destination = isset($_POST['destination']) ? sanitize_text_field($_POST['destination']) : '';
+$selected_destination = isset($_POST['destination']) ? sanitize_text_field($_POST['destination']) : '';
 $start_date = isset($_POST['start-date']) ? sanitize_text_field($_POST['start-date']) : '';
 $end_date = isset($_POST['end-date']) ? sanitize_text_field($_POST['end-date']) : '';
 $total_guests = isset($_POST['totalGuests']) ? sanitize_text_field($_POST['totalGuests']) : '';
 
 $yacht_item = '';
 
+$count = 0;
+$destinations = yacht_manager_curl_destinations();
+$yacht_types = yacht_manager_curl_yacht_types();
+// $charter_types = yacht_manager_curl_charter_types();
+$charter_types = [];
 if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
     $total_entity = count($entity_list);
-    $count = 0;
 
     $entity_from = ($current_page - 1) * $entity_per_page;
 
     $entity_range_list = array_slice($entity_list, $entity_from, $entity_per_page, true);
-
-    $destinations = yacht_manager_curl_destinations();
-    $yacht_types = yacht_manager_curl_yacht_types();
-    $charter_types = yacht_manager_curl_charter_types();
-    $charter_types = [];
 
     foreach( $entity_range_list as $elist ) {
         if( ($total_entity>$count) && ($count>($entity_per_page-1)) ) {
@@ -241,7 +240,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
             </div>
         </div>';
 
-        $count++;
+        $count += 1;
     }
 } else {
     $yacht_item .= '<div class="col-md-12">
@@ -265,19 +264,20 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                 <div class="ytm-filter-section">
                                     <div class="ytm-filter-sidebar">
                                         <!-- Destination -->
-                                        <div class="ytm-filter-element">
+                                        <div class="ytm-filter-element sidebar-destination">
                                             <div class="ytm-element-item">
                                                 <span for="destination" class="form-label">Where</span>
                                                 <div class="dropdown form-element-destination">
                                                     <button class="btn input-text dropdown-toggle w-100" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                                        <?php echo $destination ? $destination : 'Search destinations'; ?>
+                                                        <?php echo $selected_destination ? $selected_destination : 'Search destinations'; ?>
                                                     </button>
                                                     <?php 
                                                     if( $destinations && is_array($destinations) && count($destinations)>0 ) { ?>
                                                         <ul class="dropdown-menu" aria-labelledby="destinationDropdown">
+                                                        <div class="dropdown-text">Popular Destinations</div>
                                                             <?php 
                                                             foreach( $destinations as $dest ) { ?>
-                                                                <li <?php echo ($destination==$dest) ? 'class="dropdown-active"': ''; ?>>
+                                                                <li <?php echo ($selected_destination==$dest) ? 'class="dropdown-active"': ''; ?>>
                                                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                                                         <?php echo esc_html($dest); ?>
                                                                     </a>
@@ -292,21 +292,21 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                             </div>
                                         </div>
                                         <!-- Start Date -->
-                                        <div class="ytm-filter-element">
+                                        <div class="ytm-filter-element sidebar-checkin">
                                             <div class="ytm-element-item">
                                                 <label for="start-date" class="form-label">Check in</label>
                                                 <input type="date" id="startDate" name="start-date" class="form-control input-text" placeholder="Add date">
                                             </div>
                                         </div>
                                         <!-- End Date -->
-                                        <div class="ytm-filter-element">
+                                        <div class="ytm-filter-element sidebar-checkout">
                                             <div class="ytm-element-item">
                                                 <label for="end-date" class="form-label">Check out</label>
                                                 <input type="date" id="endDate" name="end-date" class="form-control input-text" placeholder="Add date">
                                             </div>
                                         </div>
                                         <!-- Number of Guests -->
-                                        <div class="ytm-filter-element">
+                                        <div class="ytm-filter-element sidebar-guest">
                                             <div class="ytm-element-item">
                                                 <span for="destination" class="form-label">Where</span>
                                                 <!-- Bootstrap Dropdown -->
@@ -315,7 +315,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                         <span id="customerCount" class="input-text">Add guests</span>
                                                     </button>
                                                     <ul class="dropdown-menu p-3" aria-labelledby="customerDropdown">
-                                                        <li class="d-flex align-items-center">
+                                                        <li class="guest-dropdown">
                                                             <div class="guest-type">
                                                                 <span class="guest-type-title">Adults</span>
                                                                 <span class="guest-type-count">Ages 16 or above</span>
@@ -328,7 +328,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                                 </label>
                                                             </div>
                                                         </li>
-                                                        <li class="d-flex align-items-center">
+                                                        <li class="guest-dropdown">
                                                             <div class="guest-type">
                                                                 <span class="guest-type-title">Children</span>
                                                                 <span class="guest-type-count">Ages 2 or above</span>
@@ -341,7 +341,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                                 </label>
                                                             </div>
                                                         </li>
-                                                        <li class="d-flex align-items-center">
+                                                        <li class="guest-dropdown">
                                                             <div class="guest-type">
                                                                 <span class="guest-type-title">Infants</span>
                                                                 <span class="guest-type-count">Ages 0 - 2</span>
@@ -367,7 +367,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                         } else {
                                             $yacht_types_arr = [];
                                         } ?>
-                                        <div class="ytm-filter-element">
+                                        <div class="ytm-filter-element sidebar-yacht">
                                             <div class="ytm-element-item">
                                                 <span for="yacht" class="form-label">Yacht type</span>
                                                 <div class="dropdown form-element-yacht">

@@ -1,10 +1,10 @@
 <?php
 // banner filter render function
 function render_banner_filter_block($attributes) {
-    $title = esc_html($attributes['title']);
-    $image_url = esc_html($attributes['imageUrl']);
-    $btn_text = esc_html($attributes['buttonText']);
-    $btn_url = esc_url($attributes['buttonUrl']);
+    $title = (isset($attributes['title']) && !empty($attributes['title'])) ? esc_html($attributes['title']) : '';
+    $image_url = (isset($attributes['imageUrl']) && !empty($attributes['imageUrl'])) ? esc_url($attributes['imageUrl']) : '';
+    $btn_text = (isset($attributes['buttonText']) && !empty($attributes['buttonText'])) ? esc_html($attributes['buttonText']) : '';
+    $btn_url = (isset($attributes['buttonUrl']) && !empty($attributes['buttonUrl'])) ? esc_url($attributes['buttonUrl']) : '';
 
     $page_template = yacht_manager_template_assigned('find-yacht.php');
     $btn_status = $page_template ? 'isfilter' : 'nofilter';
@@ -43,7 +43,7 @@ function render_banner_filter_block($attributes) {
                 <form id="ytm-banner-filter-form" method="POST" action="'.$page_template.'">
                     <div class="d-flex align-items-center filter-wrap">
                         <!-- Destination -->
-                        <div class="filter-element">
+                        <div class="filter-element filter-destination">
                             <span for="destination" class="form-label">Where</span>
                             <div class="dropdown form-element-destination">
                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,6 +52,7 @@ function render_banner_filter_block($attributes) {
                                 
                                 if( $destinations && is_array($destinations) && count($destinations)>0 ) {
                                     $banner_filter .= '<ul class="dropdown-menu" aria-labelledby="destinationDropdown">';
+                                    $banner_filter .= '<div class="dropdown-text">Popular Destinations</div>';
                                         foreach ($destinations as $destination) {
                                             $banner_filter .= '<li>
                                                 <a class="dropdown-item d-flex align-items-center" href="#">
@@ -67,27 +68,27 @@ function render_banner_filter_block($attributes) {
                         </div>
                         <span class="vertical-line"></span>
                         <!-- Start Date -->
-                        <div class="filter-element">
+                        <div class="filter-element filter-checkin">
                             <label for="start-date" class="form-label">Check in</label>
                             <input type="text" id="startDate" name="start-date" class="form-control flatpickr-input" placeholder="Add Dates" readonly="readonly">
                         </div>
                         <span class="vertical-line"></span>
                         <!-- End Date -->
-                        <div class="filter-element">
+                        <div class="filter-element filter-checkout">
                             <label for="end-date" class="form-label">Check out</label>
                             <input type="text" id="endDate" name="end-date" class="form-control flatpickr-input" placeholder="Add Dates" readonly="readonly">
                         </div>
                         <span class="vertical-line"></span>
                         <!-- Number of Guests -->
-                        <div class="filter-element">
-                            <span for="destination" class="form-label">Where</span>
+                        <div class="filter-element filter-guests">
+                            <span for="guests" class="form-label">Where</span>
                             <!-- Bootstrap Dropdown -->
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="customerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span id="customerCount">Add guest</span>
                                 </button>
-                                <ul class="dropdown-menu p-3" aria-labelledby="customerDropdown">
-                                    <li class="d-flex align-items-center">
+                                <ul class="dropdown-menu" aria-labelledby="customerDropdown">
+                                    <li class="guest-dropdown">
                                         <div class="guest-type">
                                             <span class="guest-type-title">Adults</span>
                                             <span class="guest-type-count">Ages 16 or above</span>
@@ -100,7 +101,7 @@ function render_banner_filter_block($attributes) {
                                             </label>
                                         </div>
                                     </li>
-                                    <li class="d-flex align-items-center">
+                                    <li class="guest-dropdown">
                                         <div class="guest-type">
                                             <span class="guest-type-title">Children</span>
                                             <span class="guest-type-count">Ages 2 or above</span>
@@ -113,7 +114,7 @@ function render_banner_filter_block($attributes) {
                                             </label>
                                         </div>
                                     </li>
-                                    <li class="d-flex align-items-center">
+                                    <li class="guest-dropdown">
                                         <div class="guest-type">
                                             <span class="guest-type-title">Infants</span>
                                             <span class="guest-type-count">Ages 0 – 2</span>
@@ -133,7 +134,7 @@ function render_banner_filter_block($attributes) {
                         </div>
                         <span class="vertical-line"></span>
                         <!-- Select Yacht -->
-                        <div class="filter-element">
+                        <div class="filter-element filter-yacht">
                             <span for="yacht" class="form-label">Yacht type</span>
                             <div class="dropdown form-element-yacht">
                                 <button class="btn btn-outline-secondary dropdown-toggle text-start" type="button" id="yachtDropdown" data-bs-toggle="dropdown" aria-expanded="false">

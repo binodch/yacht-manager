@@ -16,12 +16,12 @@ function yacht_manager_add_menu_page() {
 
     // Add a Submenu Page under "Yacht Manager"
     add_submenu_page(
-        'yacht-manager',           // Parent Slug
-        'Yacht Settings',          // Page Title
-        'Yacht Settings',          // Menu Title
-        'manage_options',          // Capability
-        'yacht-settings',          // Menu Slug
-        'yacht_manager_myplugin_settings_page' // Callback function
+        'yacht-manager',
+        'Color Settings',
+        'Color Settings',
+        'manage_options',
+        'color-settings',
+        'yacht_manager_myplugin_settings_page'
     );
 }
 add_action('admin_menu', 'yacht_manager_add_menu_page');
