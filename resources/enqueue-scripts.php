@@ -115,5 +115,25 @@ function yacht_manager_enqueue_admin_assets() {
         ));
     }
 
+    wp_enqueue_style('wp-color-picker');
+    wp_enqueue_script('yacht-manager-color-picker-script', 
+    plugin_dir_url(__FILE__) . '../assets/js/color-picker.js',
+        array('wp-color-picker'), 
+        false, 
+        true);
+
 }
 add_action('admin_enqueue_scripts', 'yacht_manager_enqueue_admin_assets');
+
+// dynamic pull styles
+function yacht_manager_myplugin_dynamic_css() {
+    $primary_color = get_option('ytm_primary_color', '#b9eaff');
+    $custom_css_content = "
+        :root {
+            --primary-color: ". $primary_color .";
+        }";
+    wp_add_inline_style('wp-color-picker', $custom_css_content);
+    wp_add_inline_style('yacht-manager-global', $custom_css_content);
+}
+add_action('admin_enqueue_scripts', 'yacht_manager_myplugin_dynamic_css');
+add_action('wp_enqueue_scripts', 'yacht_manager_myplugin_dynamic_css');

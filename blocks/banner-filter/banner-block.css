@@ -24,7 +24,7 @@
 .ytm-section-banner .section-heading__btn .btn {
     border-radius: 1000px;
     border: 1px solid rgba(185, 234, 255, 0.2);
-    background-color: #b9eaff;
+    background-color: var(--primary-color);
     color: #1d2b46;
     padding: 10px 24px;
 }

@@ -26,3 +26,8 @@
 .custom-banner-filter-block .banner-image-wrap button[type="button"] {
     width: max-content;
 }
+
+.banner-image-wrap button {
+    /* color: #00f; */
+    color: var(--mycolor);
+}
