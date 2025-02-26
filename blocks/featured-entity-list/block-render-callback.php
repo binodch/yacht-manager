@@ -71,7 +71,7 @@ function render_featured_entity_block($attributes) {
 
                     if( isset($entity['length']) ) {
                         $unit_ft = $entity['length'] ? $entity['length'] : '-';
-                        $unit_m = $entity['length'] ? round($unit_ft/3.281, 2) : '';
+                        $unit_m = $unit_ft ? round($unit_ft/3.281, 2) : '';
                         $unit_length = $unit_m ? $unit_m.'m' . ' (' . $unit_ft . 'ft)' : '-';
                         $featured_entity .= '<div class="ytm-meta-item meta-length">
                             <span>' . $unit_length . '</span>

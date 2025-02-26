@@ -2,6 +2,14 @@
     background-color: #f0f0f0;
 }
 
+.single-yacht .yacht-single-banner {
+    display: flex;
+}
+
+.single-yacht .yacht-single-banner .yacht-single-heading {
+    padding-left: 24px;
+}
+
 .single-yacht .yacht-single-banner .single-about {
     font-weight: 500;
     font-size: 16px;
@@ -25,6 +33,7 @@
     display: flex;
     gap: 48px;
     margin-bottom: 24px;
+    width: max-content;
 }
 
 .single-yacht .yacht-heading-main .yacht-heading-builts .single-border {
@@ -37,6 +46,7 @@
     display: flex;
     gap: 8px;
     margin-bottom: 24px;
+    width: max-content;
 }
 
 .single-yacht .yacht-heading-main .yacht-heading-region span {
@@ -169,6 +179,11 @@
 /* yacht content */
 .single-yacht .yacht-single-content {
     margin: 69px 0;
+}
+
+.single-yacht .yacht-single-content .container {
+    max-width: 100%;
+    padding: 0 24px;
 }
 
 .single-yacht .yacht-single-content .content-description h2 {

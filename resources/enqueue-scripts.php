@@ -53,6 +53,20 @@ function yacht_manager_enqueue_public_assets() {
         [],
         YACHT_MANAGER_VERSION
     );
+    
+    
+    wp_enqueue_style(
+        'yacht-manager-single-swiper-styl',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+        [],
+        YACHT_MANAGER_VERSION   
+    );
+    wp_enqueue_style(
+        'yacht-manager-yacht-gal;ery-styl',
+        plugin_dir_url(__FILE__) . '../assets/css/yacht-single/gallery.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
 
     wp_enqueue_script(
         'yacht-manager-btstap-script',
@@ -87,6 +101,18 @@ function yacht_manager_enqueue_public_assets() {
     wp_enqueue_script(
         'yacht-manager-advanced-filter-modal',
         plugin_dir_url(__FILE__) . '../assets/js/advanced-filter-modal.js',
+        [],
+        YACHT_MANAGER_VERSION
+    ); 
+    wp_enqueue_script(
+        'yacht-manager-single-swiper-script',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+        [],
+        YACHT_MANAGER_VERSION
+    ); 
+    wp_enqueue_script(
+        'yacht-manager-single-gallery',
+        plugin_dir_url(__FILE__) . '../assets/js/single-gallery.js',
         [],
         YACHT_MANAGER_VERSION
     ); 

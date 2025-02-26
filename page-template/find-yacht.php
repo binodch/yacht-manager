@@ -130,14 +130,15 @@ $entity_list = [];
 if ($entity_query->have_posts()) {
     while ($entity_query->have_posts()) {
         $entity_query->the_post();
+        $yacht_id = get_the_ID();
         
         $entity_list[] = [
             'name'      => get_the_title(),
-            'cost'      => get_field('yacht_cost'),
-            'builtYear' => get_field('yacht_built_year'),
-            'length'    => get_field('yacht_length'),
-            'cabins'    => get_field('yacht_cabins'),
-            'make'      => get_field('yacht_make'),
+            'cost'      => get_post_meta($yacht_id,'yacht_cost', true),
+            'builtYear' => get_post_meta($yacht_id,'yacht_built_year', true),
+            'length'    => get_post_meta($yacht_id,'yacht_length', true),
+            'cabins'    => get_post_meta($yacht_id,'yacht_cabins', true),
+            'make'      => get_post_meta($yacht_id,'yacht_make', true),
         ];
     }
     wp_reset_postdata();

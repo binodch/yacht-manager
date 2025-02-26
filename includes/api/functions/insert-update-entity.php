@@ -17,8 +17,8 @@ function yacht_manager_fetch_yacht_list() {
  */
 function yacht_manager_insert_update_yacht_post_type() {
     $yacht_arr = yacht_manager_fetch_yacht_list();
-    if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
-        foreach( $yacht_arr as $yarr ) {
+    if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) { $count = 0;
+        foreach( $yacht_arr as $yarr ) { if( $count > 0 ) return; $count ++;
             $yacht_hash = yacht_manager_generate_hash_signature($yarr);
 
             $yacht_uri = isset($yarr['uri']) ? $yarr['uri'] : '';
@@ -58,16 +58,17 @@ function yacht_manager_insert_update_yacht_post_type() {
             
             // update yacht post meta value
             if( $yacht_post_id ) {
-                update_field('yacht_entity_search_hash', $yacht_hash, $yacht_post_id);
-                update_field('yacht_uri', $yacht_uri, $yacht_post_id);
-                update_field('yacht_name', $yacht_name, $yacht_post_id);
-                update_field('yacht_length', $yacht_length, $yacht_post_id);
-                update_field('yacht_cabins', $yacht_cabins, $yacht_post_id);
-                update_field('yacht_sleeps', $yacht_sleeps, $yacht_post_id);
-                update_field('yacht_built_year', $yacht_built_year, $yacht_post_id);
-                update_field('yacht_make', $yacht_make, $yacht_post_id);
+                update_post_meta($yacht_post_id, 'yacht_entity_search_hash', $yacht_hash);
+                update_post_meta($yacht_post_id, 'yacht_uri', $yacht_uri);
+                update_post_meta($yacht_post_id, 'yacht_name', $yacht_name);
+                update_post_meta($yacht_post_id, 'yacht_length', $yacht_length);
+                update_post_meta($yacht_post_id, 'yacht_cabins', $yacht_cabins);
+                update_post_meta($yacht_post_id, 'yacht_sleeps', $yacht_sleeps);
+                update_post_meta($yacht_post_id, 'yacht_built_year', $yacht_built_year);
+                update_post_meta($yacht_post_id, 'yacht_make', $yacht_make);
             }
             $yacht_entity_arr = yacht_manager_curl_register_entity($yacht_uri);
+            pr($yacht_entity_arr);
             // update yacht post meta value from get entity API
             yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_entity_id);
 
@@ -99,7 +100,7 @@ function yacht_manager_check_if_yacht_uri_exists($yacht_uri, $yacht_hash, $hash_
     if ($query->have_posts()) {
         $query->the_post();
         $entity_id = get_the_ID();
-        $stored_hash = get_field($hash_field, $entity_id);
+        $stored_hash = get_post_meta($entity_id, $hash_field, true);
         if( $stored_hash != '' ) {
             if( $stored_hash == $yacht_hash ) {
                 // skip update in case of match yacht_hash value
