@@ -40,40 +40,40 @@ get_header(); ?>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-type">
                             <div class="yacht-type-item">
-                                <div class="yacht-type-label">Yacht Type</div>
-                                <div class="yacht-type-value">Motor</div>
+                                <div class="blueprint-label yacht-type-label">Yacht Type</div>
+                                <div class="blueprint-value yacht-type-value">Motor</div>
                             </div>
                         </div>
                     </div>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-length">
                             <div class="yacht-length-item">
-                                <div class="yacht-length-label">Length</div>
-                                <div class="yacht-length-value">40m</div>
+                                <div class="blueprint-label yacht-length-label">Length</div>
+                                <div class="blueprint-value yacht-length-value">40m</div>
                             </div>
                         </div>
                     </div>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-cabins">
                             <div class="yacht-cabins-item">
-                                <div class="yacht-cabins-label">Cabins</div>
-                                <div class="yacht-cabins-value">6</div>
+                                <div class="blueprint-label yacht-cabins-label">Cabins</div>
+                                <div class="blueprint-value yacht-cabins-value">6</div>
                             </div>
                         </div>
                     </div>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-guests">
                             <div class="yacht-guests-item">
-                                <div class="yacht-guests-label">Guests</div>
-                                <div class="yacht-guests-value">12</div>
+                                <div class="blueprint-label yacht-guests-label">Guests</div>
+                                <div class="blueprint-value yacht-guests-value">12</div>
                             </div>
                         </div>
                     </div>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-crew">
                             <div class="yacht-crew-item">
-                                <div class="yacht-crew-label">Crew</div>
-                                <div class="yacht-crew-value">5</div>
+                                <div class="blueprint-label yacht-crew-label">Crew</div>
+                                <div class="blueprint-value yacht-crew-value">5</div>
                             </div>
                         </div>
                     </div>
@@ -88,25 +88,57 @@ get_header(); ?>
                         <div class="description-about">
                             <h2>About</h2>
                             <div class="about-text">
-                                something...
+                                <?php the_content(); ?>
                             </div>
                         </div>
                         <div class="description-amenities">
                             <h2>Amenities and Entertainment</h2>
-                            <div class="about-text">
-                                something...
+                            <div class="amenities-list">
+                                <div class="row">
+                                    <?php 
+                                    for($i=0; $i<12; $i++) { ?>
+                                        <div class="col-md-4">
+                                            <div class="amenitites-item">
+                                                <span class="amenities-label">Onsite Cafe</span>
+                                            </div>
+                                        </div>
+                                    <?php 
+                                    } ?>
+                                </div>
                             </div>
                         </div>
                         <div class="description-gallery">
                             <h2>Gallery</h2>
-                            <div class="about-text">
+                            <div class="gallery-list">
                                 something...
                             </div>
                         </div>
                         <div class="description-specs">
                             <h5>Specification</h5>
-                            <div class="about-text">
-                                something...
+                            <div class="specs-list">
+                                <div class="specs-list-item">
+                                    <div class="specs-label">
+                                        Cabin Configuration   
+                                    </div>
+                                    <div class="specs-item">
+                                        <span>1Master</span>  
+                                        <span>1VIP</span>  
+                                        <span>2Twin</span>  
+                                        <span>1Single</span>  
+                                    </div>
+                                </div>
+                                <?php 
+                                for( $i=0; $i<8; $i++ ) { ?>
+                                    <div class="specs-list-item">
+                                        <div class="specs-label">
+                                            Length   
+                                        </div>
+                                        <div class="specs-item">
+                                            <span>150'8 / 40m</span> 
+                                        </div>
+                                    </div>
+                                <?php 
+                                } ?>
                             </div>
                         </div>
                     </div>
