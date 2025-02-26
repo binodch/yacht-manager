@@ -44,3 +44,37 @@ function yacht_manager_get_yacht_id($yacht_uri) {
     }
     return $entity_id;
 }
+
+function yacht_manager_get_first_taxnomy_term($yacht_id) {
+    $taxonomy = 'yacht-type'; 
+    $terms = wp_get_post_terms($yacht_id, $taxonomy);
+    if (!empty($terms) && !is_wp_error($terms)) {
+        if( isset($terms[0]) ) {
+            $yacht_type = $terms[0]->name;
+            return esc_html($yacht_type);
+        }
+    }
+    return;
+}
+
+function yacht_manager_convert_feet_into_inches($feet) {
+    $whole_feet = floor($feet);
+    $remaining_inches = ($feet - $whole_feet) * 12;
+    return "{$whole_feet}' " . round($remaining_inches, 1) . '"';
+}
+
+function yacht_manager_get_currency_symbol($currency) {
+    $symbols = [
+        'USD' => '$',
+        'EUR' => '€',
+        'GBP' => '£',
+        'JPY' => '¥',
+        'AUD' => 'A$',
+        'CAD' => 'C$',
+        'CHF' => 'CHF',
+        'CNY' => '¥',
+        'INR' => '₹'
+    ];
+
+    return $symbols[$currency] ?? $currency;
+}
