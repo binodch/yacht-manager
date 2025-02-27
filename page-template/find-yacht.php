@@ -134,6 +134,7 @@ if ($entity_query->have_posts()) {
         
         $entity_list[] = [
             'name'      => get_the_title(),
+            'uri'      => get_post_meta($yacht_id,'yacht_uri', true),
             'cost'      => get_post_meta($yacht_id,'yacht_cost', true),
             'builtYear' => get_post_meta($yacht_id,'yacht_built_year', true),
             'length'    => get_post_meta($yacht_id,'yacht_length', true),
@@ -168,13 +169,36 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
             break;
         }
 
+        $uri = $elist['uri'];
+        $entity_arr = yacht_manager_check_if_yacht_uri_exists($uri, 'abcdefgh09', 'yacht_entity_search_hash');
+        
+        $yacht_id = !empty($entity_arr) ? $entity_arr['id'] : '';
+        $thumbnail_id = get_post_thumbnail_id($yacht_id);
+
+        $_refityear = get_post_meta($yacht_id, 'yacht_refitYear', true);
+        $_built_year = get_post_meta($yacht_id, 'yacht_built_year', true); 
+        $refityear = !empty($_refityear) ? $_refityear : '-';
+        $built_year = !empty($_built_year) ? $_built_year : $refityear;
+
+        $weekPricingFrom = get_post_meta($yacht_id, 'yacht_weekPricingFrom', true); 
+        $week_pricing_arr = json_decode($weekPricingFrom, true);
+        $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
+        $currency = yacht_manager_get_currency_symbol($currency);
+        $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
+        $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
+        $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : '';
+
         $yacht_item .= '
         <div class="col-md-4">
             <div class="ytm-list-item">
                 <div class="ytm-item-single">
-                    <div class="ytm-item-image">
-                        <img decoding="async" src="'. plugin_dir_url(dirname(__FILE__, 1)) . 'assets/css/yacht.jpg' .'" alt="p">
-                    </div>
+                    <div class="ytm-item-image">';
+
+                        if( $thumbnail_id ) {
+                            $yacht_item .= wp_get_attachment_image($thumbnail_id, 'medium_large');
+                        }
+                    
+                    $yacht_item .= '</div>
                     <div class="ytm-item-content">';
 
                         if( isset($elist['subname']) ) {
@@ -185,21 +209,19 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
 
                         if( isset($elist['name']) ) {
                             $yacht_item .= '<div class="ytm-item-name">
-                                <h3>' . esc_html($elist['name']) . '</h3>
+                                <h3>' . esc_html(ucwords(strtolower($elist['name']))) . '</h3>
                             </div>';
                         }
 
-                        if( isset($elist['cost']) ) {
+                        if( $currency && $unit && $price ) {
                             $yacht_item .= '<div class="ytm-item-cost">
-                                <p>Day: <span>From $2,500</span></p>
-                                <p>Week: <span>From $15,000</span></p>
+                                <p>'. ucfirst(strtolower($unit)) .': <span>From '. $currency . $price .'</span></p>
                             </div>';
                         }
 
                         $yacht_item .= '<div class="ytm-item-meta">';
 
-                        if( isset($elist['builtYear']) ) {
-                            $built_year = $elist['builtYear'] ? $elist['builtYear'] : '-';
+                        if( $built_year ) {
                             $yacht_item .= '<div class="ytm-meta-item meta-builtyear">
                                 <span>' . $built_year . '</span>
                             </div>';

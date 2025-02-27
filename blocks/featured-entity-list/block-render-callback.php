@@ -5,9 +5,7 @@ function render_featured_entity_block($attributes) {
     $title = esc_html($attributes['title']);
     $description = esc_html($attributes['description']);
 
-    $section_padding = 'mt-0';
-
-    $featured_entity = '<section id="section-featured-entity" class="section ytm-section-featured-entity '. $section_padding.'">';
+    $featured_entity = '<section id="section-featured-entity" class="section ytm-section-featured-entity">';
     $featured_entity .= '<div class="container">';
         if ( !empty($title) ||  !empty($description) ) {
             $featured_entity .= '<div class="ytm-col-content">';
@@ -30,13 +28,36 @@ function render_featured_entity_block($attributes) {
             $featured_entity .= '<div class="row">';
 
             foreach ($entity_list as $entity) {
+                $uri = $entity['uri'];
+                $entity_arr = yacht_manager_check_if_yacht_uri_exists($uri, 'abcdefgh09', 'yacht_entity_search_hash');
+                
+                $yacht_id = !empty($entity_arr) ? $entity_arr['id'] : '';
+                $thumbnail_id = get_post_thumbnail_id($yacht_id);
+
+                $_refityear = get_post_meta($yacht_id, 'yacht_refitYear', true);
+                $_built_year = get_post_meta($yacht_id, 'yacht_built_year', true); 
+                $refityear = !empty($_refityear) ? $_refityear : '-';
+                $built_year = !empty($_built_year) ? $_built_year : $refityear;
+
+                $weekPricingFrom = get_post_meta($yacht_id, 'yacht_weekPricingFrom', true); 
+                $week_pricing_arr = json_decode($weekPricingFrom, true);
+                $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
+                $currency = yacht_manager_get_currency_symbol($currency);
+                $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
+                $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
+                $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : '';
+
                 $col = ( ($count == 1) || ($count == 6) ) ? 'col-md-6 col-lg-4 col-xl-6' : 'col-md-6 col-lg-4 col-xl-3';
                 $img_class = ( ($count == 1) || ($count == 6) ) ? 'image-large' : 'image-fit';
                 $featured_entity .= '<div class="' . $col . '">';
                 $featured_entity .= '<div class="ytm-entity-item">';
                 $featured_entity .= '<div class="ytm-entity-list">';
                 $featured_entity .= '<div class="ytm-entity-image '. $img_class .'">';
-                $featured_entity .= '<img decoding="async" src="'. plugin_dir_url(dirname(__FILE__, 2)) . 'assets/css/yacht.jpg' .'" alt="p">';
+
+                if( $thumbnail_id ) {
+                    $featured_entity .= wp_get_attachment_image($thumbnail_id, 'large');
+                }
+
                 $featured_entity .= '</div>';
                 
                 $featured_entity .= '<div class="ytm-entity-content">';
@@ -49,21 +70,19 @@ function render_featured_entity_block($attributes) {
 
                     if( isset($entity['name']) ) {
                         $featured_entity .= '<div class="ytm-item-name">
-                            <h3>' . esc_html($entity['name']) . '</h3>
+                            <h3>' . esc_html(ucwords(strtolower($entity['name']))) . '</h3>
                         </div>';
                     }
 
-                    if( isset($entity['cost']) ) {
+                    if( $currency && $unit && $price ) {
                         $featured_entity .= '<div class="ytm-item-cost">
-                            <p>Day: <span>From $2,500</span></p>
-                            <p>Week: <span>From $15,000</span></p>
+                            <p>'. ucfirst(strtolower($unit)) .': <span>From '. $currency . $price .'</span></p>
                         </div>';
                     }
 
                     $featured_entity .= '<div class="ytm-item-meta">';
 
-                    if( isset($entity['builtYear']) ) {
-                        $built_year = $entity['builtYear'] ? $entity['builtYear'] : '-';
+                    if( $built_year ) {
                         $featured_entity .= '<div class="ytm-meta-item meta-builtyear">
                             <span>' . $built_year . '</span>
                         </div>';
