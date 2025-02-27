@@ -41,7 +41,7 @@ function render_banner_filter_block($attributes) {
 		$banner_filter .= '<div class="ytm-filter-wrap">
             <div class="filter-section">
                 <form id="ytm-banner-filter-form" method="POST" action="'.$page_template.'">
-                    <div class="d-flex align-items-center filter-wrap">
+                    <div class="filter-wrap">
                         <!-- Destination -->
                         <div class="filter-element filter-destination">
                             <span for="destination" class="form-label">Where</span>
@@ -55,7 +55,7 @@ function render_banner_filter_block($attributes) {
                                     $banner_filter .= '<div class="dropdown-text">Popular Destinations</div>';
                                         foreach ($destinations as $destination) {
                                             $banner_filter .= '<li>
-                                                <a class="dropdown-item d-flex align-items-center" href="#">
+                                                <a class="dropdown-item" href="#">
                                                     '. $destination .'
                                                 </a>
                                             </li>';
@@ -63,8 +63,7 @@ function render_banner_filter_block($attributes) {
                                     $banner_filter .= '</ul>';
                                 }
 
-                                $banner_filter .= '<input type="hidden" name="destination" id="destination" value="">
-                            </div>
+                            $banner_filter .= '</div>
                         </div>
                         <span class="vertical-line"></span>
                         <!-- Start Date -->
@@ -153,12 +152,15 @@ function render_banner_filter_block($attributes) {
                                     $banner_filter .= '</ul>';
                                 }
                                 
-                                $banner_filter .= '<input type="hidden" name="entity_banner_filter" id="entity-banner-filter">';
-                                $banner_filter .= '<input type="hidden" name="ytm_yacht_type" id="ytm-yacht-type" value="">
                                 
-                            </div>
-                        </div>
-                        <span class="vertical-line"></span>
+                            $banner_filter .= '</div>
+                        </div>';
+                        
+                        $banner_filter .= '<input type="hidden" name="destination" id="banner-destination" value="">';
+                        $banner_filter .= '<input type="hidden" name="entity_banner_filter" id="entity-banner-filter">';
+                        $banner_filter .= '<input type="hidden" name="ytm_yacht_type" id="ytm-yacht-type" value="">';
+
+                        $banner_filter .= '<span class="vertical-line"></span>
                         <!-- Submit Button -->
                         <div class="button-wrap">
                             <button type="submit" class="btn btn-primary '. $btn_status .'">Find a charter</button>

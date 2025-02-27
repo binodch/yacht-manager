@@ -54,9 +54,15 @@
     line-height: 21px;
     letter-spacing: -0.011em;
     padding: 13px;
+    display: flex;
+    align-items: center;
 }
 
-.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-active a {
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item.active {
+    background-color: var(--primary-color);
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item:hover {
     background-color: var(--primary-color);
 }
     

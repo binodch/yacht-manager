@@ -18,7 +18,7 @@ $region_list_arr = [];
 
 if( isset($_POST['entity_banner_filter']) ) {
     $selected_destination = $_POST['destination'] ?? '';
-    $total_guests = $_POST['totalGuests'] ?? '';
+    $total_guests = $_POST['totalGuests'] ?? 0;
     $manufacture_from = $_POST['ytm_manufacture_from'] ?? '';
     $manufacture_to = $_POST['ytm_manufacture_to'] ?? '';
     $yachttype = $_POST['ytm_yacht_type'] ?? '';
@@ -299,9 +299,10 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                         <ul class="dropdown-menu" aria-labelledby="destinationDropdown">
                                                         <div class="dropdown-text">Popular Destinations</div>
                                                             <?php 
-                                                            foreach( $destinations as $dest ) { ?>
-                                                                <li <?php echo ($selected_destination==$dest) ? 'class="dropdown-active"': ''; ?>>
-                                                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                                            foreach( $destinations as $dest ) { 
+                                                                $active = ($selected_destination==$dest) ? 'active': ''; ?>
+                                                                <li>
+                                                                    <a class="dropdown-item <?php echo esc_attr($active); ?>" href="#">
                                                                         <?php echo esc_html($dest); ?>
                                                                     </a>
                                                                 </li>
@@ -310,7 +311,6 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                         </ul>
                                                     <?php 
                                                     } ?>
-                                                    <input type="hidden" name="destination" id="destination" value="">
                                                 </div>
                                             </div>
                                         </div>
@@ -426,10 +426,11 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                                                 </button>
                                             </div>
                                         </div>
+                                        <input type="hidden" name="destination" id="banner-destination" value="">
                                         <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="<?php echo absint($current_page); ?>">
                                         <input type="hidden" name="ytm_yacht_type" id="ytm-yacht-type" value="">
                                         <!-- <input type="hidden" name="ytm_charter_type[]" id="ytm-charter-type" value=""> -->
-                                        <input type="hidden" name="ytm_cabin" id="ytm-cabin" value="0">
+                                        <input type="hidden" name="ytm_cabin" id="ytm-cabin" value="">
                                         <input type="hidden" name="ytm_manufacture_from" id="ytm-manufacture-from" value="">
                                         <input type="hidden" name="ytm_manufacture_to" id="ytm-manufacture-to" value="">
                                         <!-- Submit Button -->
