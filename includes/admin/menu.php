@@ -103,6 +103,7 @@ function yacht_manager_myplugin_register_settings() {
 }
 add_action('admin_init', 'yacht_manager_myplugin_register_settings');
 
+
 function yacht_manager_myplugin_settings_page() { ?>
     <div class="wrap">
         <h2>Color Settings</h2>

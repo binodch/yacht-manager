@@ -25,11 +25,13 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
         $yacht_architect = (isset($yarr['blueprint']) && isset($yarr['blueprint']['architect'])) ? $yarr['blueprint']['architect'] : '';
         $yacht_interiorDesigner = (isset($yarr['blueprint']) && isset($yarr['blueprint']['interiorDesigner'])) ? $yarr['blueprint']['interiorDesigner'] : '';
         $yacht_refitYear = (isset($yarr['blueprint']) && isset($yarr['blueprint']['refitYear'])) ? $yarr['blueprint']['refitYear'] : '';
+
         $yacht_topSpeed = (isset($yarr['blueprint']) && isset($yarr['blueprint']['topSpeed'])) ? $yarr['blueprint']['topSpeed'] : '';
         $yacht_cruiseSpeed = (isset($yarr['blueprint']) && isset($yarr['blueprint']['cruiseSpeed'])) ? $yarr['blueprint']['cruiseSpeed'] : '';
         $yacht_fuelCapacity = (isset($yarr['blueprint']) && isset($yarr['blueprint']['fuelCapacity'])) ? $yarr['blueprint']['fuelCapacity'] : '';
         $yacht_cabinLayout = (isset($yarr['blueprint']) && isset($yarr['blueprint']['cabinLayout'])) ? json_encode($yarr['blueprint']['cabinLayout']) : '';
         $yacht_bathrooms = (isset($yarr['blueprint']) && isset($yarr['blueprint']['bathrooms'])) ? $yarr['blueprint']['bathrooms'] : '';
+
         $yacht_decks = (isset($yarr['blueprint']) && isset($yarr['blueprint']['decks'])) ? $yarr['blueprint']['decks'] : '';
         $yacht_beam = (isset($yarr['blueprint']) && isset($yarr['blueprint']['beam'])) ? $yarr['blueprint']['beam'] : '';
         $yacht_draft = (isset($yarr['blueprint']) && isset($yarr['blueprint']['draft'])) ? $yarr['blueprint']['draft'] : '';
@@ -37,6 +39,8 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
         $yacht_hullConstruction = (isset($yarr['blueprint']) && isset($yarr['blueprint']['hullConstruction'])) ? $yarr['blueprint']['hullConstruction'] : '';
         $yacht_tonnage = (isset($yarr['blueprint']) && isset($yarr['blueprint']['tonnage'])) ? $yarr['blueprint']['tonnage'] : '';
         $yacht_amenities = (isset($yarr['blueprint']) && isset($yarr['blueprint']['amenities'])) ? json_encode($yarr['blueprint']['amenities']) : '';
+        $yacht_images = (isset($yarr['blueprint']) && isset($yarr['blueprint']['images'])) ? json_encode($yarr['blueprint']['images']) : '';
+
         $yacht_weekPricingFrom = (isset($yarr['pricing']) && isset($yarr['pricing']['weekPricingFrom'])) ? json_encode($yarr['pricing']['weekPricingFrom']) : '';
         $yacht_weekPricingTo = (isset($yarr['pricing']) && isset($yarr['pricing']['weekPricingTo'])) ? json_encode($yarr['pricing']['weekPricingTo']) : '';
 
@@ -56,6 +60,7 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
             update_post_meta($yacht_entity_id, 'yacht_architect', $yacht_architect);
             update_post_meta($yacht_entity_id, 'yacht_interiorDesigner', $yacht_interiorDesigner);
             update_post_meta($yacht_entity_id, 'yacht_refitYear', $yacht_refitYear);
+
             update_post_meta($yacht_entity_id, 'yacht_topSpeed', $yacht_topSpeed);
             update_post_meta($yacht_entity_id, 'yacht_cruiseSpeed', $yacht_cruiseSpeed);
             update_post_meta($yacht_entity_id, 'yacht_fuelCapacity', $yacht_fuelCapacity);
@@ -71,6 +76,16 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
             update_post_meta($yacht_entity_id, 'yacht_amenities', $yacht_amenities);
             update_post_meta($yacht_entity_id, 'yacht_weekPricingFrom', $yacht_weekPricingFrom);
             update_post_meta($yacht_entity_id, 'yacht_weekPricingTo', $yacht_weekPricingTo);
+            update_post_meta($yacht_entity_id, 'yacht_images', $yacht_images);
+
+            $yimages = json_decode($yacht_images, true);
+            if( $yimages ) {
+                foreach( $yimages as $yimg ) {
+                    $img_variant = yacht_manager_entity_media_imageVariant(2);
+                    yacht_manager_curl_get_entity_attachment_image($yimg, $img_variant, $yacht_entity_id);
+                }
+            }
+
             yacht_manager_assign_yacht_types($yacht_entity_id, $yacht_types);
 
         }

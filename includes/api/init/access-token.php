@@ -1,5 +1,5 @@
 <?php
-
+// get API access token
 if( ! function_exists('yacht_manager_generate_access_token') ) {
     function yacht_manager_generate_access_token() {
 
