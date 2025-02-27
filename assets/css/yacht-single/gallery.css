@@ -1,6 +1,5 @@
 .yacht-swiper-container {
     position: relative;
-    width: 750px;
     overflow: hidden;
 }
 
@@ -48,4 +47,11 @@
 /* Swiper Navigation Buttons */
 .yacht-swiper-button-prev, .yacht-swiper-button-next {
     color: #333;
+}
+
+
+@media (min-width:1400px) {
+    .yacht-swiper-container {
+        width: 100%;
+    }
 }
