@@ -72,6 +72,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/select/charter-types.php'
 // manufactuer year
 require_once plugin_dir_path(__FILE__) . 'includes/api/select/manufacture-year.php';
 
+// cron scheduler
+require_once plugin_dir_path(__FILE__) . 'includes/api/cron/schedule.php';
+
 
 function pr($arr) {
     echo '<pre>';

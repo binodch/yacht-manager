@@ -7,7 +7,6 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
         $yarr = $yacht_entity_arr;
         $yacht_hash = yacht_manager_generate_hash_signature($yarr);
         
-        // $yacht_uri = isset($yarr['uri']) ? $yarr['uri'] : '';
         $yacht_name = (isset($yarr['blueprint']) && isset($yarr['blueprint']['name'])) ? $yarr['blueprint']['name'] : '';
         $yacht_description = isset($yarr['description']) ? $yarr['description'] : '';
         
@@ -44,14 +43,9 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
         $yacht_weekPricingFrom = (isset($yarr['pricing']) && isset($yarr['pricing']['weekPricingFrom'])) ? json_encode($yarr['pricing']['weekPricingFrom']) : '';
         $yacht_weekPricingTo = (isset($yarr['pricing']) && isset($yarr['pricing']['weekPricingTo'])) ? json_encode($yarr['pricing']['weekPricingTo']) : '';
 
-        // pr($yarr['pricing']['weekPricingFrom']);
-        // pr($yacht_weekPricingFrom);
-
         $yacht_uri_exists = yacht_manager_check_if_yacht_meta_field_exists($yacht_post_id, $yacht_hash, 'yacht_entity_uri_hash');
         $yacht_entity_id = $yacht_post_id;
 
-        // pr($yacht_uri_exists);
-        
         // update yacht post meta value
         if( $yacht_uri_exists ) {
             update_post_meta($yacht_entity_id, 'yacht_entity_uri_hash', $yacht_hash);
@@ -77,16 +71,24 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
             update_post_meta($yacht_entity_id, 'yacht_weekPricingFrom', $yacht_weekPricingFrom);
             update_post_meta($yacht_entity_id, 'yacht_weekPricingTo', $yacht_weekPricingTo);
             update_post_meta($yacht_entity_id, 'yacht_images', $yacht_images);
+            
+            yacht_manager_assign_yacht_types($yacht_entity_id, $yacht_types);
 
             $yimages = json_decode($yacht_images, true);
-            if( $yimages ) {
+            if( $yimages && count($yimages)>0 ) {
+                $count = 0;
                 foreach( $yimages as $yimg ) {
-                    $img_variant = yacht_manager_entity_media_imageVariant(2);
-                    yacht_manager_curl_get_entity_attachment_image($yimg, $img_variant, $yacht_entity_id);
+                    if( $count == 0 ) {
+                        // set first image as featured image
+                        $img_variant = yacht_manager_entity_media_imageVariant(2);
+                        yacht_manager_set_entity_featured_image($yimg, $img_variant, $yacht_entity_id);
+                    } else {
+                        $img_variant = yacht_manager_entity_media_imageVariant(1);
+                        yacht_manager_curl_get_entity_attachment_image($yimg, $img_variant, $yacht_entity_id);
+                    }
+                    $count++;
                 }
             }
-
-            yacht_manager_assign_yacht_types($yacht_entity_id, $yacht_types);
 
         }
     }

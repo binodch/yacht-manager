@@ -17,8 +17,8 @@ function yacht_manager_fetch_yacht_list() {
  */
 function yacht_manager_insert_update_yacht_post_type() {
     $yacht_arr = yacht_manager_fetch_yacht_list();
-    if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) { $count = 0;
-        foreach( $yacht_arr as $yarr ) { if( $count > 0 ) return; $count ++;
+    if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
+        foreach( $yacht_arr as $yarr ) {
             $yacht_hash = yacht_manager_generate_hash_signature($yarr);
 
             $yacht_uri = isset($yarr['uri']) ? $yarr['uri'] : '';
@@ -68,7 +68,7 @@ function yacht_manager_insert_update_yacht_post_type() {
                 update_post_meta($yacht_post_id, 'yacht_make', $yacht_make);
             }
             $yacht_entity_arr = yacht_manager_curl_register_entity($yacht_uri);
-            pr($yacht_entity_arr);
+
             // update yacht post meta value from get entity API
             yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_entity_id);
 

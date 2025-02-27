@@ -40,7 +40,9 @@ $yacht_tonnage = get_post_meta($yacht_id, 'yacht_tonnage', true);
 $yacht_cruiseSpeed = get_post_meta($yacht_id, 'yacht_cruiseSpeed', true);
 $yacht_architect = get_post_meta($yacht_id, 'yacht_architect', true);
 $yacht_model = get_post_meta($yacht_id, 'yacht_model', true);
-$yacht_interiorDesigner = get_post_meta($yacht_id, 'yacht_interiorDesigner', true); ?>
+$yacht_interiorDesigner = get_post_meta($yacht_id, 'yacht_interiorDesigner', true); 
+
+$thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
 
 <section class="single-yacht">
     <div class="yacht-single-banner">
@@ -65,15 +67,19 @@ $yacht_interiorDesigner = get_post_meta($yacht_id, 'yacht_interiorDesigner', tru
                 </div>
                 <?php if( !empty($yacht_weekPricingFrom) ) { 
                     $week_pricing_arr = json_decode($yacht_weekPricingFrom, true);
-                    $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '-';
+                    $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
                     $currency = yacht_manager_get_currency_symbol($currency);
-                    $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '-';
-                    $price = number_format($price);
-                    $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : '-'; ?>
-                    <div class="yacht-heading-pricing">
-                        From <?php echo $currency; ?><?php echo $price; ?> / <?php echo $unit; ?>
-                    </div>
-                <?php } ?>
+                    $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
+                    $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
+                    $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : ''; 
+                    
+                    if( $currency && $price && $unit ) { ?>
+                        <div class="yacht-heading-pricing">
+                            From <?php echo $currency; ?><?php echo $price; ?> / <?php echo ucfirst(strtolower($unit)); ?>
+                        </div>
+                    <?php 
+                    }
+                } ?>
                 <div class="yacht-heading-link">
                     <a href="#ytm-content-enquire" class="btn">Book now</a>
                 </div>
@@ -81,7 +87,10 @@ $yacht_interiorDesigner = get_post_meta($yacht_id, 'yacht_interiorDesigner', tru
         </div>
         <div class="yacht-single-image">
             <div class="yacht-single-thumb">
-                <img decoding="async" src="<?php echo plugin_dir_url(dirname(__FILE__, 1)) . 'assets/css/yacht.jpg' ?> .'" alt="p">
+                <?php 
+                if( $thumbnail_id ) {
+                    echo wp_get_attachment_image($thumbnail_id, 'full');
+                } ?>
             </div>
             <div class="yacht-single-blueprint">
                 <div class="yacht-blueprint-item">

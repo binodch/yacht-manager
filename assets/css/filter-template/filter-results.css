@@ -12,12 +12,14 @@
     background-color: #fff;
     border-radius: 18px;
     padding: 4px;
+    height: 100%;
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single {
     background-color: #f9f9f9;
     border-radius: 9px;
     padding: 8px;
+    height: 100%;
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image {
@@ -53,6 +55,7 @@
   line-height: 21px;
   letter-spacing: -0.011em;
   margin-bottom: unset;
+  color: #515151;
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-cost p:not(:last-child) {
@@ -64,6 +67,7 @@
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.011em;
+  color: #999999;
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-meta {
