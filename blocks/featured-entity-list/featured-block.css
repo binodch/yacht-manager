@@ -53,12 +53,14 @@
   background-color: #fff;
   border-radius: 18px;
   padding: 4px;
+  height: 100%;
 }
 
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-list {
   background-color: #f9f9f9;
   border-radius: 18px;
   padding: 8px;
+  height: 100%;
 }
 
 /* item image */
@@ -133,6 +135,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+@media (min-width:768px) {
+  .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-meta {
+    max-width: 306px;
+  }
 }
 
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-meta .ytm-meta-item {
