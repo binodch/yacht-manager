@@ -39,6 +39,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/entity/register-uri.php';
 // Include curl get entity
 require_once plugin_dir_path(__FILE__) . 'includes/api/entity/get-entity.php';
 
+// Include curl get entity attachment
+require_once plugin_dir_path(__FILE__) . 'includes/api/media/image.php';
+
 // signature
 require_once plugin_dir_path(__FILE__) . 'includes/hash/signature.php';
 

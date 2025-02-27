@@ -40,8 +40,7 @@ $yacht_tonnage = get_post_meta($yacht_id, 'yacht_tonnage', true);
 $yacht_cruiseSpeed = get_post_meta($yacht_id, 'yacht_cruiseSpeed', true);
 $yacht_architect = get_post_meta($yacht_id, 'yacht_architect', true);
 $yacht_model = get_post_meta($yacht_id, 'yacht_model', true);
-$yacht_interiorDesigner = get_post_meta($yacht_id, 'yacht_interiorDesigner', true);
-?>
+$yacht_interiorDesigner = get_post_meta($yacht_id, 'yacht_interiorDesigner', true); ?>
 
 <section class="single-yacht">
     <div class="yacht-single-banner">
@@ -171,11 +170,7 @@ $yacht_interiorDesigner = get_post_meta($yacht_id, 'yacht_interiorDesigner', tru
                                 <div class="yacht-swiper-container">
                                     <div class="yacht-swiper-gradient gradient-left"></div>
                                     <div class="yacht-swiper-gradient gradient-right"></div>
-                                    <div class="swiper-wrapper">
-                                        <?php for( $i=0; $i<6; $i++ ) { ?>
-                                        <div class="swiper-slide"><img src="<?php echo plugin_dir_url(dirname(__FILE__, 1)) . 'assets/css/yacht.jpg' ?>" alt="Image 1"></div>
-                                        <?php } ?>
-                                    </div>
+                                        <?php yacht_manager_display_downloaded_images($yacht_id); ?>
                                     <div class="swiper-button-next"></div>
                                     <div class="swiper-button-prev"></div>
                                 </div>

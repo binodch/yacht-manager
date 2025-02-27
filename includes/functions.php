@@ -78,3 +78,34 @@ function yacht_manager_get_currency_symbol($currency) {
 
     return $symbols[$currency] ?? $currency;
 }
+
+function yacht_manager_entity_media_imageVariant($index=2) {
+    $image_variant = array('320w', '640w', '960w', '1280w', '2560w');
+    return $image_variant[$index];
+}
+
+
+function yacht_manager_display_downloaded_images($yacht_id) {
+    $dir_path = 'api/media/downloads/'. $yacht_id .'/';
+    $downloads_dir = plugin_dir_path(__FILE__) . $dir_path;
+
+    if (!file_exists($downloads_dir)) {
+        wp_mkdir_p($downloads_dir);
+    }
+
+    $images = glob($downloads_dir . '/*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE);
+
+    if (!empty($images)) {
+        echo "<div class='swiper-wrapper'>";
+        foreach ($images as $img) {
+            $img_url = plugin_dir_url(__FILE__) . $dir_path . basename($img);
+            echo "
+                <div class='swiper-slide'>
+                    <img src='{$img_url}' width='100%' alt='img' />
+                </div>
+            ";
+        }
+        echo "</div>";
+    }
+    return;
+}
