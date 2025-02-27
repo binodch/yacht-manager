@@ -5,12 +5,12 @@ if( ! function_exists('yacht_manager_curl_get_entity_attachment_image') ) {
         $base_ApiUrl = 'https://api.ankor.io';
 
         $upload_dir = __DIR__ . '/../media/downloads/';
-        if (!file_exists($upload_dir)) {
+        if (!is_dir($upload_dir)) {
             mkdir($upload_dir, 0755, true);
         }
         
         $upload_yacht_dir = __DIR__ . '/../media/downloads/'.$yacht_id.'/';
-        if (!file_exists($upload_yacht_dir)) {
+        if (!is_dir($upload_yacht_dir)) {
             mkdir($upload_yacht_dir, 0755, true);
         }
     

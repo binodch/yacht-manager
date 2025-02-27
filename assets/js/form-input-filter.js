@@ -4,22 +4,31 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
     });
 
-    // Destination Dropdown
+    /* Destination Dropdown */
     document.querySelectorAll('.form-element-destination .dropdown-item').forEach(function(item) {
         item.addEventListener('click', function(event) {
             event.preventDefault(); // Prevent default anchor behavior
             
-            var destination = item.textContent.trim();
-
+            var destination = this.textContent.trim();
+    
             // Update the destination dropdown button text
             document.getElementById('destinationDropdown').textContent = destination;
-
+    
             // Update the hidden input value
-            document.getElementById('destination').value = destination;
+            document.getElementById('banner-destination').value = destination;
+    
+            // Remove 'active' class from all dropdown items
+            document.querySelectorAll('.form-element-destination .dropdown-item').forEach(function(el) {
+                el.classList.remove('active');
+            });
+    
+            // Add 'active' class to the clicked item
+            this.classList.add('active');
         });
     });
+    
 
-    // Yacht Selection Dropdown
+    /* Yacht Selection Dropdown */
     document.querySelectorAll('.form-element-yacht .yacht-checkbox').forEach(function(checkbox) {
         checkbox.addEventListener('change', function() {
             var selectedYachts = [];
@@ -146,20 +155,24 @@ document.addEventListener('DOMContentLoaded', function() {
     updateTotalGuests();
 
     // manufacture year from
-    let selectElementFrom = document.getElementById("yacht-manufacture-from");
-    let hiddenInputFrom = document.getElementById("ytm-manufacture-from");
-    // Update hidden input when select changes
-    selectElementFrom.addEventListener("change", function () {
-        hiddenInputFrom.value = this.value;
-    });
-    hiddenInputFrom.value = selectElementFrom.value;
+    if( document.getElementById("yacht-manufacture-from") && document.getElementById("ytm-manufacture-from") ) {
+        let selectElementFrom = document.getElementById("yacht-manufacture-from");
+        let hiddenInputFrom = document.getElementById("ytm-manufacture-from");
+        // Update hidden input when select changes
+        selectElementFrom.addEventListener("change", function () {
+            hiddenInputFrom.value = this.value;
+        });
+        hiddenInputFrom.value = selectElementFrom.value;
+    }
 
     // manufacture year to
-    let selectElementTo = document.getElementById("yacht-manufacture-to");
-    let hiddenInputTo = document.getElementById("ytm-manufacture-to");
-    // Update hidden input when select changes
-    selectElementTo.addEventListener("change", function () {
-        hiddenInputTo.value = this.value;
-    });
-    hiddenInputTo.value = selectElementTo.value;
+    if( document.getElementById("yacht-manufacture-to") && document.getElementById("ytm-manufacture-to") ) {
+        let selectElementTo = document.getElementById("yacht-manufacture-to");
+        let hiddenInputTo = document.getElementById("ytm-manufacture-to");
+        // Update hidden input when select changes
+        selectElementTo.addEventListener("change", function () {
+            hiddenInputTo.value = this.value;
+        });
+        hiddenInputTo.value = selectElementTo.value;
+    }
 });
