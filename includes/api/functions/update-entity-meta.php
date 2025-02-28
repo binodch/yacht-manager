@@ -80,7 +80,7 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
                 foreach( $yimages as $yimg ) {
                     if( $count == 0 ) {
                         // set first image as featured image
-                        $img_variant = yacht_manager_entity_media_imageVariant(2);
+                        $img_variant = yacht_manager_entity_media_imageVariant(3);
                         yacht_manager_set_entity_featured_image($yimg, $img_variant, $yacht_entity_id);
                     } else {
                         $img_variant = yacht_manager_entity_media_imageVariant(1);

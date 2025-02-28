@@ -23,6 +23,16 @@ function yacht_manager_add_menu_page() {
         'color-settings',
         'yacht_manager_myplugin_settings_page'
     );
+
+    // Add a Submenu Page under "Yacht Manager"
+    add_submenu_page(
+        'yacht-manager',
+        'Run Fetch',
+        'Run Fetch',
+        'manage_options',
+        'run-fetch',
+        'yacht_manager_run_fetch_page'
+    );
 }
 add_action('admin_menu', 'yacht_manager_add_menu_page');
 
@@ -122,3 +132,23 @@ function yacht_manager_myplugin_settings_page() { ?>
     </div>
     <?php
 }
+
+
+function yacht_manager_run_fetch_page() {
+    if (isset($_POST['run_fetch'])) {
+        // Run the function when form is submitted
+        yacht_manager_insert_update_yacht_post_type();
+    
+        // Display admin notice
+        add_action('admin_notices', function() {
+            echo '<div class="updated notice is-dismissible"><p>Fetch process has been completed.</p></div>';
+        });
+    } ?>
+    <div class="wrap">
+        <h2>Run Fetch</h2>
+        <p>Here you can run the fetch process.</p>
+        <form method="post" action="">
+            <input type="submit" name="run_fetch" value="Run Fetch" class="button button-primary" />
+        </form>
+    </div>
+<?php }

@@ -49,6 +49,19 @@
     color: #333;
 }
 
+.single-yacht .gallery-list .swiper-button-prev,
+.single-yacht .gallery-list .swiper-button-next {
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    box-shadow: 0px 1.27px 7.37px 0px #00000033;
+}
+
+.single-yacht .gallery-list .swiper-button-prev:after,
+.single-yacht .gallery-list .swiper-button-next:after {
+    color: #141b34;
+    font-size: 24px;
+}
 
 @media (min-width:1400px) {
     .yacht-swiper-container {
