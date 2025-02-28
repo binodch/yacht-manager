@@ -373,3 +373,64 @@
     }
 }
 /* specification section */
+
+/* enquire form */
+.single-yacht .content-enquire {   
+    border-radius: 14px;
+    background-color: #fff;
+    padding: 4px;
+}
+.single-yacht .content-enquire .enquire-form {
+    border-radius: 14px;
+    background-color: #f5f5f5;
+    padding: 32px;
+}
+
+.single-yacht .content-enquire .enquire-form .form-title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 36px;
+    letter-spacing: -0.011em;
+    color: #000000;
+    margin-bottom: 24px;
+}
+
+.single-yacht .content-enquire .enquire-form .form-description {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.011em;
+    color: #878787;
+    margin-bottom: 24px;
+}
+
+.single-yacht .content-enquire .enquire-form .form-input {
+    border: 1px solid #dfdfdf;
+    border-radius: 12px;
+    padding: 20px;
+    width: 100%;
+    margin-bottom: 24px;
+}
+.single-yacht .content-enquire .enquire-form .form-input::placeholder,
+.single-yacht .content-enquire .enquire-form textarea {
+    color: rgba(0, 0, 0, 0.2);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.011em;
+    
+}
+
+.single-yacht .content-enquire .enquire-form .field-button .btn {
+    background-color: var(--primary-color);
+    padding: 11.37px 27.28px;
+    border-radius: 1136.65px;
+    border: 1px solid rgba(185, 234, 255, 0.2);
+    border-radius: 1136.65px;
+    color: #1d2b46;
+    font-weight: 500;
+    font-size: 18.19px;
+    line-height: 27.28px;
+    letter-spacing: -0.011em;  
+}
+/* enquire form */

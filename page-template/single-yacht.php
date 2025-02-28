@@ -320,7 +320,33 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                 </div>
                 <div class="col-md-4">
                     <div id="ytm-content-enquire" class="content-enquire">
-                        Enquire
+                        <div class="enquire-form">
+                            <div class="form-title">
+                                Enquire
+                            </div>
+                            <div class="form-description">
+                                You are welcome to ask us anything regarding 2004 CRN Ancona CRN 128 ARIELA for charter. Our team of specialists are here to help.
+                            </div>
+                            <div class="form-field">
+                                <form action="" class="form-enquire" method="POST">
+                                    <div class="field-name">
+                                        <input type="text" class="form-input" placeholder="Name">
+                                    </div>
+                                    <div class="field-phone">
+                                        <input type="text" class="form-input" placeholder="Phone">
+                                    </div>
+                                    <div class="field-email">
+                                        <input type="text" class="form-input" placeholder="Email">
+                                    </div>
+                                    <div class="field-message">
+                                        <textarea rows="4" class="form-input">Message</textarea>
+                                    </div>
+                                    <div class="field-button">
+                                        <button type="submit" class="btn">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
