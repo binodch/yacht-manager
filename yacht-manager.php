@@ -20,7 +20,6 @@ require_once plugin_dir_path(__FILE__) . 'requires.php';
 
 // Activation Hook
 function yacht_manager_activate() {
-	yacht_manager_insert_update_yacht_post_type();
 	flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'yacht_manager_activate');
