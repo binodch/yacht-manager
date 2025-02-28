@@ -39,7 +39,7 @@ $yacht_draft = get_post_meta($yacht_id, 'yacht_draft', true);
 $yacht_tonnage = get_post_meta($yacht_id, 'yacht_tonnage', true);
 $yacht_cruiseSpeed = get_post_meta($yacht_id, 'yacht_cruiseSpeed', true);
 $yacht_architect = get_post_meta($yacht_id, 'yacht_architect', true);
-$yacht_model = get_post_meta($yacht_id, 'yacht_model', true);
+$yacht_model = get_post_meta($yacht_id, 'yacht_model', true); // used as yacht_type
 $yacht_interiorDesigner = get_post_meta($yacht_id, 'yacht_interiorDesigner', true); 
 
 $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
@@ -97,7 +97,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                     <div class="blueprint-yacht-type">
                         <div class="yacht-type-item">
                             <div class="blueprint-label yacht-type-label">Yacht Type</div>
-                            <div class="blueprint-value yacht-type-value"><?php echo esc_html($yacht_model); ?></div>
+                            <div class="blueprint-value yacht-type-value"><?php echo esc_html($yacht_type); ?></div>
                         </div>
                     </div>
                 </div>
@@ -140,7 +140,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
         <div class="yacht-content-info">
             <div class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-lg-8">
                     <div class="content-description">
                         <div class="description-about">
                             <h2>About</h2>
@@ -159,7 +159,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                                         if( $amenities_arr && is_array($amenities_arr) && count($amenities_arr)>0 ) {
                                             foreach( $amenities_arr as $amenities ) { 
                                                 if( !empty($amenities['label']) ) { ?>
-                                                    <div class="col-md-4">
+                                                    <div class="col-6 col-md-4">
                                                         <div class="amenitites-item">
                                                             <span class="amenities-label"><?php echo esc_html($amenities['label']); ?></span>
                                                         </div>
@@ -318,7 +318,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-lg-4">
                     <div id="ytm-content-enquire" class="content-enquire">
                         <div class="enquire-form">
                             <div class="form-title">
