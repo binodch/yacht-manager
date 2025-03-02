@@ -41,6 +41,7 @@ $yacht_cruiseSpeed = get_post_meta($yacht_id, 'yacht_cruiseSpeed', true);
 $yacht_architect = get_post_meta($yacht_id, 'yacht_architect', true);
 $yacht_model = get_post_meta($yacht_id, 'yacht_model', true); // used as yacht_type
 $yacht_interiorDesigner = get_post_meta($yacht_id, 'yacht_interiorDesigner', true); 
+$yacht_zones = get_post_meta($yacht_id, 'yacht_zones', true); 
 
 $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
 
@@ -59,13 +60,19 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                     <span class="single-border"></span>
                     <div class="builts-year"><?php echo $yacht_make; ?></div>
                 </div>
-                <div class="yacht-heading-region">
-                    <span>Turkey</span>
-                    <span>Greece</span>
-                    <span>East Mediterranean</span>
-                    <span>Aegan Sea</span>
-                </div>
-                <?php if( !empty($yacht_weekPricingFrom) ) { 
+                <?php 
+                if($yacht_zones) { ?>
+                    <div class="yacht-heading-region">
+                        <?php
+                        $zone_arr = json_decode($yacht_zones, true); 
+                        foreach( $zone_arr as $zone ) { ?>
+                            <span><?php echo esc_html($zone); ?></span>
+                        <?php 
+                        } ?>
+                    </div>
+                <?php 
+                }
+                if( !empty($yacht_weekPricingFrom) ) { 
                     $week_pricing_arr = json_decode($yacht_weekPricingFrom, true);
                     $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
                     $currency = yacht_manager_get_currency_symbol($currency);

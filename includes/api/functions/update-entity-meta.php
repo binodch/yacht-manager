@@ -42,6 +42,25 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
 
         $yacht_weekPricingFrom = (isset($yarr['pricing']) && isset($yarr['pricing']['weekPricingFrom'])) ? json_encode($yarr['pricing']['weekPricingFrom']) : '';
         $yacht_weekPricingTo = (isset($yarr['pricing']) && isset($yarr['pricing']['weekPricingTo'])) ? json_encode($yarr['pricing']['weekPricingTo']) : '';
+        
+        $yacht_zones = [];
+        if( isset($yarr['pricing']) && isset($yarr['pricing']['pricingInfo'])) {
+            $yacht_pricingInfo = $yarr['pricing']['pricingInfo'];
+            foreach( $yacht_pricingInfo as $pricingInfo ) {
+                if( isset($pricingInfo['inclusionZones']) ) {
+                    $inclusionZones = $pricingInfo['inclusionZones'];
+                    foreach( $inclusionZones as $incl ) {
+                        if( isset($incl['category']) ) {
+                            $incl_zone = $incl['category'];
+                            foreach( $incl_zone as $incz ) {
+                                $zones[] = $incz;
+                            }
+                        }
+                    }        
+                }
+            }
+            $yacht_zones = array_values(array_unique($zones));
+        }
 
         $yacht_uri_exists = yacht_manager_check_if_yacht_meta_field_exists($yacht_post_id, $yacht_hash, 'yacht_entity_uri_hash');
         $yacht_entity_id = $yacht_post_id;
@@ -71,6 +90,8 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
             update_post_meta($yacht_entity_id, 'yacht_weekPricingFrom', $yacht_weekPricingFrom);
             update_post_meta($yacht_entity_id, 'yacht_weekPricingTo', $yacht_weekPricingTo);
             update_post_meta($yacht_entity_id, 'yacht_images', $yacht_images);
+
+            update_post_meta($yacht_entity_id, 'yacht_zones', json_encode($yacht_zones));
             
             yacht_manager_assign_yacht_types($yacht_entity_id, $yacht_types);
 
