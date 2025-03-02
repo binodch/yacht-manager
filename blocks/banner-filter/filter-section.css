@@ -10,6 +10,9 @@
     box-shadow: 2px 3px 58.7px 2px rgba(0, 0, 0, 0.25);
     z-index: 9;
     padding: 14px 27px;
+    display: flex;
+    flex-direction: row;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out;
 }
 
 .filter-section .filter-wrap {
@@ -236,3 +239,92 @@
 .filter-section .filter-wrap .button-wrap .btn.nofilter {
     pointer-events: none;
 }
+
+.ytm-filter-toggle-btn {
+    display: none;
+    position: absolute;
+    bottom: -20px;
+    z-index: 9;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: #666666;
+    border: 1px solid #666666;
+    border-radius: 100px;
+    padding: 10px 20px;
+    width: 310px;
+    height: 40px;
+    cursor: pointer;
+    box-shadow: 2px 3px 58.7px 2px #00000040;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16.8px;
+    letter-spacing: -0.011em;
+    
+}
+
+.ytm-filter-toggle-btn span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+}
+
+.ytm-filter-toggle-btn span:before {
+    content: "";
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-image: url("data:image/svg+xml,%3Csvg width='11' height='12' viewBox='0 0 11 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M7.89645 8.39645C8.09171 8.20118 8.40829 8.20118 8.60355 8.39645L10.8536 10.6464C11.0488 10.8417 11.0488 11.1583 10.8536 11.3536C10.6583 11.5488 10.3417 11.5488 10.1464 11.3536L7.89645 9.10355C7.70118 8.90829 7.70118 8.59171 7.89645 8.39645Z' fill='%23666666'/%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 5.5C0 2.73858 2.23858 0.5 5 0.5C7.76142 0.5 10 2.73858 10 5.5C10 8.26142 7.76142 10.5 5 10.5C2.23858 10.5 0 8.26142 0 5.5ZM5 1.5C2.79086 1.5 1 3.29086 1 5.5C1 7.70914 2.79086 9.5 5 9.5C7.20914 9.5 9 7.70914 9 5.5C9 3.29086 7.20914 1.5 5 1.5Z' fill='%23666666'/%3E%3C/svg%3E%0A");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* media query */
+@media (max-width: 1200px) {
+    .filter-section {
+        display: none;
+        position: relative;
+        min-width: auto;
+        max-width: 28.5%;
+        flex-direction: column;
+        bottom: -27.7em;
+        padding: 20px;
+    }
+
+    .filter-section.open {
+        display: flex;
+    }
+
+    .filter-wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .filter-element {
+        width: 100%;
+    }
+
+    .filter-section .filter-wrap .vertical-line {
+        display: none;
+    }
+
+    .filter-section .filter-wrap .filter-mobile {
+        display: none;
+    }
+
+    .button-wrap {
+        text-align: center;
+    }
+
+    .filter-section .filter-wrap .button-wrap .btn {
+        padding: 8px 18px;
+    }
+
+    
+    .ytm-filter-toggle-btn {
+        display: block;
+    }
+}
+/* media query */
