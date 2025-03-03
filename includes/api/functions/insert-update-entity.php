@@ -2,21 +2,33 @@
 /**
  * function to fetch yacht data via API
  */
-function yacht_manager_fetch_yacht_list() {
-    $yacht_data = yacht_manager_curl_search_entity_list();
-    
-    $yacht_arr = $yacht_data;
-    if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
-        return $yacht_arr;
+function yacht_manager_fetch_yacht_list( $category = false ) {
+    $yacht_data = [];
+
+    if ( $category ) {
+        $destinations = yacht_manager_curl_destinations();
+        foreach ( $destinations as $dest ) {
+            $params_arr = json_encode(['region' => $dest]);
+            $result = yacht_manager_curl_search_entity_list( $params_arr );
+            if ( is_array( $result ) ) {
+                $yacht_data = array_merge($yacht_data, $result);
+            }
+        }
+        $yacht_data = array_values(array_unique($yacht_data, SORT_REGULAR));
+        
+    } else {
+        $yacht_data = yacht_manager_curl_search_entity_list();
     }
-    return false;
+
+    return (!empty($yacht_data) && is_array($yacht_data)) ? $yacht_data : false;
 }
+
 
 /**
  * function to save yacht post to yacht post type
  */
-function yacht_manager_insert_update_yacht_post_type() {
-    $yacht_arr = yacht_manager_fetch_yacht_list();
+function yacht_manager_insert_update_yacht_post_type( $category=false ) {
+    $yacht_arr = yacht_manager_fetch_yacht_list($category);
     if( $yacht_arr && is_array($yacht_arr) && (count($yacht_arr)>0) ) {
         foreach( $yacht_arr as $yarr ) {
             $yacht_hash = yacht_manager_generate_hash_signature($yarr);

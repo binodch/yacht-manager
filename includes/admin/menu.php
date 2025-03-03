@@ -138,6 +138,7 @@ function yacht_manager_run_fetch_page() {
     if (isset($_POST['run_fetch'])) {
         // Run the function when form is submitted
         yacht_manager_insert_update_yacht_post_type();
+        yacht_manager_insert_update_yacht_post_type(true);
     
         // Display admin notice
         add_action('admin_notices', function() {

@@ -67,19 +67,19 @@ function render_banner_filter_block($attributes) {
                         </div>
                         <span class="vertical-line"></span>
                         <!-- Start Date -->
-                        <div class="filter-element filter-checkin">
+                        <div class="filter-element filter-checkin filter-mobile">
                             <label for="start-date" class="form-label">Check in</label>
                             <input type="text" id="startDate" name="start-date" class="form-control flatpickr-input" placeholder="Add Dates" readonly="readonly">
                         </div>
                         <span class="vertical-line"></span>
                         <!-- End Date -->
-                        <div class="filter-element filter-checkout">
+                        <div class="filter-element filter-checkout filter-mobile">
                             <label for="end-date" class="form-label">Check out</label>
                             <input type="text" id="endDate" name="end-date" class="form-control flatpickr-input" placeholder="Add Dates" readonly="readonly">
                         </div>
                         <span class="vertical-line"></span>
                         <!-- Number of Guests -->
-                        <div class="filter-element filter-guests">
+                        <div class="filter-element filter-guests filter-mobile">
                             <span for="guests" class="form-label">Where</span>
                             <!-- Bootstrap Dropdown -->
                             <div class="dropdown">
@@ -133,7 +133,7 @@ function render_banner_filter_block($attributes) {
                         </div>
                         <span class="vertical-line"></span>
                         <!-- Select Yacht -->
-                        <div class="filter-element filter-yacht">
+                        <div class="filter-element filter-yacht filter-mobile">
                             <span for="yacht" class="form-label">Yacht type</span>
                             <div class="dropdown form-element-yacht">
                                 <button class="btn btn-outline-secondary dropdown-toggle text-start" type="button" id="yachtDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -169,8 +169,15 @@ function render_banner_filter_block($attributes) {
                 </form>
             </div>
         </div>';
+        
+        $banner_filter .= '<button class="ytm-filter-toggle-btn" onclick="toggleFilter()"><span class="icon-search">Start your search Options</span></button>';
+        $banner_filter .= '</section>';
 
-    $banner_filter .= '</section>';
+    
+    $banner_filter .= '<script>
+    function toggleFilter() {
+        document.querySelector(".filter-section").classList.toggle("open");
+    }</script>';
     
     return $banner_filter;
 }
