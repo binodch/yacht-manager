@@ -2,6 +2,9 @@
     min-height: 854px;
     position: relative;
     margin-bottom: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .ytm-section-banner .section-banner__title {
@@ -87,4 +90,64 @@
 
 .ytm-section-banner .section-heading.text-end {
     margin-left: auto;
+}
+
+@media (max-width:768px) {
+    .ytm-section-banner .section-banner__title {
+        font-size: 62px;
+        line-height: 43.4px;
+        width: 292px;
+    }
+
+    .ytm-section-banner .section-heading__btn .btn {
+        display: none;
+    }
+}
+.yacht-single-heading .yacht-heading-main{
+    max-width: 590px;
+}
+.yacht-single-banner{
+
+}
+.yacht-single-heading{
+
+}
+.yacht-single-image{
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-main-info {
+
+}
+
+.yacht-single-heading .yacht-heading-main .yacht-heading-builts {
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-builts .single-about {
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-builts .single-heading {
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-builts .built-items {
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-region{
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-pricing{
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-link{
+
+}
+
+
+@media (min-width:1024px) {
+    .yacht-single-heading .yacht-heading-main .yacht-single-blueprint {
+        position: absolute;
+        right: 6%;
+        bottom: -6%;
+        z-index: 9;
+        background:#fff;
+    }
 }

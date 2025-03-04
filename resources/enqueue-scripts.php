@@ -53,6 +53,12 @@ function yacht_manager_enqueue_public_assets() {
         [],
         YACHT_MANAGER_VERSION
     );
+    wp_enqueue_style(
+        'yacht-manager-yacht-single-color',
+        plugin_dir_url(__FILE__) . '../assets/css/yacht-single/color.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
     
     
     wp_enqueue_style(
@@ -153,10 +159,23 @@ add_action('admin_enqueue_scripts', 'yacht_manager_enqueue_admin_assets');
 
 // dynamic pull styles
 function yacht_manager_myplugin_dynamic_css() {
-    $primary_color = get_option('ytm_primary_color', '#b9eaff');
+    $primary_text = get_option('ytm_primary_text', '#b9eaff');
+    $secondary_text = get_option('ytm_secondary_text', '#b9eaff');
+    $cta_color = get_option('ytm_cta_color', '#b9eaff');
+    $cta_text = get_option('ytm_cta_text', '#b9eaff');
+    $primary_bg = get_option('ytm_primary_bg', '#b9eaff');
+    $secondary_bg = get_option('ytm_secondary_bg', '#b9eaff');
+    $primary_line = get_option('ytm_primary_line', '#b9eaff');
+
     $custom_css_content = "
         :root {
-            --primary-color: ". $primary_color .";
+            --primary-text: ". $primary_text .";
+            --secondary-text: ". $secondary_text .";
+            --cta-color: ". $cta_color .";
+            --cta-text: ". $cta_text .";
+            --primary-bg: ". $primary_bg .";
+            --secondary-bg: ". $secondary_bg .";
+            --primary-line: ". $primary_line .";
         }";
     wp_add_inline_style('wp-color-picker', $custom_css_content);
     wp_add_inline_style('yacht-manager-global', $custom_css_content);

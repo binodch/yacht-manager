@@ -44,6 +44,7 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
         $yacht_weekPricingTo = (isset($yarr['pricing']) && isset($yarr['pricing']['weekPricingTo'])) ? json_encode($yarr['pricing']['weekPricingTo']) : '';
         
         $yacht_zones = [];
+        $zones = [];
         if( isset($yarr['pricing']) && isset($yarr['pricing']['pricingInfo'])) {
             $yacht_pricingInfo = $yarr['pricing']['pricingInfo'];
             foreach( $yacht_pricingInfo as $pricingInfo ) {

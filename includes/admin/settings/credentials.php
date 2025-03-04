@@ -1,43 +1,7 @@
 <?php
 /*
-* Register menu
+* Credentials
 */
-
-function yacht_manager_add_menu_page() {
-    add_menu_page(
-        'Yacht Manager',
-        'Yacht Manager',
-        'manage_options',
-        'yacht-manager',
-        'yacht_manager_dashboard_menu',
-        'dashicons-admin-tools',
-        99                        
-    );
-
-    // Add a Submenu Page under "Yacht Manager"
-    add_submenu_page(
-        'yacht-manager',
-        'Color Settings',
-        'Color Settings',
-        'manage_options',
-        'color-settings',
-        'yacht_manager_myplugin_settings_page'
-    );
-
-    // Add a Submenu Page under "Yacht Manager"
-    add_submenu_page(
-        'yacht-manager',
-        'Run Fetch',
-        'Run Fetch',
-        'manage_options',
-        'run-fetch',
-        'yacht_manager_run_fetch_page'
-    );
-}
-add_action('admin_menu', 'yacht_manager_add_menu_page');
-
-
-// yacht manager mennu options
 function yacht_manager_dashboard_menu() { 
     $company_uri = get_option('yacht_manager_company_uri'); 
     $key_id = get_option('yacht_manager_key_id'); 
@@ -104,52 +68,3 @@ function yacht_manager_dashboard_menu() {
 
 <?php 
 }
-
-
-// color setting options
-function yacht_manager_myplugin_register_settings() {
-    add_option('ytm_primary_color', '#b9eaff');
-    register_setting('ytm_setting_color', 'ytm_primary_color');
-}
-add_action('admin_init', 'yacht_manager_myplugin_register_settings');
-
-
-function yacht_manager_myplugin_settings_page() { ?>
-    <div class="wrap">
-        <h2>Color Settings</h2>
-        <form method="post" action="options.php">
-            <?php settings_fields('ytm_setting_color'); ?>
-            <table class="form-table">
-                <tr valign="top">
-                    <th scope="row">Primary Color:</th>
-                    <td>
-                        <input type="text" id="ytm_primary_color" name="ytm_primary_color" value="<?php echo esc_attr(get_option('ytm_primary_color')); ?>" class="ytm-color-picker" />
-                    </td>
-                </tr>
-            </table>
-            <?php submit_button(); ?>
-        </form>
-    </div>
-    <?php
-}
-
-
-function yacht_manager_run_fetch_page() {
-    if (isset($_POST['run_fetch'])) {
-        // Run the function when form is submitted
-        yacht_manager_insert_update_yacht_post_type();
-        yacht_manager_insert_update_yacht_post_type(true);
-    
-        // Display admin notice
-        add_action('admin_notices', function() {
-            echo '<div class="updated notice is-dismissible"><p>Fetch process has been completed.</p></div>';
-        });
-    } ?>
-    <div class="wrap">
-        <h2>Run Fetch</h2>
-        <p>Here you can run the fetch process.</p>
-        <form method="post" action="">
-            <input type="submit" name="run_fetch" value="Run Fetch" class="button button-primary" />
-        </form>
-    </div>
-<?php }
