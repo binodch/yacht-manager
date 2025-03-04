@@ -4,6 +4,7 @@ get_header();
 
 $yacht_id = get_the_ID(); 
 
+$yacht_name = get_the_title($yacht_id);
 $_yacht_type = yacht_manager_get_first_taxnomy_term($yacht_id);
 $yacht_type = $_yacht_type ?? '-';
 $yacht_type = !empty($_yacht_type) ? $_yacht_type : '-';
@@ -51,7 +52,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
             <div class="single-about">
                 Yachts for Charter
             </div>
-            <h1 class="single-heading"><?php the_title(); ?></h1>
+            <h1 class="single-heading"><?php echo esc_html(ucwords(strtolower($yacht_name))); ?></h1>
             <div class="yacht-heading-main">
                 <div class="yacht-heading-builts">
                     <div class="builts-length"><?php echo $yacht_length_in; ?> / <?php echo $yacht_length_m; ?></div>
@@ -329,20 +330,22 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                             </div>
                             <div class="form-field">
                                 <form action="" class="form-enquire" method="POST">
+                                    <?php wp_nonce_field('yacht_manager_enquiry', 'yacht_manager_nonce'); ?>
+                                    <input type="hidden" class="form-input" name="yacht" value="<?php echo esc_attr(ucwords(strtolower($yacht_name))); ?>">
                                     <div class="field-name">
-                                        <input type="text" class="form-input" placeholder="Name">
+                                        <input type="text" class="form-input" name="name" placeholder="Name">
                                     </div>
                                     <div class="field-phone">
-                                        <input type="text" class="form-input" placeholder="Phone">
+                                        <input type="text" class="form-input" name="phone" placeholder="Phone">
                                     </div>
                                     <div class="field-email">
-                                        <input type="text" class="form-input" placeholder="Email">
+                                        <input type="text" class="form-input" name="email" placeholder="Email">
                                     </div>
                                     <div class="field-message">
-                                        <textarea rows="4" class="form-input">Message</textarea>
+                                        <textarea rows="4" class="form-input" name="message">Message</textarea>
                                     </div>
                                     <div class="field-button">
-                                        <button type="submit" class="btn">Submit</button>
+                                        <button type="submit" name="submit_enquiry" class="btn">Submit</button>
                                     </div>
                                 </form>
                             </div>
