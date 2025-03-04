@@ -47,16 +47,16 @@ $yacht_zones = get_post_meta($yacht_id, 'yacht_zones', true);
 $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
 
 <section class="single-yacht primary-bg">
-    <div class="yacht-single-banner position-relative d-flex flex-column-reverse flex-lg-row">
+    <div class="yacht-single-banner position-relative d-flex flex-column-reverse flex-xl-row">
         <div class="yacht-single-heading">
             <div class="yacht-heading-main">
-                <div class="yacht-heading-main-info d-flex flex-row flex-md-column">
+                <div class="yacht-heading-main-info d-flex flex-row flex-xl-column">
                     <div class="yacht-heading-builts d-flex flex-column primary-text">
                         <div class="single-about secondary-text">
                             Yachts for Charter
                         </div>
                         <h1 class="single-heading primary-text"><?php echo esc_html(ucwords(strtolower($yacht_name))); ?></h1>
-                        <div class="built-items d-flex flex-row">
+                        <div class="built-items">
                             <div class="builts-length"><?php echo $yacht_length_in; ?> / <?php echo $yacht_length_m; ?></div>
                             <span class="single-border"></span>
                             <div class="builts-year"><?php echo $yacht_built_year; ?></div>
@@ -138,7 +138,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                     </div>
                 </div>
                 <div class="yacht-heading-link">
-                    <a href="#ytm-content-enquire" class="btn cta-text cta-color">Book now</a>
+                    <a href="#ytm-content-enquire" class="btn">Book now</a>
                 </div>
             </div>
         </div>
@@ -160,7 +160,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                     <div class="content-description">
                         <div class="description-about">
                             <h2 class=" primary-text">About</h2>
-                            <div class="about-text secondary-text">
+                            <div class="about-text body-text">
                                 <?php the_content(); ?>
                             </div>
                         </div>

@@ -1,6 +1,6 @@
 .single-yacht {
     /* background-color: #f0f0f0; */
-    padding: 80px 0;
+    /* padding: 80px 0; */
 }
 
 @media (min-width:1400px) {
@@ -24,7 +24,8 @@
 }
 
 .single-yacht .yacht-single-banner .yacht-single-heading {
-    padding-left: 1.66666666667%
+    padding-left: 1.66666666667%;
+    /* width: 590px; */
 }
 
 .single-yacht .yacht-single-banner .single-about {
@@ -33,33 +34,46 @@
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.011em;
-    margin-bottom: 24px;
+    /* margin-bottom: 24px; */
 }
 
 .single-yacht .yacht-single-banner .single-heading {
+    /* color: #323232; */
     font-weight: 400;
     font-size: 84px;
     line-height: 68.88px;
     letter-spacing: -0.011em;
-    /* color: #323232; */
-    margin: 0 auto 24px;
+    margin: 0;
 }
 
 /* heading builts */
 .single-yacht .yacht-heading-main .yacht-heading-builts {
     display: flex;
-    gap: 16px;
     margin-bottom: 24px;
     width: max-content;
+    gap: unset;
 }
-@media (min-width:768px) {
-    .single-yacht .yacht-heading-main .yacht-heading-builts {
-        gap: 48px;
-    }
+
+.single-yacht .yacht-heading-main .yacht-heading-builts .built-items {
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
 }
+
 .single-yacht .yacht-heading-main .yacht-heading-builts .single-border {
     border: 1px solid rgba(0, 0, 0, 0.1)
 }
+
+@media (min-width:1024px) {
+    .single-yacht .yacht-heading-main .yacht-heading-builts {
+        gap: 24px;
+    }
+
+    .single-yacht .yacht-heading-main .yacht-heading-builts .built-items {
+        gap: 12px;
+    }
+}
+
 /* heading builts */
 /* banner image section start */
 .single-yacht .yacht-single-image{
@@ -121,6 +135,7 @@
 /* heading region */
 .single-yacht .yacht-heading-main .yacht-heading-region {
     display: flex;
+    align-items: flex-start;
     gap: 8px;
     margin-bottom: 24px;
     width: auto;
@@ -145,12 +160,14 @@
 /* heading pricing */
 
 /* heading btn */
-.single-yacht .yacht-heading-main .yacht-heading-link .btn {
+.single-yacht .yacht-heading-main .yacht-heading-link {
     /* color: #1d2b46; */
     /* background-color: var(--primary-color); */
-    border-radius: 1136.65px;
+    /* border-radius: 1136.65px;
     border: 1.14px solid rgba(185, 234, 255, 0.2);
-    padding: 12px 28px;
+    padding: 12px 28px; */
+}
+.single-yacht .yacht-heading-main .yacht-heading-link .btn {
 }
 /* heading btn */
 
@@ -455,7 +472,8 @@
 /* responsive */
 @media (max-width: 1024px) {
     .single-yacht .yacht-single-heading {
-        margin-bottom: 40px;
+        /* margin-bottom: 40px; */
+        /* width: 590px; */
     }
 
     .single-yacht .yacht-single-image .yacht-single-blueprint {
@@ -500,25 +518,25 @@
 
 @media (max-width: 624px) {
     .single-yacht .yacht-single-banner .yacht-single-blueprint {
-        right: 0;
+        /* right: 0;
         left: 0;
         flex-direction: column;
         gap: 16px;
-        padding: 24px 0;
+        padding: 24px 0; */
     }
     
     .single-yacht .yacht-single-banner .yacht-single-blueprint .yacht-blueprint-item:not(:last-child) {
-        border-right: 0;
+        /* border-right: 0;
         padding: 4px 12px;
-        border-bottom: 1px solid #ccc;
+        border-bottom: 1px solid #ccc; */
     }
 
     .single-yacht .yacht-single-banner .yacht-single-blueprint .yacht-blueprint-item {
-        padding: 0;
+        /* padding: 0; */
     }
 
     .single-yacht .yacht-single-banner .yacht-blueprint-item .blueprint-value {
-        flex-direction: column;
+        /* flex-direction: column; */
     }
 
     .single-yacht .yacht-single-banner .yacht-blueprint-item .blueprint-yacht-guests .blueprint-value:before,
@@ -538,5 +556,135 @@
 @media (max-width: 991px) {
     .single-yacht .content-enquire {
         margin-top: 40px;
+    }
+}
+
+
+
+.yacht-single-heading .yacht-heading-main{
+    /* max-width: 590px; */
+}
+.yacht-single-banner{
+
+}
+.yacht-single-heading{
+
+}
+.yacht-single-image{
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-main-info {
+
+}
+
+.yacht-single-heading .yacht-heading-main .yacht-heading-builts {
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-builts .single-about {
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-builts .single-heading {
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-builts .built-items {
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-region{
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-pricing{
+
+}
+.yacht-single-heading .yacht-heading-main .yacht-heading-link{
+
+}
+
+
+@media (min-width: 1200px) {
+    .yacht-single-heading .yacht-heading-main .yacht-single-blueprint {
+        position: absolute;
+        right: 110px;
+        bottom: 0;
+        z-index: 9;
+        background:#fff;
+    }
+    .single-yacht .yacht-single-banner .yacht-single-heading {
+        width: 590px;
+    }
+    .yacht-single-heading .yacht-heading-main {
+        max-width: 590px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .single-yacht .yacht-heading-main .yacht-heading-region {
+        /* width: calc(100%-125px); */
+        margin-bottom: 0;
+    }
+    .single-yacht .yacht-single-banner .yacht-blueprint-item .blueprint-label {
+        font-size: 13px;
+    }
+    .single-yacht .yacht-single-banner .yacht-blueprint-item .blueprint-value {
+        font-size: 18px;
+    }
+    .single-yacht .yacht-single-banner .yacht-single-blueprint {
+        justify-content: space-evenly;
+        width: unset;
+    }
+    .single-yacht .yacht-single-banner .yacht-single-heading {
+        padding: 1% 1.66666666667% 0;
+    }
+    .single-yacht .yacht-single-banner .yacht-single-blueprint .yacht-blueprint-item:not(:last-child) {
+        padding-right: 8%;
+    }
+    .single-yacht .yacht-single-banner .yacht-single-blueprint {
+        gap: 0;
+        padding: 10.07px 14.16px;
+        margin-bottom: 12px;
+    }
+    .single-yacht .yacht-single-banner .yacht-single-blueprint .yacht-blueprint-item {
+        padding: 4px 0;
+    }
+    .single-yacht .yacht-heading-main .yacht-heading-link {
+        color: var(--cta-text);
+        background-color: var(--cta-color);
+        text-align: center;
+        border-radius: 474.62px;
+        border: 0.47px solid rgba(185, 234, 255, 0.2);
+        padding: 6px 12px;
+    }
+    .single-yacht .yacht-single-heading {
+        margin: 0;
+    }
+    .single-yacht .yacht-single-banner {
+        padding: 0;
+    }
+}
+
+@media (min-width: 1200px) {
+    .single-yacht .yacht-heading-main .yacht-heading-link .btn {
+        color: var(--cta-text);
+        background-color: var(--cta-color);
+        border-radius: 1136.65px;
+        border: 1.14px solid rgba(185, 234, 255, 0.2);
+        padding: 12px 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .single-yacht .yacht-single-banner .yacht-blueprint-item .blueprint-label {
+        font-size: 10px;
+    }
+    .single-yacht .yacht-single-banner .yacht-blueprint-item .blueprint-value {
+        font-size: 12px;
+    }
+    .single-yacht .yacht-single-banner .yacht-single-blueprint .yacht-blueprint-item {
+        padding: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .single-yacht .yacht-single-banner .yacht-single-blueprint .yacht-blueprint-item:not(:last-child) {
+        padding-right: 5.5%;
     }
 }
