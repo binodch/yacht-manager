@@ -75,6 +75,21 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/select/manufacture-year.p
 // cron scheduler
 require_once plugin_dir_path(__FILE__) . 'includes/api/cron/schedule.php';
 
+// enquire form admin menu
+require_once plugin_dir_path(__FILE__) . 'includes/enquire/admin-page.php';
+
+// yacht enquire db
+require_once plugin_dir_path(__FILE__) . 'includes/enquire/db.php';
+
+// enquire form admin menu
+require_once plugin_dir_path(__FILE__) . 'includes/enquire/admin-page.php';
+
+// enquire form submit
+require_once plugin_dir_path(__FILE__) . 'includes/enquire/enquire-submit.php';
+
+// enquire form export
+require_once plugin_dir_path(__FILE__) . 'includes/enquire/enquire-export.php';
+
 
 function pr($arr) {
     echo '<pre>';
