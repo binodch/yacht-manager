@@ -6,8 +6,17 @@
 // Include admin register yacht posttype
 require_once plugin_dir_path(__FILE__) . 'includes/admin/post-type-yacht.php';
 
-// Include admin register yacht posttype
-require_once plugin_dir_path(__FILE__) . 'includes/admin/menu.php';
+// Include add menu submenu options
+require_once plugin_dir_path(__FILE__) . 'includes/admin/settings/add-menu.php';
+
+// Include credentials setting
+require_once plugin_dir_path(__FILE__) . 'includes/admin/settings/credentials.php';
+
+// Include credentials setting
+require_once plugin_dir_path(__FILE__) . 'includes/admin/settings/colors.php';
+
+// Include run fetch
+require_once plugin_dir_path(__FILE__) . 'includes/admin/settings/run-fetch.php';
 
 // Include enqueue style css
 require_once plugin_dir_path(__FILE__) . 'resources/enqueue-scripts.php';

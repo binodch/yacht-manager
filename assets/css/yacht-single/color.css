@@ -1,0 +1,27 @@
+.primary-text {
+    color: var(--primary-text);
+}
+
+.secondary-text {
+    color: var(--secondary-text);
+}
+
+.cta-color {
+    background-color: var(--cta-color);
+}
+
+.cta-text {
+    color: var(--cta-text);
+}
+
+.primary-bg {
+    background-color: var(--primary-bg);
+}
+
+.secondary-bg {
+    background-color: var(--secondary-bg);
+}
+
+.primary-line {
+    color: var(--primary-line);
+}
