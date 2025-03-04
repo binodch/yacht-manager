@@ -47,47 +47,96 @@ $yacht_zones = get_post_meta($yacht_id, 'yacht_zones', true);
 $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
 
 <section class="single-yacht primary-bg">
-    <div class="yacht-single-banner">
+    <div class="yacht-single-banner position-relative d-flex flex-column-reverse flex-lg-row">
         <div class="yacht-single-heading">
-            <div class="single-about secondary-text">
-                Yachts for Charter
-            </div>
-            <h1 class="single-heading primary-text"><?php echo esc_html(ucwords(strtolower($yacht_name))); ?></h1>
             <div class="yacht-heading-main">
-                <div class="yacht-heading-builts primary-text">
-                    <div class="builts-length"><?php echo $yacht_length_in; ?> / <?php echo $yacht_length_m; ?></div>
-                    <span class="single-border"></span>
-                    <div class="builts-year"><?php echo $yacht_built_year; ?></div>
-                    <span class="single-border"></span>
-                    <div class="builts-make"><?php echo $yacht_make; ?></div>
-                </div>
-                <?php 
-                if($yacht_zones) { ?>
-                    <div class="yacht-heading-region">
-                        <?php
-                        $zone_arr = json_decode($yacht_zones, true); 
-                        foreach( $zone_arr as $zone ) { ?>
-                            <span><?php echo esc_html($zone); ?></span>
-                        <?php 
-                        } ?>
-                    </div>
-                <?php 
-                }
-                if( !empty($yacht_weekPricingFrom) ) { 
-                    $week_pricing_arr = json_decode($yacht_weekPricingFrom, true);
-                    $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
-                    $currency = yacht_manager_get_currency_symbol($currency);
-                    $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
-                    $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
-                    $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : ''; 
-                    
-                    if( $currency && $price && $unit ) { ?>
-                        <div class="yacht-heading-pricing primary-text">
-                            From <?php echo $currency; ?><?php echo $price; ?> / <?php echo ucfirst(strtolower($unit)); ?>
+                <div class="yacht-heading-main-info d-flex flex-row flex-md-column">
+                    <div class="yacht-heading-builts d-flex flex-column primary-text">
+                        <div class="single-about secondary-text">
+                            Yachts for Charter
                         </div>
+                        <h1 class="single-heading primary-text"><?php echo esc_html(ucwords(strtolower($yacht_name))); ?></h1>
+                        <div class="built-items d-flex flex-row">
+                            <div class="builts-length"><?php echo $yacht_length_in; ?> / <?php echo $yacht_length_m; ?></div>
+                            <span class="single-border"></span>
+                            <div class="builts-year"><?php echo $yacht_built_year; ?></div>
+                            <span class="single-border"></span>
+                            <div class="builts-make"><?php echo $yacht_make; ?></div>
+                        </div>
+                    </div>
                     <?php 
-                    }
-                } ?>
+                    if($yacht_zones) { ?>
+                        <div class="yacht-heading-region">
+                            <?php
+                            $zone_arr = json_decode($yacht_zones, true); 
+                            foreach( $zone_arr as $zone ) { ?>
+                                <span><?php echo esc_html($zone); ?></span>
+                            <?php 
+                            } ?>
+                        </div>
+                    <?php } ?>
+
+
+                </div>
+                    <?php
+                
+                    if( !empty($yacht_weekPricingFrom) ) { 
+                        $week_pricing_arr = json_decode($yacht_weekPricingFrom, true);
+                        $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
+                        $currency = yacht_manager_get_currency_symbol($currency);
+                        $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
+                        $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
+                        $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : ''; 
+                        
+                        if( $currency && $price && $unit ) { ?>
+                            <div class="yacht-heading-pricing primary-text">
+                                From <?php echo $currency; ?><?php echo $price; ?> / <?php echo ucfirst(strtolower($unit)); ?>
+                            </div>
+                        <?php 
+                        }
+                    } ?>
+                 <div class="yacht-single-blueprint">
+                    <div class="yacht-blueprint-item">
+                        <div class="blueprint-yacht-type">
+                            <div class="yacht-type-item">
+                                <div class="blueprint-label yacht-type-label secondary-text">Yacht Type</div>
+                                <div class="blueprint-value yacht-type-value primary-text"><?php echo esc_html($yacht_type); ?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="yacht-blueprint-item">
+                        <div class="blueprint-yacht-length">
+                            <div class="yacht-length-item">
+                                <div class="blueprint-label yacht-length-label secondary-text">Length</div>
+                                <div class="blueprint-value yacht-length-value primary-text"><?php echo esc_html($yacht_length_m); ?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="yacht-blueprint-item">
+                        <div class="blueprint-yacht-cabins">
+                            <div class="yacht-cabins-item">
+                                <div class="blueprint-label yacht-cabins-label secondary-text">Cabins</div>
+                                <div class="blueprint-value yacht-cabins-value primary-text"><?php echo esc_html($yacht_cabins); ?>6</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="yacht-blueprint-item">
+                        <div class="blueprint-yacht-guests">
+                            <div class="yacht-guests-item">
+                                <div class="blueprint-label yacht-guests-label secondary-text">Guests</div>
+                                <div class="blueprint-value yacht-guests-value primary-text"><?php echo esc_html($yacht_sleeps); ?></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="yacht-blueprint-item">
+                        <div class="blueprint-yacht-crew">
+                            <div class="yacht-crew-item">
+                                <div class="blueprint-label yacht-crew-label secondary-text">Crew</div>
+                                <div class="blueprint-value yacht-crew-value primary-text"><?php echo esc_html($yacht_maxcrew); ?></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="yacht-heading-link">
                     <a href="#ytm-content-enquire" class="btn cta-text cta-color">Book now</a>
                 </div>
@@ -100,48 +149,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                     echo wp_get_attachment_image($thumbnail_id, 'full');
                 } ?>
             </div>
-            <div class="yacht-single-blueprint">
-                <div class="yacht-blueprint-item">
-                    <div class="blueprint-yacht-type">
-                        <div class="yacht-type-item">
-                            <div class="blueprint-label yacht-type-label secondary-text">Yacht Type</div>
-                            <div class="blueprint-value yacht-type-value primary-text"><?php echo esc_html($yacht_type); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="yacht-blueprint-item">
-                    <div class="blueprint-yacht-length">
-                        <div class="yacht-length-item">
-                            <div class="blueprint-label yacht-length-label secondary-text">Length</div>
-                            <div class="blueprint-value yacht-length-value primary-text"><?php echo esc_html($yacht_length_m); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="yacht-blueprint-item">
-                    <div class="blueprint-yacht-cabins">
-                        <div class="yacht-cabins-item">
-                            <div class="blueprint-label yacht-cabins-label secondary-text">Cabins</div>
-                            <div class="blueprint-value yacht-cabins-value primary-text"><?php echo esc_html($yacht_cabins); ?>6</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="yacht-blueprint-item">
-                    <div class="blueprint-yacht-guests">
-                        <div class="yacht-guests-item">
-                            <div class="blueprint-label yacht-guests-label secondary-text">Guests</div>
-                            <div class="blueprint-value yacht-guests-value primary-text"><?php echo esc_html($yacht_sleeps); ?></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="yacht-blueprint-item">
-                    <div class="blueprint-yacht-crew">
-                        <div class="yacht-crew-item">
-                            <div class="blueprint-label yacht-crew-label secondary-text">Crew</div>
-                            <div class="blueprint-value yacht-crew-value primary-text"><?php echo esc_html($yacht_maxcrew); ?></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
     <div class="yacht-single-content">

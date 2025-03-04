@@ -12,7 +12,7 @@ function render_banner_filter_block($attributes) {
     $destinations = yacht_manager_curl_destinations();
     $yacht_types = yacht_manager_curl_yacht_types();
 
-    $banner_filter = '<section id="ytm-banner-filter" class="section ytm-section-banner d-flex flex-column justify-content-center p-medium">';
+    $banner_filter = '<section id="ytm-banner-filter" class="section ytm-section-banner p-medium">';
 		$banner_filter .= '<div class="container">
 			<div class="section-heading text-center">';
                 
@@ -81,7 +81,7 @@ function render_banner_filter_block($attributes) {
                         <!-- Number of Guests -->
                         <div class="filter-element filter-guests filter-mobile">
                             <span for="guests" class="form-label">Where</span>
-                            <!-- Bootstrap Dropdown -->
+                            <!-- Guest Dropdown -->
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="customerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span id="customerCount">Add guest</span>
