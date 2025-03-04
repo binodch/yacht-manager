@@ -6,17 +6,29 @@ function yacht_manager_myplugin_register_settings() {
     $options = [
         'ytm_primary_text',
         'ytm_secondary_text',
+        'ytm_body_text',
         'ytm_cta_color',
         'ytm_cta_text',
         'ytm_primary_bg',
         'ytm_secondary_bg',
         'ytm_primary_line',
-        'ytm_text_color',
     ];
 
+    $colors = [
+        '#000000',
+        '#a8a8a8',
+        '#f0f0f0',
+        '#b9eaff',
+        '#1d2b46',
+        '#f0f0f0',
+        '#f9f9f9',
+        '#d5d5d5',
+    ];
+    $count = 0;
     foreach ($options as $option) {
-        add_option($option, '#b9eaff');
+        add_option($option, $colors[$count]);
         register_setting('ytm_setting_color', $option);
+        $count++;
     }
 }
 add_action('admin_init', 'yacht_manager_myplugin_register_settings');
@@ -34,6 +46,10 @@ function yacht_manager_myplugin_settings_page() { ?>
                 <tr valign="top">
                     <th scope="row">Secondary Text Color:</th>
                     <td><input type="text" id="ytm_secondary_text" name="ytm_secondary_text" value="<?php echo esc_attr(get_option('ytm_secondary_text')); ?>" class="ytm-color-picker" /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Body Text Color:</th>
+                    <td><input type="text" id="ytm_body_text" name="ytm_body_text" value="<?php echo esc_attr(get_option('ytm_body_text')); ?>" class="ytm-color-picker" /></td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">CTA Color:</th>

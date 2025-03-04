@@ -6,6 +6,10 @@
     color: var(--secondary-text);
 }
 
+.body-text {
+    color: var(--body-text);
+}
+
 .cta-color {
     background-color: var(--cta-color);
 }
