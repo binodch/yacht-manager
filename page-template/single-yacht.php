@@ -56,9 +56,9 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                 <div class="yacht-heading-builts">
                     <div class="builts-length"><?php echo $yacht_length_in; ?> / <?php echo $yacht_length_m; ?></div>
                     <span class="single-border"></span>
-                    <div class="builts-material"><?php echo $yacht_built_year; ?></div>
+                    <div class="builts-year"><?php echo $yacht_built_year; ?></div>
                     <span class="single-border"></span>
-                    <div class="builts-year"><?php echo $yacht_make; ?></div>
+                    <div class="builts-make"><?php echo $yacht_make; ?></div>
                 </div>
                 <?php 
                 if($yacht_zones) { ?>
@@ -164,14 +164,18 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                                     <div class="row">
                                         <?php $amenities_arr = json_decode($yacht_amenities, true);
                                         if( $amenities_arr && is_array($amenities_arr) && count($amenities_arr)>0 ) {
+                                            $count = 1;
                                             foreach( $amenities_arr as $amenities ) { 
-                                                if( !empty($amenities['label']) ) { ?>
+                                                if( !empty($amenities['label']) ) { 
+                                                    $count = ($count % 4) ?: 4; ?>
                                                     <div class="col-6 col-md-4">
                                                         <div class="amenitites-item">
-                                                            <span class="amenities-label"><?php echo esc_html($amenities['label']); ?></span>
+                                                            <span class="amenities-label amenities-<?php echo absint($count); ?>">
+                                                                <?php echo esc_html($amenities['label']); ?>
+                                                            </span>
                                                         </div>
                                                     </div>
-                                                <?php 
+                                                <?php $count++;
                                                 }
                                             }
                                         } ?>
@@ -269,7 +273,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                                 if( !empty($yacht_built_year) ) { ?>
                                     <div class="specs-list-item">
                                         <div class="specs-label">
-                                            Build
+                                            Built
                                         </div>
                                         <div class="specs-item">
                                             <span><?php echo $yacht_built_year; ?></span> 
@@ -295,17 +299,6 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                                         </div>
                                         <div class="specs-item">
                                             <span><?php echo $yacht_model; ?></span> 
-                                        </div>
-                                    </div>
-                                <?php
-                                } 
-                                if( !empty($yacht_built_year) ) { ?>
-                                    <div class="specs-list-item">
-                                        <div class="specs-label">
-                                            Built
-                                        </div>
-                                        <div class="specs-item">
-                                            <span><?php echo $yacht_built_year; ?></span> 
                                         </div>
                                     </div>
                                 <?php
