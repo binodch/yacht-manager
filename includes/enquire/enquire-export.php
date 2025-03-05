@@ -1,37 +1,40 @@
 <?php 
 function yacht_manager_export_csv() {
+    if (!isset($_POST['export_csv'])) {
+        return; // Stop execution if not triggered by form submission
+    }
+
     global $wpdb;
     $table_name = $wpdb->prefix . 'yacht_manager_enquire';
 
     // Get the data
-    $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
+    $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC", ARRAY_A);
 
-    // Set the headers to download the file as CSV
-    header('Content-Type: text/csv');
+    if (empty($results)) {
+        wp_die('No data found to export.');
+    }
+
+    // Set headers for CSV download
+    header('Content-Type: text/csv; charset=utf-8');
     header('Content-Disposition: attachment; filename="yacht_enquiries.csv"');
     header('Pragma: no-cache');
     header('Expires: 0');
 
-    // Open the output stream
+    // Open output buffer
     $output = fopen('php://output', 'w');
 
-    // Output the column headers
+    // Output column headers
     fputcsv($output, ['ID', 'Yacht', 'Name', 'Phone', 'Email', 'Message', 'Date']);
 
-    // Output the data rows
+    // Output data rows
     foreach ($results as $row) {
-        fputcsv($output, [
-            $row->id,
-            $row->yacht,
-            $row->name,
-            $row->phone,
-            $row->email,
-            $row->message,
-            $row->created_at,
-        ]);
+        fputcsv($output, $row);
     }
 
-    // Close the file handle
+    // Close stream and exit
     fclose($output);
-    exit; // Terminate to stop further processing
+    exit;
 }
+
+// Ensure CSV export runs before rendering HTML
+add_action('admin_init', 'yacht_manager_export_csv');

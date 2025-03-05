@@ -97,8 +97,10 @@ require_once plugin_dir_path(__FILE__) . 'includes/enquire/enquire-submit.php';
 require_once plugin_dir_path(__FILE__) . 'includes/enquire/enquire-export.php';
 
 
-function pr($arr) {
-    echo '<pre>';
-    print_r($arr);
-    echo '</pre>';
+if( !function_exists('pr') ) {
+    function pr($arr) {
+        echo '<pre>';
+        print_r($arr);
+        echo '</pre>';
+    }
 }

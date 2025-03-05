@@ -17,7 +17,7 @@ function yacht_manager_myplugin_register_settings() {
     $colors = [
         '#000000',
         '#a8a8a8',
-        '#f0f0f0',
+        '#5e5e5e',
         '#b9eaff',
         '#1d2b46',
         '#f0f0f0',

@@ -396,10 +396,11 @@
 }
 
 .single-yacht .content-enquire .enquire-form .field-button .btn {
+    color: var(--cta-text);
+    background-color: var(--cta-color);
     padding: 11.37px 27.28px;
     border-radius: 1136.65px;
     border: 1px solid rgba(185, 234, 255, 0.2);
-    border-radius: 1136.65px;
     font-weight: 500;
     font-size: 18.19px;
     line-height: 27.28px;

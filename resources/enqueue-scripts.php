@@ -171,7 +171,7 @@ add_action('admin_enqueue_scripts', 'yacht_manager_enqueue_admin_assets');
 function yacht_manager_myplugin_dynamic_css() {
     $primary_text = get_option('ytm_primary_text', '#000000');
     $secondary_text = get_option('ytm_secondary_text', '#a8a8a8');
-    $body_text = get_option('ytm_body_text', '#f0f0f0');
+    $body_text = get_option('ytm_body_text', '#5e5e5e');
     $cta_color = get_option('ytm_cta_color', '#b9eaff');
     $cta_text = get_option('ytm_cta_text', '#1d2b46');
     $primary_bg = get_option('ytm_primary_bg', '#f0f0f0');
