@@ -159,17 +159,18 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                 <div class="col-lg-8">
                     <div class="content-description">
                         <div class="description-about">
-                            <h2 class=" primary-text">About</h2>
-                            <div class="about-text body-text">
+                            <h2 class="primary-text">About</h2>
+                            <div id="yacht-about" class="yacht-about-text yacht-full-content body-text">
                                 <?php the_content(); ?>
                             </div>
+                            <button class="see-more-btn" id="about-see-more">Read More</button>
                         </div>
 
                         <?php 
                         if( !empty($yacht_amenities) ) { ?>
                             <div class="description-amenities">
                                 <h2 class="primary-text">Amenities and Entertainment</h2>
-                                <div class="amenities-list secondary-text">
+                                <div id="yacht-amenities" class="yacht-amenities-list yacht-full-content amenities-list secondary-text">
                                     <div class="row">
                                         <?php $amenities_arr = json_decode($yacht_amenities, true);
                                         if( $amenities_arr && is_array($amenities_arr) && count($amenities_arr)>0 ) {
@@ -184,12 +185,13 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                                                             </span>
                                                         </div>
                                                     </div>
-                                                <?php $count++;
+                                                    <?php $count++;
                                                 }
                                             }
                                         } ?>
                                     </div>
                                 </div>
+                                <button class="see-more-btn" id="amenities-see-more">View More</button>
                             </div>
                         <?php 
                         } ?>

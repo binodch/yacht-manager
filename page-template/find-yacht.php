@@ -193,9 +193,11 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
             <div class="ytm-list-item">
                 <div class="ytm-item-single">
                     <div class="ytm-item-image">';
-
+                    
                         if( $thumbnail_id ) {
+                            $yacht_item .= '<a href="'. get_permalink($yacht_id) .'">';
                             $yacht_item .= wp_get_attachment_image($thumbnail_id, 'medium_large');
+                            $yacht_item .= '</a>';
                         }
                     
                     $yacht_item .= '</div>
@@ -208,9 +210,11 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
                         }
 
                         if( isset($elist['name']) ) {
-                            $yacht_item .= '<div class="ytm-item-name">
-                                <h3>' . esc_html(ucwords(strtolower($elist['name']))) . '</h3>
-                            </div>';
+                            $yacht_item .= '<div class="ytm-item-name">';
+                            $yacht_item .= '<h3><a class="ytm-item-entity" href="'.get_permalink($yacht_id).'">';
+                            $yacht_item .= esc_html(ucwords(strtolower($elist['name'])));
+                            $yacht_item .= '</a></h3>';
+                            $yacht_item .=  '</div>';
                         }
 
                         if( $currency && $unit && $price ) {

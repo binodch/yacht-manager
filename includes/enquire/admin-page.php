@@ -1,15 +1,5 @@
 <?php
 function yacht_manager_admin_menu() {
-    // add_menu_page(
-    //     'Yacht Enquiries',
-    //     'Yacht Enquiries',
-    //     'manage_options',
-    //     'yacht-manager-enquiries',
-    //     'yacht_manager_display_enquiries',
-    //     'dashicons-email',
-    //     25
-    // );
-
     add_submenu_page(
         'yacht-manager',
         'Yacht Enquiries',

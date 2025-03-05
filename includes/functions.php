@@ -109,3 +109,18 @@ function yacht_manager_display_downloaded_images($yacht_id) {
     }
     return;
 }
+
+/* convert hex color to rgba */
+function yacht_manager_hexToRgba($hex, $alpha = 1.0) {
+    $hex = ltrim($hex, '#');
+
+    if (strlen($hex) == 3) {
+        $hex = str_repeat($hex[0], 2) . str_repeat($hex[1], 2) . str_repeat($hex[2], 2);
+    }
+
+    list($r, $g, $b) = sscanf($hex, "%02x%02x%02x");
+
+    $alpha = max(0, min(1, $alpha));
+
+    return "rgba($r, $g, $b, $alpha)";
+}
