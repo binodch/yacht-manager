@@ -170,7 +170,12 @@ function render_banner_filter_block($attributes) {
             </div>
         </div>';
         
-        $banner_filter .= '<button class="ytm-filter-toggle-btn" onclick="toggleFilter()"><span class="icon-search">Start your search Options</span></button>';
+        // $banner_filter .= '<button class="ytm-filter-toggle-btn" onclick="toggleFilter()"><span class="icon-search">Start your search Options</span></button>';
+
+        $banner_filter .= '<div class="ytm-filter-input">';
+        $banner_filter .= '<input type="text" class="ytm-field-input" id="ytm-filter-input"/>';
+        $banner_filter .= '</div>';
+
         $banner_filter .= '</section>';
 
     
