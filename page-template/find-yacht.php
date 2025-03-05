@@ -5,7 +5,6 @@ Template Name: Find Yacht
 
 get_header(); 
 
-// pr($_POST);
 
 $total_entity = 0;
 $paginate = 1;
@@ -18,10 +17,13 @@ $region_list_arr = [];
 
 if( isset($_POST['entity_banner_filter']) ) {
     $selected_destination = $_POST['destination'] ?? '';
+    $_destination = $selected_destination;
     $total_guests = $_POST['totalGuests'] ?? 0;
     $manufacture_from = $_POST['ytm_manufacture_from'] ?? '';
     $manufacture_to = $_POST['ytm_manufacture_to'] ?? '';
     $yachttype = $_POST['ytm_yacht_type'] ?? '';
+    $selected_destination = (!empty($_POST['entity_banner_filter'])) ? $_POST['entity_banner_filter'] : '';
+    $selected_destination = $_destination ? $_destination : $selected_destination;
 
     // Fetch region list if destination is provided
     if (!empty($selected_destination)) {
@@ -122,8 +124,6 @@ if (!empty($yacht_type_query)) {
     $entity_args['tax_query'] = $yacht_type_query;
 }
 
-// pr($entity_args);
-
 $entity_query = new WP_Query($entity_args);
 $entity_list = [];
 
@@ -145,10 +145,8 @@ if ($entity_query->have_posts()) {
     wp_reset_postdata();
 }
 
-$selected_destination = isset($_POST['destination']) ? sanitize_text_field($_POST['destination']) : '';
 $start_date = isset($_POST['start-date']) ? sanitize_text_field($_POST['start-date']) : '';
 $end_date = isset($_POST['end-date']) ? sanitize_text_field($_POST['end-date']) : '';
-$total_guests = isset($_POST['totalGuests']) ? sanitize_text_field($_POST['totalGuests']) : '';
 
 $yacht_item = '';
 

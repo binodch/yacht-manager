@@ -339,21 +339,30 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                                 You are welcome to ask us anything regarding 2004 CRN Ancona CRN 128 ARIELA for charter. Our team of specialists are here to help.
                             </div>
                             <div class="form-field">
-                                <form action="" class="form-enquire" method="POST">
+                                <form action="" class="form-enquire" method="POST" onsubmit="return validateForm()">
                                     <?php wp_nonce_field('yacht_manager_enquiry', 'yacht_manager_nonce'); ?>
                                     <input type="hidden" name="yacht" value="<?php echo esc_attr(ucwords(strtolower($yacht_name))); ?>">
-                                    <div class="field-name">
-                                        <input type="text" class="form-input primary-color" name="name" placeholder="Name">
+                                    
+                                    <div class="field-name field-input">
+                                        <input type="text" class="form-input primary-color" id="single-input-name" name="name" placeholder="Name">
+                                        <span class="error" id="error-name"></span>
                                     </div>
-                                    <div class="field-phone">
-                                        <input type="text" class="form-input" name="phone" placeholder="Phone">
+                                    
+                                    <div class="field-phone field-input">
+                                        <input type="text" class="form-input" name="phone" id="single-input-phone" placeholder="Phone">
+                                        <span class="error" id="error-phone"></span>
                                     </div>
-                                    <div class="field-email">
-                                        <input type="text" class="form-input" name="email" placeholder="Email">
+                                    
+                                    <div class="field-email field-input">
+                                        <input type="text" class="form-input" name="email" id="single-input-email" placeholder="Email">
+                                        <span class="error" id="error-email"></span>
                                     </div>
-                                    <div class="field-message">
-                                        <textarea rows="4" class="form-input" name="message">Message</textarea>
+                                    
+                                    <div class="field-message field-input">
+                                        <textarea rows="4" class="form-input" name="message" id="single-input-message" placeholder="Message"></textarea>
+                                        <span class="error" id="error-message"></span>
                                     </div>
+                                    
                                     <div class="field-button">
                                         <button type="submit" name="submit_enquiry" class="btn cta-text cta-color">Submit</button>
                                     </div>
@@ -367,5 +376,53 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
         </div>
     </div>
 </section>
+
+<script>
+    function validateForm() {
+        var name = document.getElementById("single-input-name").value.trim();
+        var phone = document.getElementById("single-input-phone").value.trim();
+        var email = document.getElementById("single-input-email").value.trim();
+        var message = document.getElementById("single-input-message").value.trim();
+
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Simple email validation pattern
+        var phonePattern = /^[0-9]+$/; // Only allows numbers
+
+        var isValid = true;
+
+        // Clear previous error messages
+        document.getElementById("error-name").innerText = "";
+        document.getElementById("error-phone").innerText = "";
+        document.getElementById("error-email").innerText = "";
+        document.getElementById("error-message").innerText = "";
+
+        if (name === "") {
+            document.getElementById("error-name").innerText = "Name is required.";
+            isValid = false;
+        }
+
+        if (phone === "") {
+            document.getElementById("error-phone").innerText = "Phone number is required.";
+            isValid = false;
+        } else if (!phonePattern.test(phone)) {
+            document.getElementById("error-phone").innerText = "Phone number must contain only numbers.";
+            isValid = false;
+        }
+
+        if (email === "") {
+            document.getElementById("error-email").innerText = "Email is required.";
+            isValid = false;
+        } else if (!emailPattern.test(email)) {
+            document.getElementById("error-email").innerText = "Please enter a valid email address.";
+            isValid = false;
+        }
+
+        if (message === "") {
+            document.getElementById("error-message").innerText = "Message is required.";
+            isValid = false;
+        }
+
+        return isValid; // Submit the form only if all validations pass
+    }
+</script>
 
 <?php get_footer();

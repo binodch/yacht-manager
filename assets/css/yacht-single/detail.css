@@ -376,12 +376,20 @@
     margin-bottom: 24px;
 }
 
+.single-yacht .content-enquire .enquire-form .field-input {
+    margin-bottom: 24px;
+}
+
+.single-yacht .content-enquire .enquire-form .field-input .error {
+    font-size: 14px;
+    color: red;
+}
+
 .single-yacht .content-enquire .enquire-form .form-input {
     border: 1px solid #dfdfdf;
     border-radius: 12px;
     padding: 20px;
     width: 100%;
-    margin-bottom: 24px;
     color: #393939;
 }
 
