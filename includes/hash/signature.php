@@ -1,5 +1,4 @@
 <?php
-
 /**
  * hash encode array value
  */
