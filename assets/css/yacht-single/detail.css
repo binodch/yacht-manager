@@ -120,6 +120,7 @@
     border-radius: 100px;
     border: 1px solid #dfdfdf;
     padding: 6px 10px;
+    color: var(--primary-text);
 }
 /* heading region */
 
@@ -392,7 +393,7 @@
     padding: 20px;
     width: 100%;
     margin-bottom: 24px;
-    color: var(--cta-color);
+    color: #393939;
 }
 
 .single-yacht .content-enquire .enquire-form .form-input::placeholder,
@@ -446,9 +447,6 @@
         background:#fff;
         right: 60px;
     }
-    .single-yacht .yacht-single-banner .yacht-single-blueprint {
-        padding: 8px 0;
-    }
     .single-yacht .yacht-single-banner .yacht-single-heading {
         width: 590px;
     }
@@ -473,7 +471,7 @@
 @media (max-width: 1200px) {
     .single-yacht .yacht-single-banner .yacht-single-blueprint {
         padding: 8px 16px;
-        gap: 0;
+        gap: 12px;
     }
 }
 

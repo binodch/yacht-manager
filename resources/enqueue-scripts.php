@@ -59,8 +59,6 @@ function yacht_manager_enqueue_public_assets() {
         [],
         YACHT_MANAGER_VERSION
     );
-    
-    
     wp_enqueue_style(
         'yacht-manager-single-swiper-styl',
         'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
@@ -68,8 +66,14 @@ function yacht_manager_enqueue_public_assets() {
         YACHT_MANAGER_VERSION   
     );
     wp_enqueue_style(
-        'yacht-manager-yacht-gal;ery-styl',
+        'yacht-manager-yacht-gallery-styl',
         plugin_dir_url(__FILE__) . '../assets/css/yacht-single/gallery.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-yacht-viewmore-styl',
+        plugin_dir_url(__FILE__) . '../assets/css/yacht-single/view-more.css',
         [],
         YACHT_MANAGER_VERSION
     );
@@ -122,6 +126,12 @@ function yacht_manager_enqueue_public_assets() {
         [],
         YACHT_MANAGER_VERSION
     ); 
+    wp_enqueue_script(
+        'yacht-manager-single-viewmore',
+        plugin_dir_url(__FILE__) . '../assets/js/view-more.js',
+        [],
+        YACHT_MANAGER_VERSION
+    ); 
 }
 add_action('wp_enqueue_scripts', 'yacht_manager_enqueue_public_assets');
 
@@ -168,6 +178,9 @@ function yacht_manager_myplugin_dynamic_css() {
     $secondary_bg = get_option('ytm_secondary_bg', '#f9f9f9');
     $primary_line = get_option('ytm_primary_line', '#d5d5d5');
 
+    $primary_gradient = yacht_manager_hexToRgba($primary_bg, 0);
+    $secondary_gradient = yacht_manager_hexToRgba($primary_bg, 0.9);
+
     $custom_css_content = "
         :root {
             --primary-text: ". $primary_text .";
@@ -178,6 +191,8 @@ function yacht_manager_myplugin_dynamic_css() {
             --primary-bg: ". $primary_bg .";
             --secondary-bg: ". $secondary_bg .";
             --primary-line: ". $primary_line .";
+            --primary-gradient: ". $primary_gradient .";
+            --secondary-gradient: ". $secondary_gradient .";
         }";
     wp_add_inline_style('wp-color-picker', $custom_css_content);
     wp_add_inline_style('yacht-manager-global', $custom_css_content);

@@ -53,9 +53,11 @@ function render_featured_entity_block($attributes) {
                 $featured_entity .= '<div class="ytm-entity-item">';
                 $featured_entity .= '<div class="ytm-entity-list">';
                 $featured_entity .= '<div class="ytm-entity-image '. $img_class .'">';
-
+                
                 if( $thumbnail_id ) {
+                    $featured_entity .= '<a href="'. get_permalink($yacht_id) .'">';
                     $featured_entity .= wp_get_attachment_image($thumbnail_id, 'large');
+                    $featured_entity .= '</a>';
                 }
 
                 $featured_entity .= '</div>';
@@ -69,9 +71,13 @@ function render_featured_entity_block($attributes) {
                     }
 
                     if( isset($entity['name']) ) {
-                        $featured_entity .= '<div class="ytm-item-name">
-                            <h3>' . esc_html(ucwords(strtolower($entity['name']))) . '</h3>
-                        </div>';
+                        $featured_entity .= '<div class="ytm-item-name">';
+                        $featured_entity .= '<h3>'; 
+                        $featured_entity .= '<a class="ytm-item-entity" href="'. get_permalink($yacht_id) .'">';
+                        $featured_entity .= esc_html(ucwords(strtolower($entity['name'])));
+                        $featured_entity .= '</a>';
+                        $featured_entity .= '</h3>';
+                        $featured_entity .= '</div>';
                     }
 
                     if( $currency && $unit && $price ) {
