@@ -14,7 +14,7 @@ function yacht_manager_run_fetch_page() {
         });
     } ?>
     <div class="wrap">
-        <h2>Run Fetch</h2>
+        <h1>Run Fetch</h1>
         <p>Here you can run the fetch process.</p>
         <form method="post" action="">
             <input type="submit" name="run_fetch" value="Run Fetch" class="button button-primary" />

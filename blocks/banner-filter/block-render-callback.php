@@ -170,18 +170,38 @@ function render_banner_filter_block($attributes) {
             </div>
         </div>';
         
-        // $banner_filter .= '<button class="ytm-filter-toggle-btn" onclick="toggleFilter()"><span class="icon-search">Start your search Options</span></button>';
-
-        $banner_filter .= '<div class="ytm-filter-input">';
-        $banner_filter .= '<input type="text" class="ytm-field-input" id="ytm-filter-input"/>';
+        $banner_filter .= '<div class="ytm-input-filter">';
+            $banner_filter .= '<div class="ytm-filter-search">';
+                $banner_filter .= '<div class="ytm-search-input">';
+                $banner_filter .= '<form id="ytm-banner-filter-form" method="POST" action="'.$page_template.'">';
+                    $banner_filter .= '<input type="hidden" name="entity_banner_filter" id="entity-banner-filter">';
+                    // $banner_filter .= '<input type="hidden" name="destination" id="destination">';
+                    $banner_filter .= '<select class="ytm-field-select" name="destination" id="destination" onchange="submitDestination();">';
+                        $banner_filter .= '<option class="select-item" value="">Select your search</option>';
+                        $suggestion = yacht_manager_curl_destinations();
+                        foreach( $suggestion as $sgg ) {
+                            $banner_filter .= '<option class="select-item" value="'. $sgg .'">';
+                            $banner_filter .= $sgg;
+                            $banner_filter .= '</option>';
+                        }
+                    $banner_filter .= '</select>';
+                $banner_filter .= '</form>';
+                $banner_filter .= '</div>';
+            $banner_filter .= '</div>';
         $banner_filter .= '</div>';
 
         $banner_filter .= '</section>';
 
     
     $banner_filter .= '<script>
-    function toggleFilter() {
-        document.querySelector(".filter-section").classList.toggle("open");
+     function submitDestination() {
+        let selectElement = document.getElementById("destination");
+        let selectedValue = selectElement.value;
+        
+        if (selectedValue) {
+            document.getElementById("entity-banner-filter").value = selectedValue;
+            document.getElementById("ytm-banner-filter-form").submit();
+        }
     }</script>';
     
     return $banner_filter;

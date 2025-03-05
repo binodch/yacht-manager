@@ -117,4 +117,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
     syncDropdownWithHiddenInput("yacht-manufacture-from", "ytm-manufacture-from");
     syncDropdownWithHiddenInput("yacht-manufacture-to", "ytm-manufacture-to");
+
 });

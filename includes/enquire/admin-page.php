@@ -23,10 +23,12 @@ function yacht_manager_display_enquiries() {
     $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
 
     // Display the enquiries in a table
-    echo '<div class="wrap"><h1>Yacht Enquiries</h1>';
+    echo '<div class="wrap">';
+    echo '<h1>Yacht Enquiries</h1>';
+    echo '<p>Here you can export yacht enquiries.</p>';
     echo '<form method="post" action="">
             <input type="hidden" name="export_csv" value="1">
-            <button type="submit" class="button button-primary">Export CSV</button>
+            <input type="submit" name="run_export" class="button button-primary" value="Export CSV">
           </form>';
     echo '<table class="wp-list-table widefat fixed striped"><thead><tr>';
     echo '<th>ID</th><th>Yacht</th><th>Name</th><th>Phone</th><th>Email</th><th>Message</th><th>Date</th>';
@@ -45,7 +47,8 @@ function yacht_manager_display_enquiries() {
               </tr>";
     }
 
-    echo '</tbody></table></div>';
+    echo '</tbody></table>';
+    echo '</div>';
 
     // Handle CSV export
     if (isset($_POST['export_csv'])) {
