@@ -47,10 +47,10 @@ $yacht_zones = get_post_meta($yacht_id, 'yacht_zones', true);
 $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
 
 <section class="single-yacht primary-bg">
-    <div class="yacht-single-banner position-relative d-flex flex-column-reverse flex-xl-row">
+    <div class="yacht-single-banner position-relative d-flex flex-column-reverse flex-lg-row">
         <div class="yacht-single-heading">
             <div class="yacht-heading-main">
-                <div class="yacht-heading-main-info d-flex flex-row flex-xl-column">
+                <div class="yacht-heading-main-info d-flex flex-row flex-lg-column">
                     <div class="yacht-heading-builts d-flex flex-column primary-text">
                         <div class="single-about secondary-text">
                             Yachts for Charter
@@ -59,9 +59,9 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                         <div class="built-items">
                             <div class="builts-length"><?php echo $yacht_length_in; ?> / <?php echo $yacht_length_m; ?></div>
                             <span class="single-border"></span>
-                            <div class="builts-year"><?php echo $yacht_built_year; ?></div>
-                            <span class="single-border"></span>
                             <div class="builts-make"><?php echo $yacht_make; ?></div>
+                            <span class="single-border"></span>
+                            <div class="builts-year"><?php echo $yacht_built_year; ?></div>
                         </div>
                     </div>
                     <?php 
