@@ -1,5 +1,6 @@
 <?php
-create_yacht_manager_table();
+// Create the yacht_manager_enquire table if it doesn't exist
+// create_yacht_manager_table();
 
 function create_yacht_manager_table() {
     global $wpdb;

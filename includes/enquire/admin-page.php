@@ -1,22 +1,28 @@
 <?php
+// Add submenu to the admin menu
 function yacht_manager_admin_menu() {
     add_submenu_page(
-        'yacht-manager',
-        'Yacht Enquiries',
-        'Yacht Enquiries',
-        'manage_options',
-        'enquire-form',
-        'yacht_manager_display_enquiries'
+        'yacht-manager',             // Parent slug (top-level menu)
+        'Yacht Enquiries',           // Page title
+        'Yacht Enquiries',           // Menu title
+        'manage_options',            // Capability required
+        'enquire-form',              // Menu slug
+        'yacht_manager_display_enquiries' // Callback function for displaying content
     );
 }
 add_action('admin_menu', 'yacht_manager_admin_menu');
 
+create_yacht_manager_table();
+
+// Display yacht enquiries in the admin panel
 function yacht_manager_display_enquiries() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'yacht_manager_enquire';
 
+    // Fetch the enquiries from the database
     $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_at DESC");
 
+    // Display the enquiries in a table
     echo '<div class="wrap"><h1>Yacht Enquiries</h1>';
     echo '<form method="post" action="">
             <input type="hidden" name="export_csv" value="1">
@@ -26,6 +32,7 @@ function yacht_manager_display_enquiries() {
     echo '<th>ID</th><th>Yacht</th><th>Name</th><th>Phone</th><th>Email</th><th>Message</th><th>Date</th>';
     echo '</tr></thead><tbody>';
 
+    $results = array_reverse($results);
     foreach ($results as $row) {
         echo "<tr>
                 <td>{$row->id}</td>
@@ -40,6 +47,7 @@ function yacht_manager_display_enquiries() {
 
     echo '</tbody></table></div>';
 
+    // Handle CSV export
     if (isset($_POST['export_csv'])) {
         yacht_manager_export_csv();
     }
