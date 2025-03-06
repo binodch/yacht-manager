@@ -98,5 +98,45 @@ function yacht_manager_register_custom_block() {
             ),
         ),
     ));
+    
+    // dropfilter block
+    wp_enqueue_style(
+        'yacht-manager-dropfilter-block-editor',
+        plugin_dir_url(__FILE__) . 'dropfilter-option/dropfilter-editor.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-dropfilter-block-styl',
+        plugin_dir_url(__FILE__) . 'dropfilter-option/dropfilter-block.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-dropfilter-block-filter-styl',
+        plugin_dir_url(__FILE__) . 'dropfilter-option/dropfilter-section.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_script(
+        'yacht-manager-dropfilter-block-editor',
+        plugin_dir_url(__FILE__) . 'dropfilter-option/dropfilter-block.js',
+        array('wp-blocks', 'wp-editor', 'wp-components', 'wp-element'),
+        YACHT_MANAGER_VERSION
+    );
+    register_block_type('custom/dropfilter-option-block', array(
+        'editor_script' => 'yacht-manager-dropfilter-option-block',
+        'render_callback' => 'render_dropfilter_block',
+        'attributes' => array(
+            'title' => array(
+                'type' => 'string',
+                'default' => 'Enter title here...'
+            ),
+            'description' => array(
+                'type' => 'string',
+                'default' => 'Enter description here...'
+            ),
+        ),
+    ));
 }
 add_action('init', 'yacht_manager_register_custom_block');
