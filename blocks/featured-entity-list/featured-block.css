@@ -12,11 +12,11 @@
 
 .ytm-section-featured-entity .ytm-col-content .ytm-content-title {
   font-weight: 500;
-  line-height: 81px;
+  line-height: 1;
   letter-spacing: -0.011em;
   text-align: center;
   margin-bottom: 0;
-  font-size: 54px;
+  font-size: 32px;
 }
 
 .ytm-section-featured-entity .ytm-col-content .ytm-content-desc {
@@ -25,16 +25,6 @@
   font-size: 18px;
   line-height: 21.6px;
   letter-spacing: -0.011em;
-}
-
-@media (max-width: 1023.9px) and (min-width: 360px) {
-  .ytm-section-featured-entity .ytm-col-content {
-    flex-direction: column;
-  }
-  .ytm-section-featured-entity .ytm-col-content .ytm-content-desc {
-    width: 100%;
-    text-align: center;
-  }
 }
 
 .ytm-section-featured-entity .ytm-featured-entity-wrap {
@@ -68,15 +58,6 @@
   width: 100%;
   overflow: hidden;
   border-radius: 9px;
-}
-
-@media (max-width: 2000px) and (min-width: 1200px) {
-  .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-image {
-      aspect-ratio: 330 / 330;
-  }
-  .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-image.image-large {
-      aspect-ratio: 683 / 330;
-  }
 }
 
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-image img {
@@ -141,12 +122,6 @@
   gap: 10px;
 }
 
-@media (min-width:768px) {
-  .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-meta {
-    max-width: 306px;
-  }
-}
-
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-meta .ytm-meta-item {
   border: 1px solid #dfdfdf;
   border-radius: 8px;
@@ -202,3 +177,34 @@
   background-repeat: no-repeat;
 }
 /* span meta icon */
+
+@media (min-width:768px) {
+  .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-meta {
+    max-width: 306px;
+  }
+  .ytm-section-featured-entity .ytm-col-content .ytm-content-title {
+    font-size: 54px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .ytm-section-featured-entity .ytm-col-content {
+    flex-direction: column;
+  }
+  .ytm-section-featured-entity .ytm-col-content .ytm-content-desc {
+    width: 100%;
+    text-align: center;
+  }
+  .ytm-section-featured-entity .ytm-col-content .ytm-content-title {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 2000px) and (min-width: 1200px) {
+  .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-image {
+      aspect-ratio: 330 / 330;
+  }
+  .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-image.image-large {
+      aspect-ratio: 683 / 330;
+  }
+}

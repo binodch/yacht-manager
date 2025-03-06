@@ -107,6 +107,7 @@ if( isset($_POST['entity_banner_filter']) ) {
         ];
     }
 } else {
+    $selected_destination = '';
 }
 
 // WP_Query Arguments

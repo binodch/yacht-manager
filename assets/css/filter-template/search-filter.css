@@ -279,3 +279,9 @@
     width: 100%;
 }
 /* submit button */
+
+@media (max-width: 768px) {
+    .ytm-filter-main .ytm-filter-wrap .filter-main {
+        margin-bottom: 12px;
+    }
+}

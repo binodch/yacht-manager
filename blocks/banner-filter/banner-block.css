@@ -10,7 +10,7 @@
 .ytm-section-banner .section-banner__title {
     font-weight: 400;
     font-size: 128.2px;
-    line-height: 192.3px;
+    line-height: 1.5;
     letter-spacing: -0.011em;
     text-align: center;
     margin: 0 auto;
@@ -20,7 +20,7 @@
 .ytm-section-banner .section-heading__btn {
     font-weight: 500;
     font-size: 18.19px;
-    line-height: 27.28px;
+    line-height: 0.27;
     letter-spacing: -0.011em;
 }
 
@@ -79,10 +79,6 @@
     z-index: 5;
 }
 
-.ytm-field-select .select-item {
-    /* background-color: #f00; */
-}
-
 .ytm-section-banner .container {
     z-index: 9;
     position: relative;
@@ -97,10 +93,14 @@
 }
 
 @media (max-width:768px) {
+    .ytm-section-banner {
+        justify-content: flex-start;
+    }
     .ytm-section-banner .section-banner__title {
         font-size: 62px;
-        line-height: 43.4px;
+        line-height: 1;
         width: 292px;
+        margin-top: 40px;
     }
 
     .ytm-section-banner .section-heading__btn .btn {
