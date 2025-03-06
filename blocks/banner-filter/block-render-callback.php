@@ -40,7 +40,7 @@ function render_banner_filter_block($attributes) {
 		// filter section
 		$banner_filter .= '<div class="ytm-filter-wrap">
             <div class="filter-section">
-                <form id="ytm-banner-filter-form" method="POST" action="'.$page_template.'">
+                <form id="ytm-banner-filter-form" class="ytm-select-filter-form" method="POST" action="'.$page_template.'">
                     <div class="filter-wrap">
                         <!-- Destination -->
                         <div class="filter-element filter-destination">

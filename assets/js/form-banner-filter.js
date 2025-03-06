@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Prevent form submission
-    let form = document.querySelector('form');
-    if (form) {
-        form.addEventListener('submit', function (event) {
+    let bannerForm = document.querySelector('.ytm-select-filter-form');
+    if (bannerForm) {
+        bannerForm.addEventListener('submit', function (event) {
             event.preventDefault();
         });
     }

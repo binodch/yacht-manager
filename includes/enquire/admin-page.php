@@ -30,7 +30,7 @@ function yacht_manager_display_enquiries() {
             <input type="hidden" name="export_csv" value="1">
             <input type="submit" name="run_export" class="button button-primary" value="Export CSV">
           </form>';
-    echo '<table class="wp-list-table widefat fixed striped"><thead><tr>';
+    echo '<table class="wp-list-table widefat fixed striped" style="display:none;"><thead><tr>';
     echo '<th>ID</th><th>Yacht</th><th>Name</th><th>Phone</th><th>Email</th><th>Message</th><th>Date</th>';
     echo '</tr></thead><tbody>';
 

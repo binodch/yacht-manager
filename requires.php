@@ -55,7 +55,7 @@ require_once plugin_dir_path(__FILE__) . 'includes/api/media/image.php';
 require_once plugin_dir_path(__FILE__) . 'includes/hash/signature.php';
 
 // find yacht page template
-require_once plugin_dir_path(__FILE__) . 'page-template/register-page-template.php';
+require_once plugin_dir_path(__FILE__) . 'templates/register-page-template.php';
 
 // register custom block
 require_once plugin_dir_path(__FILE__) . 'blocks/register-custom-blocks.php';
@@ -95,12 +95,3 @@ require_once plugin_dir_path(__FILE__) . 'includes/enquire/enquire-submit.php';
 
 // enquire form export
 require_once plugin_dir_path(__FILE__) . 'includes/enquire/enquire-export.php';
-
-
-if( !function_exists('pr') ) {
-    function pr($arr) {
-        echo '<pre>';
-        print_r($arr);
-        echo '</pre>';
-    }
-}

@@ -108,6 +108,12 @@
 .filter-section .filter-wrap .filter-element.filter-destination .dropdown-menu .dropdown-item:hover {
     background-color: var(--primary-color);
 }
+
+.filter-section .filter-wrap .filter-element.filter-destination .form-element-destination button {
+    width: 152px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 /* select destination */
 
 /* guests dropdown */

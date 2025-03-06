@@ -98,7 +98,7 @@ function yacht_manager_enqueue_public_assets() {
     ); 
     wp_enqueue_script(
         'yacht-manager-homepagefilter',
-        plugin_dir_url(__FILE__) . '../assets/js/form-input-filter.js',
+        plugin_dir_url(__FILE__) . '../assets/js/form-banner-filter.js',
         [],
         YACHT_MANAGER_VERSION
     ); 
