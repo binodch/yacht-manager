@@ -26,6 +26,11 @@
     border-radius: 18px;
     width: 100%;
     overflow: hidden;
+    aspect-ratio: 307/254;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image img {
+    height: 100%;
 }
 
 /* item content */
