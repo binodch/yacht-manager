@@ -63,9 +63,6 @@ require_once plugin_dir_path(__FILE__) . 'blocks/register-custom-blocks.php';
 // render callback featured.entity.list block
 require_once plugin_dir_path(__FILE__) . 'blocks/featured-entity-list/block-render-callback.php';
 
-// render callback block.filter block
-require_once plugin_dir_path(__FILE__) . 'blocks/banner-filter/block-render-callback.php';
-
 // render callback dropfilter block
 require_once plugin_dir_path(__FILE__) . 'blocks/dropfilter-option/block-render-callback.php';
 
