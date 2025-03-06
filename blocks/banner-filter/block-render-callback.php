@@ -169,29 +169,34 @@ function render_banner_filter_block($attributes) {
                 </form>
             </div>
         </div>';
-        
-        $banner_filter .= '<div class="ytm-input-filter">';
-            $banner_filter .= '<div class="ytm-filter-search">';
-                $banner_filter .= '<div class="ytm-search-input">';
-                $banner_filter .= '<form id="ytm-banner-filter-form" method="POST" action="'.$page_template.'">';
-                    $banner_filter .= '<input type="hidden" name="entity_banner_filter" id="entity-banner-filter">';
-                    // $banner_filter .= '<input type="hidden" name="destination" id="destination">';
-                    $banner_filter .= '<select class="ytm-field-select" name="destination" id="destination" onchange="submitDestination();">';
-                        $banner_filter .= '<option class="select-item" value="">Select your search</option>';
-                        $suggestion = yacht_manager_curl_destinations();
-                        foreach( $suggestion as $sgg ) {
-                            $banner_filter .= '<option class="select-item" value="'. $sgg .'">';
-                            $banner_filter .= $sgg;
-                            $banner_filter .= '</option>';
-                        }
-                    $banner_filter .= '</select>';
+
+        $banner_filter .= '
+                <form id="ytm-banner-mobile-form" method="POST" action="'.$page_template.'">
+                    <div class="filter-element filter-destination filter-section-mobile">
+                        <div class="dropdown form-element-destination">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="destinationDropdownMobile" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="field-search"><span>Start your search</span></div>
+                            </button>';
+                            
+                            if( $destinations && is_array($destinations) && count($destinations)>0 ) {
+                                $banner_filter .= '<ul class="dropdown-menu" aria-labelledby="destinationDropdownMobile">';
+                                $banner_filter .= '<div class="dropdown-text">Popular Destinations</div>';
+                                    foreach ($destinations as $destination) {
+                                        $banner_filter .= '<li>
+                                            <a class="dropdown-item" href="#">
+                                                '. $destination .'
+                                            </a>
+                                        </li>';
+                                    }
+                                $banner_filter .= '</ul>';
+                            }
+
+                        $banner_filter .= '</div>
+                    </div>';
+                    $banner_filter .= '<input type="hidden" name="destination" id="mobile-destination" value="">';
                 $banner_filter .= '</form>';
-                $banner_filter .= '</div>';
-            $banner_filter .= '</div>';
-        $banner_filter .= '</div>';
 
         $banner_filter .= '</section>';
-
     
     $banner_filter .= '<script>
      function submitDestination() {

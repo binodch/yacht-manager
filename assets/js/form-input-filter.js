@@ -14,9 +14,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             let destination = this.textContent.trim();
             let destinationDropdown = document.getElementById('destinationDropdown');
+            let destinationDropdownMobile = document.getElementById('destinationDropdownMobile');
             let destinationInput = document.getElementById('banner-destination');
 
             if (destinationDropdown) destinationDropdown.textContent = destination;
+            if (destinationDropdownMobile) destinationDropdown.textContent = destination;
             if (destinationInput) destinationInput.value = destination;
 
             // Remove 'active' class from all dropdown items
@@ -117,5 +119,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     syncDropdownWithHiddenInput("yacht-manufacture-from", "ytm-manufacture-from");
     syncDropdownWithHiddenInput("yacht-manufacture-to", "ytm-manufacture-to");
+
+    
+    const dropdownItems = document.querySelectorAll(".filter-section-mobile .dropdown-item");
+    const hiddenInput = document.getElementById("mobile-destination");
+    const mobileForm = document.getElementById("ytm-banner-mobile-form");
+    const dropdownButton = document.getElementById("destinationDropdownMobile");
+
+    dropdownItems.forEach(item => {
+        item.addEventListener("click", function (event) {
+            event.preventDefault(); // Prevent default link behavior
+
+            const selectedText = this.textContent.trim();
+            
+            // Update button text
+            dropdownButton.textContent = selectedText;
+            
+            // Update hidden input value
+            hiddenInput.value = selectedText;
+
+            // Submit the form
+            mobileForm.submit();
+        });
+    });
+    
 
 });
