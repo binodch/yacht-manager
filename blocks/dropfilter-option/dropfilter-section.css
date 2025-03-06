@@ -41,7 +41,7 @@
 }
 
 .filter-section .filter-wrap .filter-element .form-label {
-    color: #afafaf;
+    /* color: #afafaf; */
     font-weight: 500;
     line-height: 1.5;
     letter-spacing: -0.154px;
@@ -99,11 +99,11 @@
 }
 
 .filter-section .filter-wrap .filter-element.filter-destination .dropdown-menu .dropdown-item.active {
-    background-color: var(--primary-color);
+    background-color: var(--primary-text);
 }
 
 .filter-section .filter-wrap .filter-element.filter-destination .dropdown-menu .dropdown-item:hover {
-    background-color: var(--primary-color);
+    background-color: var(--primary-text);
 }
 
 .filter-section .filter-wrap .filter-element.filter-destination .form-element-destination button {
@@ -173,11 +173,12 @@
 }
 /* guests dropdown */
 
-.filter-section .filter-wrap .filter-element button, .filter-section .filter-wrap .filter-element input[type="text"] {
+.filter-section .filter-wrap .filter-element button, 
+.filter-section .filter-wrap .filter-element input[type="text"] {
+    color: var(--primary-text);
     padding: 3.5px 0;
     background: none;
     border: none;
-    color: #1a1a1a;
     font-weight: 500;
     line-height: 1.5;
     letter-spacing: -0.198px;
@@ -234,7 +235,7 @@
 /* yacht type */
 
 .filter-section .filter-wrap .filter-element input[type="text"]::placeholder {
-    color: #1a1a1a;
+    color: var(--primary-text);
 }
 
 .filter-section .filter-wrap .button-wrap {
@@ -248,9 +249,9 @@
 .filter-section .filter-wrap .button-wrap .btn {
     width: 100%;
     border-radius: 1136.65px;
-    border: 1.14px solid rgba(185, 234, 255, 0.2);
-    background-color: var(--primary-color);
-    color: #1d2b46;
+    border: 1.14px solid var(--btn-gradient);
+    background-color: var(--cta-color);
+    color: var(--cta-text);
     padding: 12px 28px;
 }
 

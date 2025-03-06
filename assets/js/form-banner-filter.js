@@ -1,11 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Prevent form submission
-    let bannerForm = document.querySelector('.ytm-select-filter-form');
-    if (bannerForm) {
-        bannerForm.addEventListener('submit', function (event) {
-            event.preventDefault();
-        });
-    }
 
     /* Destination Dropdown */
     document.querySelectorAll('.form-element-destination .dropdown-item').forEach(function (item) {
@@ -119,7 +112,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     syncDropdownWithHiddenInput("yacht-manufacture-from", "ytm-manufacture-from");
     syncDropdownWithHiddenInput("yacht-manufacture-to", "ytm-manufacture-to");
-
     
     const dropdownItems = document.querySelectorAll(".filter-section-mobile .dropdown-item");
     const hiddenInput = document.getElementById("mobile-destination");
@@ -143,5 +135,4 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
     
-
 });

@@ -10,10 +10,10 @@ function render_featured_entity_block($attributes) {
         if ( !empty($title) ||  !empty($description) ) {
             $featured_entity .= '<div class="ytm-col-content">';
                 if ($title != '') {
-                    $featured_entity .= '<h2 class="ytm-content-title">' . $title . '</h2>';
+                    $featured_entity .= '<h2 class="ytm-content-title primary-text">' . $title . '</h2>';
                 }
                 if( $description != '' ) {
-                    $featured_entity .= '<div class="ytm-content-desc">'. wp_kses_post(nl2br($description)) . '</div>';
+                    $featured_entity .= '<div class="ytm-content-desc secondary-text">'. wp_kses_post(nl2br($description)) . '</div>';
                 }
             $featured_entity .= '</div>';
         }
@@ -82,7 +82,7 @@ function render_featured_entity_block($attributes) {
 
                     if( $currency && $unit && $price ) {
                         $featured_entity .= '<div class="ytm-item-cost">
-                            <p>'. ucfirst(strtolower($unit)) .': <span>From '. $currency . $price .'</span></p>
+                            <p class="primary-text">'. ucfirst(strtolower($unit)) .': <span class="secondary-text">From '. $currency . $price .'</span></p>
                         </div>';
                     }
 
@@ -90,7 +90,7 @@ function render_featured_entity_block($attributes) {
 
                     if( $built_year ) {
                         $featured_entity .= '<div class="ytm-meta-item meta-builtyear">
-                            <span>' . $built_year . '</span>
+                            <span class="primary-text">' . $built_year . '</span>
                         </div>';
                     }
 
@@ -99,21 +99,21 @@ function render_featured_entity_block($attributes) {
                         $unit_m = $unit_ft ? round($unit_ft/3.281, 2) : '';
                         $unit_length = $unit_m ? $unit_m.'m' . ' (' . $unit_ft . 'ft)' : '-';
                         $featured_entity .= '<div class="ytm-meta-item meta-length">
-                            <span>' . $unit_length . '</span>
+                            <span class="primary-text">' . $unit_length . '</span>
                         </div>';
                     }
 
                     if( isset($entity['cabins']) ) {
                         $cabins = $entity['cabins'] ? $entity['cabins'] : '-';
                         $featured_entity .= '<div class="ytm-meta-item meta-cabins">
-                            <span>' . $cabins . '</span>
+                            <span class="primary-text">' . $cabins . '</span>
                         </div>';
                     }
 
                     if( isset($entity['make']) ) {
                         $make = $entity['make'] ? $entity['make'] : '-';
                         $featured_entity .= '<div class="ytm-meta-item meta-make">
-                            <span>' . $make . '</span>
+                            <span class="primary-text">' . $make . '</span>
                         </div>';
                     }
                         

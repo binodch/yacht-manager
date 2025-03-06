@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const filterForm = document.querySelector('.ytm-filter-wrap');
+    const filterForm = document.querySelector('.ytm-dropfilter-wrap');
     if (filterForm) {
         let selectedStartDate = null;
         let selectedEndDate = null;
