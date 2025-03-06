@@ -10,9 +10,8 @@ function yacht_manager_custom_page_template($templates) {
 add_filter('template_include', 'yacht_manager_load_page_template');
 function yacht_manager_load_page_template($template) {
     if (is_page()) {
-        global $post;
-        $selected_template = get_post_meta($post->ID, '_wp_page_template', true);
-        if ($selected_template === 'find-yacht.php') {
+        $meta = get_page_template_slug(get_queried_object_id());
+        if ($meta && $meta === 'find-yacht.php') {
             return plugin_dir_path(__FILE__) . 'find-yacht.php';
         }
     }
