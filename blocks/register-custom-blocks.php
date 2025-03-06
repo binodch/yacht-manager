@@ -59,46 +59,6 @@ function yacht_manager_register_custom_block() {
         ),
     ));
     
-    // banner filter block
-    wp_enqueue_style(
-        'yacht-manager-banner-block-editor',
-        plugin_dir_url(__FILE__) . 'banner-filter/banner-editor.css',
-        [],
-        YACHT_MANAGER_VERSION
-    );
-    wp_enqueue_style(
-        'yacht-manager-banner-filter-block-styl',
-        plugin_dir_url(__FILE__) . 'banner-filter/banner-block.css',
-        [],
-        YACHT_MANAGER_VERSION
-    );
-    wp_enqueue_style(
-        'yacht-manager-banner-filter-block-filter-styl',
-        plugin_dir_url(__FILE__) . 'banner-filter/filter-section.css',
-        [],
-        YACHT_MANAGER_VERSION
-    );
-    wp_enqueue_script(
-        'yacht-manager-banner-filter-block-editor',
-        plugin_dir_url(__FILE__) . 'banner-filter/banner-block.js',
-        array('wp-blocks', 'wp-editor', 'wp-components', 'wp-element'),
-        YACHT_MANAGER_VERSION
-    );
-    register_block_type('custom/banner-filter-block', array(
-        'editor_script' => 'yacht-manager-banner-filter-block-editor',
-        'render_callback' => 'render_banner_filter_block',
-        'attributes' => array(
-            'title' => array(
-                'type' => 'string',
-                'default' => 'Enter title here...'
-            ),
-            'description' => array(
-                'type' => 'string',
-                'default' => 'Enter description here...'
-            ),
-        ),
-    ));
-    
     // dropfilter block
     wp_enqueue_style(
         'yacht-manager-dropfilter-block-editor',
