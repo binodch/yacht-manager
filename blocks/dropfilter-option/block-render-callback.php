@@ -1,10 +1,6 @@
 <?php
 // dropfilter render function
 function render_dropfilter_block($attributes) {
-    $title = (isset($attributes['title']) && !empty($attributes['title'])) ? esc_html($attributes['title']) : '';
-    $image_url = (isset($attributes['imageUrl']) && !empty($attributes['imageUrl'])) ? esc_url($attributes['imageUrl']) : '';
-    $btn_text = (isset($attributes['buttonText']) && !empty($attributes['buttonText'])) ? esc_html($attributes['buttonText']) : '';
-    $btn_url = (isset($attributes['buttonUrl']) && !empty($attributes['buttonUrl'])) ? esc_url($attributes['buttonUrl']) : '';
 
     $page_template = yacht_manager_template_assigned('find-yacht.php');
     $btn_status = $page_template ? 'isfilter' : 'nofilter';
@@ -12,33 +8,12 @@ function render_dropfilter_block($attributes) {
     $destinations = yacht_manager_curl_destinations();
     $yacht_types = yacht_manager_curl_yacht_types();
 
+    $banner_filters = '';
+
     $banner_filter = '<section id="ytm-banner-filter" class="section ytm-section-dropfilter p-medium">';
-		$banner_filter .= '<div class="container">
-			<div class="section-heading text-center">';
-                
-                if( $title != '' ) {
-                    $banner_filter .= '<h1 class="section-banner__title">';
-                    $banner_filter .= esc_html($title);
-                    $banner_filter .= '</h1>';
-                }
-                
-                if( $btn_text != '' && $btn_url != '' ) {
-                    $banner_filter .= '<div class="section-heading__btn btn-wrapper d-flex justify-content-center">';
-                    $banner_filter .= '<a href="'. esc_url($btn_url) .'" class="section-banner__btn btn btn-primary">';
-                    $banner_filter .= esc_html($btn_text);
-                    $banner_filter .= '</a>';
-                    $banner_filter .= '</div>';
-                }
-
-            $banner_filter .= '</div>
-            </div>';
-
-        $banner_filter .= '<div class="background-image">
-                <img fetchpriority="high" decoding="async" width="1396" height="854" src="' . $image_url .'" class="attachment-background-image size-background-image" alt="" loading="eager">
-            </div>';
-		
+				
 		// filter section
-		$banner_filter .= '<div class="ytm-filter-wrap">
+		$banner_filter .= '<div class="ytm-dropfilter-wrap">
             <div class="filter-section">
                 <form id="ytm-banner-filter-form" class="ytm-select-filter-form" method="POST" action="'.$page_template.'">
                     <div class="filter-wrap">
@@ -170,33 +145,32 @@ function render_dropfilter_block($attributes) {
             </div>
         </div>';
 
-        $banner_filter .= '
-                <form id="ytm-banner-mobile-form" method="POST" action="'.$page_template.'">
-                    <div class="filter-element filter-destination filter-section-mobile">
-                        <div class="dropdown form-element-destination">
-                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="destinationDropdownMobile" data-bs-toggle="dropdown" aria-expanded="false">
-                                <div class="field-search"><span>Start your search</span></div>
-                            </button>';
-                            
-                            if( $destinations && is_array($destinations) && count($destinations)>0 ) {
-                                $banner_filter .= '<ul class="dropdown-menu" aria-labelledby="destinationDropdownMobile">';
-                                $banner_filter .= '<div class="dropdown-text">Popular Destinations</div>';
-                                    foreach ($destinations as $destination) {
-                                        $banner_filter .= '<li>
-                                            <a class="dropdown-item" href="#">
-                                                '. $destination .'
-                                            </a>
-                                        </li>';
-                                    }
-                                $banner_filter .= '</ul>';
+        $banner_filter .= '<div class="filter-element filter-destination filter-section-mobile">';
+            $banner_filter .= '<form id="ytm-banner-mobile-form" method="POST" action="'.$page_template.'">';
+                $banner_filter .= '<div class="dropdown form-element-destination">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="destinationDropdownMobile" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="field-search"><span>Start your search</span></div>
+                    </button>';
+                        
+                    if( $destinations && is_array($destinations) && count($destinations)>0 ) {
+                        $banner_filter .= '<ul class="dropdown-menu" aria-labelledby="destinationDropdownMobile">';
+                        $banner_filter .= '<div class="dropdown-text">Popular Destinations</div>';
+                            foreach ($destinations as $destination) {
+                                $banner_filter .= '<li>
+                                    <a class="dropdown-item" href="#">
+                                        '. $destination .'
+                                    </a>
+                                </li>';
                             }
+                        $banner_filter .= '</ul>';
+                    }
 
-                        $banner_filter .= '</div>
-                    </div>';
-                    $banner_filter .= '<input type="hidden" name="destination" id="mobile-destination" value="">';
-                $banner_filter .= '</form>';
+                $banner_filter .= '</div>';
+                $banner_filter .= '<input type="hidden" name="destination" id="mobile-destination" value="">';
+            $banner_filter .= '</form>';
+        $banner_filter .= '</div>';
 
-        $banner_filter .= '</section>';
+    $banner_filter .= '</section>';
     
     $banner_filter .= '<script>
      function submitDestination() {

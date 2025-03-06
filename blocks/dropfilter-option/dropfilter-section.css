@@ -1,11 +1,8 @@
-.filter-section {
+.ytm-section-dropfilter .filter-section {
     background-color: #fff;
-    position: absolute;
-    bottom: -50px;
     min-width: 1107px;
     max-width: 1107px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: 0 auto;
     border-radius: 18px;
     box-shadow: 2px 3px 58.7px 2px rgba(0, 0, 0, 0.25);
     z-index: 9;
@@ -296,7 +293,7 @@
 
 /* media query */
 @media (max-width: 1107px) {
-    .filter-section {
+    .ytm-dropfilter-wrap {
         display: none;
     }
 
@@ -315,7 +312,7 @@
     }
 
     .filter-section-mobile {
-        width: 310px;
+        width: 90%;
     }
 
     .filter-section .filter-wrap .vertical-line {
