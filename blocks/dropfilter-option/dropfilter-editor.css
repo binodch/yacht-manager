@@ -1,30 +1,7 @@
-.custom-dropfilter-block {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    padding: 20px 0;
+.custom-dropfilter-block .dropfilter-label {
+    margin: 16px 0;
 }
 
-.custom-dropfilter-block .banner-title-wrapper input[type="text"],
-.custom-dropfilter-block .banner-button-title input[type="text"],
-.custom-dropfilter-block .banner-button-url input[type="text"] {
-    width: 60%;
-}
-
-.custom-dropfilter-block .block-banner-label {
-    display: flex;
-    flex-direction: column;
-}
-
-.custom-dropfilter-block .banner-image-wrap {
-    display: flex;
-    gap: 16px;
-    flex-direction: column;
-}
-
-
-.custom-dropfilter-block .banner-image-wrap button[type="button"] {
-    width: max-content;
-    font-size: 14px;
-    padding: 4px 8px;
+.custom-dropfilter-block .dropfilter-text {
+    margin: 0 auto;
 }
