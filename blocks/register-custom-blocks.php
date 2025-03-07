@@ -113,8 +113,20 @@ function yacht_manager_register_custom_block() {
         YACHT_MANAGER_VERSION
     );
     wp_enqueue_style(
-        'yacht-manager-gridsearch-block-filter-styl',
-        plugin_dir_url(__FILE__) . 'grid-search/grid-section.css',
+        'yacht-manager-gridsearch-block-search-filter-styl',
+        plugin_dir_url(__FILE__) . 'grid-search/css/search-filter.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-gridsearch-block-advanced-filter-styl',
+        plugin_dir_url(__FILE__) . 'grid-search/css/advanced-filter.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-gridsearch-block-filter-results-styl',
+        plugin_dir_url(__FILE__) . 'grid-search/css/filter-results.css',
         [],
         YACHT_MANAGER_VERSION
     );
