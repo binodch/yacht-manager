@@ -19,7 +19,7 @@ function render_dropfilter_block($attributes) {
                     <div class="filter-wrap">
                         <!-- Destination -->
                         <div class="filter-element filter-destination">
-                            <span for="destination" class="form-label">Where</span>
+                            <span for="destination" class="form-label secondary-text">Where</span>
                             <div class="dropdown form-element-destination">
                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     Search destination
@@ -43,19 +43,19 @@ function render_dropfilter_block($attributes) {
                         <span class="vertical-line"></span>
                         <!-- Start Date -->
                         <div class="filter-element filter-checkin filter-mobile">
-                            <label for="start-date" class="form-label">Check in</label>
+                            <label for="start-date" class="form-label secondary-text">Check in</label>
                             <input type="text" id="startDate" name="start-date" class="form-control flatpickr-input" placeholder="Add Dates" readonly="readonly">
                         </div>
                         <span class="vertical-line"></span>
                         <!-- End Date -->
                         <div class="filter-element filter-checkout filter-mobile">
-                            <label for="end-date" class="form-label">Check out</label>
+                            <label for="end-date" class="form-label secondary-text">Check out</label>
                             <input type="text" id="endDate" name="end-date" class="form-control flatpickr-input" placeholder="Add Dates" readonly="readonly">
                         </div>
                         <span class="vertical-line"></span>
                         <!-- Number of Guests -->
                         <div class="filter-element filter-guests filter-mobile">
-                            <span for="guests" class="form-label">Where</span>
+                            <span for="guests" class="form-label secondary-text">Where</span>
                             <!-- Guest Dropdown -->
                             <div class="dropdown">
                                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="customerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -109,7 +109,7 @@ function render_dropfilter_block($attributes) {
                         <span class="vertical-line"></span>
                         <!-- Select Yacht -->
                         <div class="filter-element filter-yacht filter-mobile">
-                            <span for="yacht" class="form-label">Yacht type</span>
+                            <span for="yacht" class="form-label secondary-text">Yacht type</span>
                             <div class="dropdown form-element-yacht">
                                 <button class="btn btn-outline-secondary dropdown-toggle text-start" type="button" id="yachtDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     Select a yacht

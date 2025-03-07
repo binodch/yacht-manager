@@ -1,7 +1,7 @@
 
 .ytm-section-featured-entity {
   padding: 80px 0;
-  background-color: var(--body-background);
+  background-color: var(--primary-bg);
 }
 
 .ytm-section-featured-entity .ytm-col-content {
@@ -47,7 +47,7 @@
 }
 
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-list {
-  background-color: #f9f9f9;
+  background-color: var(--secondary-bg);
   border-radius: 18px;
   padding: 8px;
   height: 100%;
@@ -87,11 +87,11 @@
   font-size: 24px;
   line-height: 36px;
   letter-spacing: -0.011em;
-  color: #000;
+  color: var(--primary-text);
   text-decoration: none;
 }
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-name .ytm-item-entity:hover {
-  color: var(--primary-text);
+  color: var(--secondary-text);
 }
 
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-cost p {
@@ -111,7 +111,6 @@
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.011em;
-  color: var(--grey-dark);
 }
 
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-meta {
@@ -134,7 +133,7 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  color: var(--grey-light)
+  /* color: var(--primary-text); */
 }
 
 .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-meta .meta-builtyear span::before {

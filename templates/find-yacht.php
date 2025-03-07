@@ -279,7 +279,7 @@ if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
 <div class="ytm-filter-main">
     <div class="container">
         <div class="ytm-filter-block">
-            <div class="ytm-filter-wrap">
+            <div class="ytm-dropfilter-wrap">
                 <div class="filter-title">
                     <h3>Choose Yacht</h3>
                 </div>
