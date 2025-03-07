@@ -33,6 +33,10 @@
     height: 100%;
 }
 
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image.noimage {
+    background-color: var(--bg-gradient);
+}
+
 /* item content */
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content {
     margin-top: 12px;

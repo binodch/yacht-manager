@@ -29,3 +29,12 @@ function yacht_manager_deactivate() {
 	flush_rewrite_rules();
 }
 register_deactivation_hook(__FILE__, 'yacht_manager_deactivate'); 
+
+
+
+
+function pr($arr) {
+	echo '<pre>'; 
+	print_r($arr);
+	echo '</pre>';
+}
