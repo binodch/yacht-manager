@@ -94,7 +94,7 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
 
             update_post_meta($yacht_entity_id, 'yacht_zones', json_encode($yacht_zones));
             
-            yacht_manager_assign_yacht_types($yacht_entity_id, $yacht_types);
+            yacht_manager_assign_yacht_types($yacht_entity_id, $yacht_types, 'yacht-type');
 
             $yimages = json_decode($yacht_images, true);
             if( $yimages && count($yimages)>0 ) {
@@ -119,9 +119,9 @@ function yacht_manager_update_yacht_post_meta($yacht_entity_arr, $yacht_post_id)
 /**
  * function to asign yacht-type to yacht
  */
-function yacht_manager_assign_yacht_types($yacht_id, $yacht_types) {
+function yacht_manager_assign_yacht_types($yacht_id, $yacht_types, $yacht_taxonomy) {
     if (!empty($yacht_types) && is_array($yacht_types)) {
-        wp_set_object_terms($yacht_id, $yacht_types, 'yacht-type');
+        wp_set_object_terms($yacht_id, $yacht_types, $yacht_taxonomy);
     }
 }
 

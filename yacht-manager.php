@@ -3,7 +3,7 @@
  * Plugin Name: Yacht Manager 
  * Description: The Yacht Manager plugin developers.
  * Version: 1.0
- * Author: Ebpearls
+ * Author: Yacht Plugin
  */
  
 if (!defined('ABSPATH')) {

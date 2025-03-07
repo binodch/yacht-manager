@@ -40,6 +40,16 @@ function yacht_manager_register_post_type() {
                 'hierarchical' => true,
             ]
         );
+        
+        register_taxonomy(
+            'yacht-region',
+            'yacht',
+            [
+                'label'        => __('Yacht Region', 'yacht-manager'),
+                'rewrite'      => ['slug' => 'yacht-region'],
+                'hierarchical' => true,
+            ]
+        );
     }
 }
 
