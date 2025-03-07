@@ -10,6 +10,11 @@ function yacht_manager_fetch_yacht_list( $category = false ) {
         foreach ( $destinations as $dest ) {
             $params_arr = json_encode(['region' => $dest]);
             $result = yacht_manager_curl_search_entity_list( $params_arr );
+            
+            foreach ($result as &$item) {
+                $item['region'] = $dest;
+            }
+
             if ( is_array( $result ) ) {
                 $yacht_data = array_merge($yacht_data, $result);
             }
@@ -22,7 +27,6 @@ function yacht_manager_fetch_yacht_list( $category = false ) {
 
     return (!empty($yacht_data) && is_array($yacht_data)) ? $yacht_data : false;
 }
-
 
 /**
  * function to save yacht post to yacht post type
@@ -40,6 +44,7 @@ function yacht_manager_insert_update_yacht_post_type( $category=false ) {
             $yacht_sleeps = isset($yarr['sleeps']) ? $yarr['sleeps'] : '';
             $yacht_built_year = isset($yarr['builtYear']) ? $yarr['builtYear'] : '';
             $yacht_make = isset($yarr['make']) ? $yarr['make'] : '';
+            $yacht_region = isset($yarr['region']) ? $yarr['region'] : '';
 
             $yacht_uri_exists = yacht_manager_check_if_yacht_uri_exists($yacht_uri, $yacht_hash, 'yacht_entity_search_hash');
             // $yacht_post_id is for update post field if new data come through API
@@ -67,7 +72,7 @@ function yacht_manager_insert_update_yacht_post_type( $category=false ) {
                     $yacht_entity_id = $yacht_post_id;
                 }
             }
-            
+
             // update yacht post meta value
             if( $yacht_post_id ) {
                 update_post_meta($yacht_post_id, 'yacht_entity_search_hash', $yacht_hash);
@@ -78,6 +83,8 @@ function yacht_manager_insert_update_yacht_post_type( $category=false ) {
                 update_post_meta($yacht_post_id, 'yacht_sleeps', $yacht_sleeps);
                 update_post_meta($yacht_post_id, 'yacht_built_year', $yacht_built_year);
                 update_post_meta($yacht_post_id, 'yacht_make', $yacht_make);
+
+                yacht_manager_assign_yacht_types($yacht_post_id, array($yacht_region), 'yacht-region' );
             }
             $yacht_entity_arr = yacht_manager_curl_register_entity($yacht_uri);
 

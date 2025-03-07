@@ -98,5 +98,58 @@ function yacht_manager_register_custom_block() {
             ),
         ),
     ));
+
+    // grid search block
+    wp_enqueue_style(
+        'yacht-manager-gridsearch-block-editor',
+        plugin_dir_url(__FILE__) . 'grid-search/grid-editor.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-gridsearch-block-styl',
+        plugin_dir_url(__FILE__) . 'grid-search/grid-block.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-gridsearch-block-search-filter-styl',
+        plugin_dir_url(__FILE__) . 'grid-search/css/search-filter.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-gridsearch-block-advanced-filter-styl',
+        plugin_dir_url(__FILE__) . 'grid-search/css/advanced-filter.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_style(
+        'yacht-manager-gridsearch-block-filter-results-styl',
+        plugin_dir_url(__FILE__) . 'grid-search/css/filter-results.css',
+        [],
+        YACHT_MANAGER_VERSION
+    );
+    wp_enqueue_script(
+        'yacht-manager-gridsearch-block-editor',
+        plugin_dir_url(__FILE__) . 'grid-search/grid-block.js',
+        array('wp-blocks', 'wp-editor', 'wp-components', 'wp-element'),
+        YACHT_MANAGER_VERSION
+    );
+    register_block_type('custom/grid-search-block', array(
+        'editor_script' => 'yacht-manager-grid-search-block',
+        'render_callback' => 'render_grid_search_block',
+        'attributes' => array(
+            'title' => array(
+                'type' => 'string',
+                'default' => 'Enter title here...'
+            ),
+            'description' => array(
+                'type' => 'string',
+                'default' => 'Enter description here...'
+            ),
+        ),
+    ));
+
 }
 add_action('init', 'yacht_manager_register_custom_block');
