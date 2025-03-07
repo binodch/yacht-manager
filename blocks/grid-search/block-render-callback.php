@@ -8,82 +8,37 @@ function render_grid_search_block($attributes) {
     $entity_per_page = 12;
     $current_page = 1;
     
-    $destination = $total_guests = $cabins = $start_date = $end_date = $manufacture_from = $manufacture_to = '';
+    $destination = $total_guests = $cabins = $selected_destination = '';
+    $start_date = $end_date = $manufacture_from = $manufacture_to = '';
     $sleeps_query = $cabins_query = $yacht_type_query = [];
-    $region_list_arr = [];
+
+    $yacht_type_query = [];
+    $yacht_region_query = [];
+    $sleeps_query = [];
+    $cabins_query = [];
     
-    if( isset($_POST['entity_banner_filter']) ) {
-        $selected_destination = $_POST['destination'] ?? '';
-        $_destination = $selected_destination;
-        $total_guests = $_POST['totalGuests'] ?? 0;
-        $manufacture_from = $_POST['ytm_manufacture_from'] ?? '';
-        $manufacture_to = $_POST['ytm_manufacture_to'] ?? '';
-        $yachttype = $_POST['ytm_yacht_type'] ?? '';
-        $selected_destination = (!empty($_POST['entity_banner_filter'])) ? $_POST['entity_banner_filter'] : '';
-        $selected_destination = $_destination ? $_destination : $selected_destination;
-    
-        // Fetch region list if destination is provided
-        if (!empty($selected_destination)) {
-            $search_arr = json_encode(['region' => $selected_destination]);
-            $search_region = yacht_manager_curl_search_entity_list($search_arr);
-            
-            if (!empty($search_region) && is_array($search_region)) {
-                foreach ($search_region as $region) {
-                    if (!empty($region['uri'])) {
-                        $entity_id = yacht_manager_get_yacht_id($region['uri']);
-                        if (!empty($entity_id)) {
-                            $region_list_arr = array_merge($region_list_arr, (array) $entity_id);
-                        }
-                    }
-                }
-            }
-        }
-    
-        // Meta queries
-        if (!empty($total_guests)) {
-            $sleeps_query = ['key' => 'yacht_sleeps', 'value' => $total_guests, 'compare' => '='];
-        }
-        if (!empty($cabins)) {
-            $cabins_query = ['key' => 'yacht_cabins', 'value' => $cabins, 'compare' => '='];
-        }
-    
-        // Taxonomy Query
-        if (!empty($yachttype)) {
-            $yacht_type_query = [
-                [
-                    'taxonomy' => 'yacht-type',
-                    'field'    => 'term_id',
-                    'terms'    => array_map('trim', explode(',', $yachttype)),
-                    'operator' => 'IN',
-                ]
-            ];
-        }
-    
-    } else if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $selected_destination = $_POST['destination'] ?? '';
         $total_guests = $_POST['totalGuests'] ?? '';
         $yachttype = $_POST['ytm_yacht_type'] ?? '';
         $cabins = $_POST['ytm_cabin'] ?? '';
         $manufacture_from = $_POST['ytm_manufacture_from'] ?? '';
         $manufacture_to = $_POST['ytm_manufacture_to'] ?? '';
-    
-        // Fetch region list if destination is provided
+
+        // pr($_POST);
+
+        // Taxonomy query for yacht-region
         if (!empty($selected_destination)) {
-            $search_arr = json_encode(['region' => $selected_destination]);
-            $search_region = yacht_manager_curl_search_entity_list($search_arr);
-            
-            if (!empty($search_region) && is_array($search_region)) {
-                foreach ($search_region as $region) {
-                    if (!empty($region['uri'])) {
-                        $entity_id = yacht_manager_get_yacht_id($region['uri']);
-                        if (!empty($entity_id)) {
-                            $region_list_arr = array_merge($region_list_arr, (array) $entity_id);
-                        }
-                    }
-                }
-            }
+            $yacht_region_query = [
+                [
+                    'taxonomy' => 'yacht-region',
+                    'field'    => 'slug',
+                    'terms'    => $selected_destination,
+                    'operator' => 'IN',
+                ]
+            ];
         }
-    
+
         // Meta queries
         if (!empty($total_guests)) {
             $sleeps_query = ['key' => 'yacht_sleeps', 'value' => $total_guests, 'compare' => '='];
@@ -91,8 +46,8 @@ function render_grid_search_block($attributes) {
         if (!empty($cabins)) {
             $cabins_query = ['key' => 'yacht_cabins', 'value' => $cabins, 'compare' => '='];
         }
-    
-        // Taxonomy Query
+
+        // Taxonomy query for yacht-type
         if (!empty($yachttype)) {
             $yacht_type_query = [
                 [
@@ -103,175 +58,38 @@ function render_grid_search_block($attributes) {
                 ]
             ];
         }
-    } else {
-        $selected_destination = '';
-    }
+
+        // Combine taxonomy queries if both exist
+        $tax_queries = array_filter(array_merge($yacht_region_query, $yacht_type_query));
     
+    }
+
     // WP_Query Arguments
     $entity_args = [
         'post_type'      => 'yacht',
         'post_status'    => 'publish',
         'posts_per_page' => -1,
-        'meta_query'     => array_filter([$sleeps_query, $cabins_query]),
     ];
-    
-    if (!empty($region_list_arr)) {
-        $entity_args['post__in'] = $region_list_arr;
+
+    if (!empty($tax_queries)) {
+        $entity_args['tax_query'] = $tax_queries;
     }
-    if (!empty($yacht_type_query)) {
-        $entity_args['tax_query'] = $yacht_type_query;
+
+    if ( (!empty($sleeps_query)) || (!empty($cabins_query))) {
+        $entity_args['meta_query'] = array_filter([$sleeps_query, $cabins_query]);
     }
-    
+
+    // Execute WP_Query
     $entity_query = new WP_Query($entity_args);
-    $entity_list = [];
-    
-    if ($entity_query->have_posts()) {
-        while ($entity_query->have_posts()) {
-            $entity_query->the_post();
-            $yacht_id = get_the_ID();
-            
-            $entity_list[] = [
-                'name'      => get_the_title(),
-                'uri'      => get_post_meta($yacht_id,'yacht_uri', true),
-                'cost'      => get_post_meta($yacht_id,'yacht_cost', true),
-                'builtYear' => get_post_meta($yacht_id,'yacht_built_year', true),
-                'length'    => get_post_meta($yacht_id,'yacht_length', true),
-                'cabins'    => get_post_meta($yacht_id,'yacht_cabins', true),
-                'make'      => get_post_meta($yacht_id,'yacht_make', true),
-            ];
-        }
-        wp_reset_postdata();
-    }
     
     $start_date = isset($_POST['start-date']) ? sanitize_text_field($_POST['start-date']) : '';
     $end_date = isset($_POST['end-date']) ? sanitize_text_field($_POST['end-date']) : '';
     
-    $yacht_item = '';
-    
     $count = 0;
-    $destinations = yacht_manager_curl_destinations();
+    $destinations = yacht_manager_get_assigned_yacht_region();
     $yacht_types = yacht_manager_curl_yacht_types();
     // $charter_types = yacht_manager_curl_charter_types();
-    $charter_types = [];
-    if( $entity_list && is_array($entity_list) && (count($entity_list)>0) ) {
-        $total_entity = count($entity_list);
-    
-        $entity_from = ($current_page - 1) * $entity_per_page;
-    
-        $entity_range_list = array_slice($entity_list, $entity_from, $entity_per_page, true);
-    
-        foreach( $entity_range_list as $elist ) {
-            if( ($total_entity>$count) && ($count>($entity_per_page-1)) ) {
-                break;
-            }
-    
-            $uri = $elist['uri'];
-            $entity_arr = yacht_manager_check_if_yacht_uri_exists($uri, 'abcdefgh09', 'yacht_entity_search_hash');
-            
-            $yacht_id = !empty($entity_arr) ? $entity_arr['id'] : '';
-            $thumbnail_id = get_post_thumbnail_id($yacht_id);
-    
-            $_refityear = get_post_meta($yacht_id, 'yacht_refitYear', true);
-            $_built_year = get_post_meta($yacht_id, 'yacht_built_year', true); 
-            $refityear = !empty($_refityear) ? $_refityear : '-';
-            $built_year = !empty($_built_year) ? $_built_year : $refityear;
-    
-            $weekPricingFrom = get_post_meta($yacht_id, 'yacht_weekPricingFrom', true); 
-            $week_pricing_arr = json_decode($weekPricingFrom, true);
-            $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
-            $currency = yacht_manager_get_currency_symbol($currency);
-            $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
-            $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
-            $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : '';
-    
-            $yacht_item .= '
-            <div class="col-md-4">
-                <div class="ytm-list-item">
-                    <div class="ytm-item-single">
-                        <div class="ytm-item-image">';
-                        
-                            if( $thumbnail_id ) {
-                                $yacht_item .= '<a href="'. get_permalink($yacht_id) .'">';
-                                $yacht_item .= wp_get_attachment_image($thumbnail_id, 'medium_large');
-                                $yacht_item .= '</a>';
-                            }
-                        
-                        $yacht_item .= '</div>
-                        <div class="ytm-item-content">';
-    
-                            if( isset($elist['subname']) ) {
-                                $yacht_item .= '<div class="ytm-item-symbol">
-                                    Molo 63
-                                </div>';
-                            }
-    
-                            if( isset($elist['name']) ) {
-                                $yacht_item .= '<div class="ytm-item-name">';
-                                $yacht_item .= '<h3><a class="ytm-item-entity" href="'.get_permalink($yacht_id).'">';
-                                $yacht_item .= esc_html(ucwords(strtolower($elist['name'])));
-                                $yacht_item .= '</a></h3>';
-                                $yacht_item .=  '</div>';
-                            }
-    
-                            if( $currency && $unit && $price ) {
-                                $yacht_item .= '<div class="ytm-item-cost">
-                                    <p>'. ucfirst(strtolower($unit)) .': <span>From '. $currency . $price .'</span></p>
-                                </div>';
-                            }
-    
-                            $yacht_item .= '<div class="ytm-item-meta">';
-    
-                            if( $built_year ) {
-                                $yacht_item .= '<div class="ytm-meta-item meta-builtyear">
-                                    <span>' . $built_year . '</span>
-                                </div>';
-                            }
-    
-                            if( isset($elist['length']) ) {
-                                $unit_ft = $elist['length'] ? $elist['length'] : '-';
-                                $unit_m = $elist['length'] ? round($unit_ft/3.281, 2) : '';
-                                $unit_length = $unit_m ? $unit_m.'m' . ' (' . $unit_ft . 'ft)' : '-';
-                                $yacht_item .= '<div class="ytm-meta-item meta-length">
-                                    <span>' . $unit_length . '</span>
-                                </div>';
-                            }
-    
-                            if( isset($elist['cabins']) ) {
-                                $cabins = $elist['cabins'] ? $elist['cabins'] : '-';
-                                $yacht_item .= '<div class="ytm-meta-item meta-cabins">
-                                    <span>' . $cabins . '</span>
-                                </div>';
-                            }
-    
-                            if( isset($elist['sleeps']) ) {
-                                $cabins = $elist['sleeps'] ? $elist['sleeps'] : '-';
-                                $yacht_item .= '<div class="ytm-meta-item meta-cabins">
-                                    <span>' . $cabins . '..</span>
-                                </div>';
-                            }
-    
-                            if( isset($elist['make']) ) {
-                                $make = $elist['make'] ? $elist['make'] : '-';
-                                $yacht_item .= '<div class="ytm-meta-item meta-make">
-                                    <span>' . $make . '</span>
-                                </div>';
-                            }
-                                
-                            $yacht_item .= '</div>
-                        </div>
-                    </div>
-                </div>
-            </div>';
-    
-            $count += 1;
-        }
-    } else {
-        $yacht_item .= '<div class="col-md-12">
-            <div class="ytm-no-entities">
-                No entities found
-            </div>
-        </div>';
-    } ?>
+    $charter_types = []; ?>
     
     <div class="ytm-filter-main">
         <div class="container">
@@ -299,10 +117,10 @@ function render_grid_search_block($attributes) {
                                                             <ul class="dropdown-menu" aria-labelledby="destinationDropdown">
                                                             <div class="dropdown-text">Popular Destinations</div>
                                                                 <?php 
-                                                                foreach( $destinations as $dest ) { 
+                                                                foreach( $destinations as $slug=>$dest ) { 
                                                                     $active = ($selected_destination==$dest) ? 'active': ''; ?>
                                                                     <li>
-                                                                        <a class="dropdown-item <?php echo esc_attr($active); ?>" href="#">
+                                                                        <a class="dropdown-item <?php echo esc_attr($active); ?>" data-region="<?php echo esc_attr($slug); ?>" href="#">
                                                                             <?php echo esc_html($dest); ?>
                                                                         </a>
                                                                     </li>
@@ -443,29 +261,126 @@ function render_grid_search_block($attributes) {
                             </div>
                         </div>
                         <div class="col-md-9">
-                            <div class="ytm-entity-result">
-                                <div class="ytm-entity-list">
-                                    <div class="row">
-                                        <?php echo $yacht_item; ?>
+                            <?php
+                            if ($entity_query->have_posts()) { ?>
+                                <div class="ytm-entity-result">
+                                    <div class="ytm-entity-list">
+                                        <div class="row">
+
+                                            <?php 
+                                            while ($entity_query->have_posts()) {
+                                                $entity_query->the_post();
+                                                $yacht_id = get_the_ID();
+                                                
+                                                $thumbnail_id = get_post_thumbnail_id($yacht_id);
+                                        
+                                                $_refityear = get_post_meta($yacht_id, 'yacht_refitYear', true);
+                                                $_built_year = get_post_meta($yacht_id, 'yacht_built_year', true); 
+                                                $refityear = !empty($_refityear) ? $_refityear : '-';
+                                                $built_year = !empty($_built_year) ? $_built_year : $refityear;
+
+                                                $yacht_length = get_post_meta($yacht_id,'yacht_length', true);
+
+                                                $yacht_cabins = get_post_meta($yacht_id,'yacht_cabins', true);
+                                                $yacht_make = get_post_meta($yacht_id,'yacht_make', true);
+                                        
+                                                $weekPricingFrom = get_post_meta($yacht_id, 'yacht_weekPricingFrom', true); 
+                                                $week_pricing_arr = json_decode($weekPricingFrom, true);
+                                                $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
+                                                $currency = yacht_manager_get_currency_symbol($currency);
+                                                $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
+                                                $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
+                                                $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : ''; ?>
+
+                                                <div class="col-md-4">
+                                                    <div class="ytm-list-item">
+                                                        <div class="ytm-item-single">
+                                                            <div class="ytm-item-image <?php echo ($thumbnail_id) ? '' : 'noimage'; ?>">
+                                                                <a href="<?php the_permalink(); ?>">
+                                                                    <?php if( $thumbnail_id ) {
+                                                                        echo wp_get_attachment_image($thumbnail_id, 'medium_large'); 
+                                                                    } ?>
+                                                                </a>
+                                                            </div>
+                                                            <div class="ytm-item-content">
+                                                                <div class="ytm-item-name">
+                                                                    <h3>
+                                                                        <a class="ytm-item-entity" href="<?php the_permalink(); ?>">
+                                                                            <?php echo esc_html(ucwords(strtolower(get_the_title($yacht_id)))); ?>
+                                                                        </a>
+                                                                    </h3>
+                                                                </div>
+                                                                <?php if( $currency && $unit && $price ) { ?>
+                                                                    <div class="ytm-item-cost">
+                                                                        <p><?php echo ucfirst(strtolower($unit)) .': <span>From '. $currency . $price .'</span>'; ?></p>
+                                                                    </div>
+                                                                <?php } ?>
+                                                                <div class="ytm-item-meta">
+                                                                    <?php if( $built_year ) { ?>
+                                                                        <div class="ytm-meta-item meta-builtyear">
+                                                                            <span><?php echo $built_year; ?></span>
+                                                                        </div>
+                                                                    <?php }
+                                                                    if( $yacht_length ) { 
+                                                                        $unit_ft = $yacht_length ? $yacht_length : '-';
+                                                                        $unit_m = $yacht_length ? round($unit_ft/3.281, 2) : '';
+                                                                        $unit_length = $unit_m ? $unit_m.'m' . ' (' . $unit_ft . 'ft)' : '-'; ?>
+                                                                        <div class="ytm-meta-item meta-length">
+                                                                            <span><?php echo $unit_length; ?></span>
+                                                                        </div>
+                                                                    <?php }
+                                                                    if( $yacht_cabins ) { ?>
+                                                                        <div class="ytm-meta-item meta-cabins">
+                                                                            <span><?php echo $yacht_cabins; ?></span>
+                                                                        </div>
+                                                                    <?php }
+                                                                    if( $yacht_make ) { ?>
+                                                                        <div class="ytm-meta-item meta-make">
+                                                                            <span><?php echo $yacht_make; ?></span>
+                                                                        </div>
+                                                                    <?php } ?>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php 
+                                            } wp_reset_postdata(); ?>
+
+                                        </div>
+                                    </div>
+                                    <?php 
+                                    if( $total_entity > $count ) { ?>
+                                        <div class="ytm-entity-pagination">
+                                            <ul>
+                                                <li class="paginate-list-prev" onclick="yachtManagerSubmitForm('<?php echo ($current_page==1) ? 1 : $current_page-1; ?>')"><span class="paginate-prev"></span></li>
+                                                <?php $pages = ceil($total_entity/$entity_per_page);
+                                                for($ii=1; $ii<=$pages; $ii++) { 
+                                                    $active = ($current_page==$ii) ? 'active' : ''; ?>
+                                                    <li class="paginate-list <?php echo esc_html($active); ?>" onclick="yachtManagerSubmitForm('<?php echo $ii; ?>')"><?php echo $ii; ?></li>
+                                                    <?php 
+                                                } ?>
+                                                <li class="paginate-list-next" onclick="yachtManagerSubmitForm('<?php echo ($current_page==$pages) ? $pages : $current_page+1; ?>')"><span class="paginate-next"></span></li>
+                                            </ul>
+                                        </div>
+                                    <?php 
+                                    } ?>
+                                </div>
+                            <?php 
+                            } else { ?>
+                                <div class="ytm-entity-result">
+                                    <div class="ytm-entity-list">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="ytm-no-entities">
+                                                    No entities found
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <?php 
-                                if( $total_entity > $count ) { ?>
-                                    <div class="ytm-entity-pagination">
-                                        <ul>
-                                            <li class="paginate-list-prev" onclick="yachtManagerSubmitForm('<?php echo ($current_page==1) ? 1 : $current_page-1; ?>')"><span class="paginate-prev"></span></li>
-                                            <?php $pages = ceil($total_entity/$entity_per_page);
-                                            for($ii=1; $ii<=$pages; $ii++) { 
-                                                $active = ($current_page==$ii) ? 'active' : ''; ?>
-                                                <li class="paginate-list <?php echo esc_html($active); ?>" onclick="yachtManagerSubmitForm('<?php echo $ii; ?>')"><?php echo $ii; ?></li>
-                                                <?php 
-                                            } ?>
-                                            <li class="paginate-list-next" onclick="yachtManagerSubmitForm('<?php echo ($current_page==$pages) ? $pages : $current_page+1; ?>')"><span class="paginate-next"></span></li>
-                                        </ul>
-                                    </div>
-                                <?php 
-                                } ?>
-                            </div>
+                            <?php 
+                            } ?>
                         </div>
                     </div>
                 </div>

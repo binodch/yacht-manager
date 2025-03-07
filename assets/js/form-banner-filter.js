@@ -5,13 +5,15 @@ document.addEventListener('DOMContentLoaded', function () {
         item.addEventListener('click', function (event) {
             event.preventDefault(); // Prevent default anchor behavior
 
-            let destination = this.textContent.trim();
+            let destination = this.getAttribute('data-region');
+            let destinationName = this.textContent.trim();
+
             let destinationDropdown = document.getElementById('destinationDropdown');
             let destinationDropdownMobile = document.getElementById('destinationDropdownMobile');
             let destinationInput = document.getElementById('banner-destination');
 
-            if (destinationDropdown) destinationDropdown.textContent = destination;
-            if (destinationDropdownMobile) destinationDropdown.textContent = destination;
+            if (destinationDropdown) destinationDropdown.textContent = destinationName;
+            if (destinationDropdownMobile) destinationDropdown.textContent = destinationName;
             if (destinationInput) destinationInput.value = destination;
 
             // Remove 'active' class from all dropdown items

@@ -163,6 +163,7 @@ function yacht_manager_myplugin_dynamic_css() {
     $primary_gradient = yacht_manager_hexToRgba($primary_bg, 0);
     $btn_gradient = yacht_manager_hexToRgba($cta_color, 0.2);
     $secondary_gradient = yacht_manager_hexToRgba($primary_bg, 0.9);
+    $bg_gradient = yacht_manager_hexToRgba($primary_text, 0.1);
 
     $custom_css_content = "
         :root {
@@ -177,6 +178,7 @@ function yacht_manager_myplugin_dynamic_css() {
             --primary-gradient: ". $primary_gradient .";
             --secondary-gradient: ". $secondary_gradient .";
             --btn-gradient: ". $btn_gradient .";
+            --bg-gradient: ". $bg_gradient .";
         }";
     wp_add_inline_style('wp-color-picker', $custom_css_content);
     wp_add_inline_style('yacht-manager-global', $custom_css_content);
