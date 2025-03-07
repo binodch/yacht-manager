@@ -1,4 +1,4 @@
-.ytm-filter-main .ytm-filter-wrap .filter-main {
+.ytm-filter-main .ytm-dropfilter-wrap .filter-main {
     background-color: #fff;
     padding: 24px 20px;
     border-radius: 18px;
@@ -23,6 +23,10 @@
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-label {
     margin-bottom: unset;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-control:focus {
+    box-shadow: none;
 }
 
 /* search destinations */
@@ -59,15 +63,15 @@
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item.active {
-    background-color: var(--primary-color);
+    background-color: var(--primary-text);
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item:hover {
-    background-color: var(--primary-color);
+    background-color: var(--primary-text);
 }
     
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination ul li a:hover {
-    background-color: var(--primary-color) !important;
+    background-color: var(--primary-text) !important;
 }
 /* search destinations */
 
@@ -127,7 +131,7 @@
 
 /* calender css */
 .page-template-default .flatpickr-calendar {
-    top: 1098px !important;
+    top: 340px !important;
     left: 352px !important;
 }
 
@@ -150,7 +154,7 @@
 }
 
 .flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg {
-    fill: var(--primary-color) !important;
+    fill: var(--primary-text) !important;
 }
 
 .flatpickr-months .flatpickr-prev-month.flatpickr-prev-month {
@@ -159,9 +163,13 @@
 
 .flatpickr-calendar .dayContainer .flatpickr-day:hover,
 .flatpickr-calendar .dayContainer .flatpickr-day.selected {
-    background: var(--primary-color);
-    border: 1px solid var(--primary-color);
+    background: var(--primary-text);
+    border: 1px solid var(--primary-text);
     color: #000;
+}
+
+.flatpickr-calendar .dayContainer .flatpickr-day.today {
+    border-color: var(--primary-text);
 }
 /* calender css */
 
@@ -191,7 +199,7 @@
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-guest .guest-dropdown .plus-minus-counter .btn {
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--primary-text);
     border-radius: 50%;
     width: 25px;
     padding: revert;
@@ -248,7 +256,7 @@
     appearance: none;
     width: 16px;
     height: 16px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--primary-text);
     border-radius: 6px;
     cursor: pointer;
     position: relative;
@@ -257,7 +265,7 @@
 
 
 .ytm-element-item .form-element-yacht .dropdown-item input[type="checkbox"]:checked {
-    background-color: var(--primary-color);
+    background-color: var(--primary-text);
 }
 /* select yacht */
 
@@ -273,8 +281,8 @@
 .ytm-filter-section .ytm-filter-sidebar .button-wrap .btn {
     border-radius: 1136.65px;
     border: 1.14px solid rgba(185, 234, 255, 0.2);
-    background-color: var(--primary-color);
-    color: #1d2b46;
+    background-color: var(--cta-color);
+    color: var(--cta-text);
     padding: 12px 28px;
     width: 100%;
 }

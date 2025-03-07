@@ -149,7 +149,7 @@
 }
 
 .filter-section .filter-element.filter-guests .dropdown-menu .guest-dropdown .plus-minus-counter .btn {
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--primary-text);
     border-radius: 50%;
     width: 25px;
     padding: revert;
@@ -173,9 +173,21 @@
 }
 /* guests dropdown */
 
-.filter-section .filter-wrap .filter-element button, 
-.filter-section .filter-wrap .filter-element input[type="text"] {
+.filter-section .filter-wrap .filter-element button {
     color: var(--primary-text);
+    padding: 3.5px 0;
+    background: none;
+    border: none;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: -0.198px;
+    height: auto;
+    outline: none;
+    box-shadow: none;
+}
+
+.filter-section .filter-wrap .filter-element input[type="text"] {
+    color: #000000;
     padding: 3.5px 0;
     background: none;
     border: none;
@@ -223,14 +235,14 @@
     appearance: none;
     width: 16px;
     height: 16px;
-    border: 1px solid var(--primary-color);
+    border: 1px solid var(--primary-text);
     border-radius: 6px;
     cursor: pointer;
     position: relative;
 }
 
 .filter-section .filter-wrap .filter-element.filter-yacht .dropdown-item input[type="checkbox"]:checked {
-    background-color: var(--primary-color);
+    background-color: var(--primary-text);
 }
 /* yacht type */
 
