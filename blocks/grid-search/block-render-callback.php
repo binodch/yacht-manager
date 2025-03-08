@@ -2,11 +2,11 @@
 
 // Server-side Render Function
 function render_grid_search_block($attributes) {
+    $title = esc_html($attributes['title']);
 
-    $total_entity = 0;
-    $paginate = 1;
     $entity_per_page = 12;
     $current_page = 1;
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
     
     $destination = $total_guests = $cabins = $selected_destination = '';
     $start_date = $end_date = $manufacture_from = $manufacture_to = '';
@@ -24,6 +24,7 @@ function render_grid_search_block($attributes) {
         $cabins = $_POST['ytm_cabin'] ?? '';
         $manufacture_from = $_POST['ytm_manufacture_from'] ?? '';
         $manufacture_to = $_POST['ytm_manufacture_to'] ?? '';
+        $current_page = $_POST['ytm_paginate'] ?? 1;
 
         // pr($_POST);
 
@@ -64,11 +65,12 @@ function render_grid_search_block($attributes) {
     
     }
 
-    // WP_Query Arguments
+    /* WP_Query Arguments */
     $entity_args = [
         'post_type'      => 'yacht',
         'post_status'    => 'publish',
-        'posts_per_page' => -1,
+        'posts_per_page' => $entity_per_page,
+        'paged'          => $paged,
     ];
 
     if (!empty($tax_queries)) {
@@ -79,13 +81,13 @@ function render_grid_search_block($attributes) {
         $entity_args['meta_query'] = array_filter([$sleeps_query, $cabins_query]);
     }
 
-    // Execute WP_Query
+    /* Execute WP_Query */
     $entity_query = new WP_Query($entity_args);
+    $total_entity = $entity_query->found_posts;
     
     $start_date = isset($_POST['start-date']) ? sanitize_text_field($_POST['start-date']) : '';
     $end_date = isset($_POST['end-date']) ? sanitize_text_field($_POST['end-date']) : '';
     
-    $count = 0;
     $destinations = yacht_manager_get_assigned_yacht_region();
     $yacht_types = yacht_manager_curl_yacht_types();
     // $charter_types = yacht_manager_curl_charter_types();
@@ -95,9 +97,13 @@ function render_grid_search_block($attributes) {
         <div class="container">
             <div class="ytm-filter-block">
                 <div class="ytm-dropfilter-wrap">
-                    <div class="filter-title">
-                        <h3>Choose Yacht</h3>
-                    </div>
+                    <?php 
+                    if( !empty($title) ) { ?>
+                        <div class="filter-title">
+                            <h3><?php echo esc_html($title); ?></h3>
+                        </div>
+                    <?php 
+                    } ?>
                     <div class="row">
                         <div class="col-md-3">
                             <div class="filter-main">
@@ -350,18 +356,14 @@ function render_grid_search_block($attributes) {
                                         </div>
                                     </div>
                                     <?php 
-                                    if( $total_entity > $count ) { ?>
+                                    if( $total_entity > $entity_per_page ) { ?>
                                         <div class="ytm-entity-pagination">
-                                            <ul>
-                                                <li class="paginate-list-prev" onclick="yachtManagerSubmitForm('<?php echo ($current_page==1) ? 1 : $current_page-1; ?>')"><span class="paginate-prev"></span></li>
-                                                <?php $pages = ceil($total_entity/$entity_per_page);
-                                                for($ii=1; $ii<=$pages; $ii++) { 
-                                                    $active = ($current_page==$ii) ? 'active' : ''; ?>
-                                                    <li class="paginate-list <?php echo esc_html($active); ?>" onclick="yachtManagerSubmitForm('<?php echo $ii; ?>')"><?php echo $ii; ?></li>
-                                                    <?php 
-                                                } ?>
-                                                <li class="paginate-list-next" onclick="yachtManagerSubmitForm('<?php echo ($current_page==$pages) ? $pages : $current_page+1; ?>')"><span class="paginate-next"></span></li>
-                                            </ul>
+                                            <?php echo paginate_links([
+                                                'total'   => $entity_query->max_num_pages,
+                                                'current' => max(1, get_query_var('paged')),
+                                                'prev_text' => '<span class="icon prev-icon"></span>',
+                                                'next_text' => '<span class="icon next-icon"></span>',
+                                            ]); ?>
                                         </div>
                                     <?php 
                                     } ?>
