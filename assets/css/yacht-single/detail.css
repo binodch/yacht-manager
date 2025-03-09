@@ -405,7 +405,7 @@
 
 .single-yacht .content-enquire .enquire-form .field-button .btn {
     color: var(--cta-text);
-    background-color: var(--cta-color);
+    background-color: var(--primary-text);
     padding: 11.37px 27.28px;
     border-radius: 1136.65px;
     border: 1px solid rgba(185, 234, 255, 0.2);
@@ -451,7 +451,7 @@
     }
     .single-yacht .yacht-heading-main .yacht-heading-link .btn {
         color: var(--cta-text);
-        background-color: var(--cta-color);
+        background-color: var(--primary-text);
         border-radius: 1136.65px;
         border: 1.14px solid rgba(185, 234, 255, 0.2);
         padding: 12px 28px;
@@ -558,7 +558,7 @@
     }
     .single-yacht .yacht-heading-main .yacht-heading-link {
         color: var(--cta-text);
-        background-color: var(--cta-color);
+        background-color: var(--primary-text);
         text-align: center;
         border-radius: 474.62px;
         border: 0.47px solid rgba(185, 234, 255, 0.2);

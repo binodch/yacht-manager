@@ -62,16 +62,10 @@
     align-items: center;
 }
 
-.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item.active {
-    background-color: var(--primary-text);
-}
-
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item.active,
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item:hover {
     background-color: var(--primary-text);
-}
-    
-.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination ul li a:hover {
-    background-color: var(--primary-text) !important;
+    color: var(--cta-text);
 }
 /* search destinations */
 
@@ -165,7 +159,7 @@
 .flatpickr-calendar .dayContainer .flatpickr-day.selected {
     background: var(--primary-text);
     border: 1px solid var(--primary-text);
-    color: #000;
+    color: var(--cta-text);
 }
 
 .flatpickr-calendar .dayContainer .flatpickr-day.today {
@@ -281,7 +275,7 @@
 .ytm-filter-section .ytm-filter-sidebar .button-wrap .btn {
     border-radius: 1136.65px;
     border: 1.14px solid rgba(185, 234, 255, 0.2);
-    background-color: var(--cta-color);
+    background-color: var(--primary-text);
     color: var(--cta-text);
     padding: 12px 28px;
     width: 100%;
