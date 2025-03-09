@@ -7,7 +7,6 @@ function yacht_manager_myplugin_register_settings() {
         'ytm_primary_text',
         'ytm_secondary_text',
         'ytm_body_text',
-        'ytm_cta_color',
         'ytm_cta_text',
         'ytm_primary_bg',
         'ytm_secondary_bg',
@@ -18,7 +17,6 @@ function yacht_manager_myplugin_register_settings() {
         '#000000',
         '#a8a8a8',
         '#5e5e5e',
-        '#b9eaff',
         '#1d2b46',
         '#f0f0f0',
         '#f9f9f9',
@@ -50,10 +48,6 @@ function yacht_manager_myplugin_settings_page() { ?>
                 <tr valign="top">
                     <th scope="row">Body Text Color:</th>
                     <td><input type="text" id="ytm_body_text" name="ytm_body_text" value="<?php echo esc_attr(get_option('ytm_body_text')); ?>" class="ytm-color-picker" /></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">CTA Color:</th>
-                    <td><input type="text" id="ytm_cta_color" name="ytm_cta_color" value="<?php echo esc_attr(get_option('ytm_cta_color')); ?>" class="ytm-color-picker" /></td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">CTA Text Color:</th>

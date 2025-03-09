@@ -148,14 +148,13 @@ function yacht_manager_myplugin_dynamic_css() {
     $primary_text = get_option('ytm_primary_text', '#000000');
     $secondary_text = get_option('ytm_secondary_text', '#a8a8a8');
     $body_text = get_option('ytm_body_text', '#5e5e5e');
-    $cta_color = get_option('ytm_cta_color', '#b9eaff');
     $cta_text = get_option('ytm_cta_text', '#1d2b46');
     $primary_bg = get_option('ytm_primary_bg', '#f0f0f0');
     $secondary_bg = get_option('ytm_secondary_bg', '#f9f9f9');
     $primary_line = get_option('ytm_primary_line', '#d5d5d5');
 
     $primary_gradient = yacht_manager_hexToRgba($primary_bg, 0);
-    $btn_gradient = yacht_manager_hexToRgba($cta_color, 0.2);
+    $btn_gradient = yacht_manager_hexToRgba($primary_text, 0.2);
     $secondary_gradient = yacht_manager_hexToRgba($primary_bg, 0.9);
     $bg_gradient = yacht_manager_hexToRgba($primary_text, 0.1);
 
@@ -164,7 +163,6 @@ function yacht_manager_myplugin_dynamic_css() {
             --primary-text: ". $primary_text .";
             --secondary-text: ". $secondary_text .";
             --body-text: ". $body_text .";
-            --cta-color: ". $cta_color .";
             --cta-text: ". $cta_text .";
             --primary-bg: ". $primary_bg .";
             --secondary-bg: ". $secondary_bg .";

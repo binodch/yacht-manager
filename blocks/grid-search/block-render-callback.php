@@ -1,9 +1,9 @@
 <?php
 
 // Server-side Render Function
-function render_grid_search_block($attributes) {
+function render_grid_search_block($attributes) { 
     $title = esc_html($attributes['title']);
-
+    
     $entity_per_page = 12;
     $current_page = 1;
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -16,6 +16,7 @@ function render_grid_search_block($attributes) {
     $yacht_region_query = [];
     $sleeps_query = [];
     $cabins_query = [];
+    $tax_queries = [];
     
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $selected_destination = $_POST['destination'] ?? '';
@@ -56,15 +57,15 @@ function render_grid_search_block($attributes) {
                     'field'    => 'term_id',
                     'terms'    => array_map('trim', explode(',', $yachttype)),
                     'operator' => 'IN',
-                ]
+                    ]
             ];
         }
 
         // Combine taxonomy queries if both exist
         $tax_queries = array_filter(array_merge($yacht_region_query, $yacht_type_query));
-    
+        
     }
-
+    
     /* WP_Query Arguments */
     $entity_args = [
         'post_type'      => 'yacht',
@@ -72,15 +73,15 @@ function render_grid_search_block($attributes) {
         'posts_per_page' => $entity_per_page,
         'paged'          => $paged,
     ];
-
+    
     if (!empty($tax_queries)) {
         $entity_args['tax_query'] = $tax_queries;
     }
-
+    
     if ( (!empty($sleeps_query)) || (!empty($cabins_query))) {
         $entity_args['meta_query'] = array_filter([$sleeps_query, $cabins_query]);
     }
-
+    
     /* Execute WP_Query */
     $entity_query = new WP_Query($entity_args);
     $total_entity = $entity_query->found_posts;
@@ -102,7 +103,7 @@ function render_grid_search_block($attributes) {
                         <div class="filter-title">
                             <h3><?php echo esc_html($title); ?></h3>
                         </div>
-                    <?php 
+                        <?php 
                     } ?>
                     <div class="row">
                         <div class="col-md-3">
@@ -116,15 +117,15 @@ function render_grid_search_block($attributes) {
                                                     <span for="destination" class="form-label">Where</span>
                                                     <div class="dropdown form-element-destination">
                                                         <button class="btn input-text dropdown-toggle w-100" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <?php echo $selected_destination ? $selected_destination : 'Search destinations'; ?>
+                                                            <?php echo $selected_destination ? ucwords(str_replace('-', ' ', $selected_destination)) : 'Search destinations'; ?>
                                                         </button>
                                                         <?php 
                                                         if( $destinations && is_array($destinations) && count($destinations)>0 ) { ?>
                                                             <ul class="dropdown-menu" aria-labelledby="destinationDropdown">
                                                             <div class="dropdown-text">Popular Destinations</div>
-                                                                <?php 
+                                                                <?php
                                                                 foreach( $destinations as $slug=>$dest ) { 
-                                                                    $active = ($selected_destination==$dest) ? 'active': ''; ?>
+                                                                    $active = ($selected_destination==$slug) ? 'active': ''; ?>
                                                                     <li>
                                                                         <a class="dropdown-item <?php echo esc_attr($active); ?>" data-region="<?php echo esc_attr($slug); ?>" href="#">
                                                                             <?php echo esc_html($dest); ?>
@@ -284,7 +285,7 @@ function render_grid_search_block($attributes) {
                                                 $_built_year = get_post_meta($yacht_id, 'yacht_built_year', true); 
                                                 $refityear = !empty($_refityear) ? $_refityear : '-';
                                                 $built_year = !empty($_built_year) ? $_built_year : $refityear;
-
+                                                
                                                 $yacht_length = get_post_meta($yacht_id,'yacht_length', true);
 
                                                 $yacht_cabins = get_post_meta($yacht_id,'yacht_cabins', true);
@@ -350,7 +351,7 @@ function render_grid_search_block($attributes) {
                                                         </div>
                                                     </div>
                                                 </div>
-                                            <?php 
+                                                <?php 
                                             } wp_reset_postdata(); ?>
 
                                         </div>
@@ -381,7 +382,7 @@ function render_grid_search_block($attributes) {
                                         </div>
                                     </div>
                                 </div>
-                            <?php 
+                                <?php 
                             } ?>
                         </div>
                     </div>

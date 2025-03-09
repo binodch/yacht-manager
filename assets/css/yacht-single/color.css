@@ -10,10 +10,6 @@
     color: var(--body-text);
 }
 
-.cta-color {
-    background-color: var(--cta-color);
-}
-
 .cta-text {
     color: var(--cta-text);
 }

@@ -171,9 +171,9 @@
 
 .ytm-advanced-filter-modal .modal-footer .btn {
     width: 100%;
-    color: #1d2b46;
-    background-color: var(--primary-color);
-    border: 1.14px solid rgba(185, 234, 255, 0.2);
+    color: var(--cta-text);
+    background-color: var(--primary-text);
+    border: 1.14px solid var(--btn-gradient);
     border-radius: 1136.65px;
     font-weight: 500;
     font-size: 18.19px;
