@@ -138,10 +138,6 @@ function yacht_manager_register_custom_block() {
                 'type' => 'string',
                 'default' => 'Enter title here...'
             ),
-            'description' => array(
-                'type' => 'string',
-                'default' => 'Enter description here...'
-            ),
         ),
     ));
 

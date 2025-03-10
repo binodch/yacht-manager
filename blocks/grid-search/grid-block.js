@@ -13,10 +13,6 @@ wp.blocks.registerBlockType('custom/grid-search-block', {
             props.setAttributes({ title: event.target.value });
         }
 
-        function updateDescription(event) {
-            props.setAttributes({ description: event.target.value });
-        }
-
         return (
             wp.element.createElement('div', { className: 'custom-grid-search-block' },
                 wp.element.createElement('div', { className: 'grid-title-wrapper block-grid-label' },
@@ -28,7 +24,7 @@ wp.blocks.registerBlockType('custom/grid-search-block', {
                         onChange: updateTitle,
                         placeholder: 'Title'
                     }),
-                ), 
+                ),
                 wp.element.createElement('p', { className: 'grid-search-text' },
                     'Displays all grid search filter yachts'
                 ),               
@@ -40,3 +36,4 @@ wp.blocks.registerBlockType('custom/grid-search-block', {
         return null; // Server-side rendering only
     }
 });
+
