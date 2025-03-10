@@ -7,6 +7,7 @@ function yacht_manager_myplugin_register_settings() {
         'ytm_primary_text',
         'ytm_secondary_text',
         'ytm_body_text',
+        'ytm_card_primary_text',
         'ytm_cta_text',
         'ytm_primary_bg',
         'ytm_secondary_bg',
@@ -17,10 +18,11 @@ function yacht_manager_myplugin_register_settings() {
         '#000000',
         '#a8a8a8',
         '#5e5e5e',
+        '#ffffff',
         '#1d2b46',
         '#f0f0f0',
         '#f9f9f9',
-        '#d5d5d5',
+        '#f5f5f5',
     ];
     $count = 0;
     foreach ($options as $option) {
@@ -49,21 +51,30 @@ function yacht_manager_myplugin_settings_page() { ?>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row">Secondary Text Color:</th>
-                    <td><input type="text" id="ytm_secondary_text" name="ytm_secondary_text" value="<?php echo esc_attr(get_option('ytm_secondary_text')); ?>" class="ytm-color-picker" /></td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <p class="description">This color is used for the secondary text.</p>
-                    </td>
-                </tr>
-                <tr valign="top">
                     <th scope="row">Body Text Color:</th>
                     <td><input type="text" id="ytm_body_text" name="ytm_body_text" value="<?php echo esc_attr(get_option('ytm_body_text')); ?>" class="ytm-color-picker" /></td>
                 </tr>
                 <tr>
                     <td colspan="2">
                         <p class="description">This color is used for the body text.</p>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Card Primary Text Color:</th>
+                    <td><input type="text" id="ytm_card_primary_text" name="ytm_card_primary_text" value="<?php echo esc_attr(get_option('ytm_card_primary_text')); ?>" class="ytm-color-picker" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="description">This color is used for the text card.</p>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Card Secondary Text Color:</th>
+                    <td><input type="text" id="ytm_card_secondary_text" name="ytm_card_secondary_text" value="<?php echo esc_attr(get_option('ytm_card_secondary_text')); ?>" class="ytm-color-picker" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="description">This color is used for the secondary text.</p>
                     </td>
                 </tr>
                 <tr valign="top">
@@ -91,6 +102,15 @@ function yacht_manager_myplugin_settings_page() { ?>
                 <tr>
                     <td colspan="2">
                         <p class="description">This color is used for the secondary background.</p>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row">Primary Line Color:</th>
+                    <td><input type="text" id="ytm_primary_line" name="ytm_primary_line" value="<?php echo esc_attr(get_option('ytm_primary_line')); ?>" class="ytm-color-picker" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="description">This color is used for the Line Behind Card.</p>
                     </td>
                 </tr>
             </table>
