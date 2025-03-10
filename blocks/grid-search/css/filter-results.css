@@ -10,7 +10,7 @@
 
 .ytm-filter-main .ytm-entity-result .ytm-list-item {
     background-color: #fff;
-    border-radius: 18px;
+    border-radius: 14px;
     padding: 4px;
     height: 100%;
 }
@@ -23,7 +23,7 @@
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image {
-    border-radius: 18px;
+    border-radius: 9px;
     width: 100%;
     overflow: hidden;
     aspect-ratio: 307/254;
@@ -155,10 +155,6 @@
 .ytm-entity-result .ytm-entity-pagination a:hover {
     color: var(--primary-text);
 }
-/* .ytm-entity-result .ytm-entity-pagination ul li {
-    cursor: pointer;
-    list-style: none;
-} */
 
 .ytm-entity-result .ytm-entity-pagination .page-numbers {
     color: var(--secondary-color);
