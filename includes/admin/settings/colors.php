@@ -39,31 +39,59 @@ function yacht_manager_myplugin_settings_page() { ?>
             <table class="form-table">
                 <tr valign="top">
                     <th scope="row">Primary Text Color:</th>
-                    <td><input type="text" id="ytm_primary_text" name="ytm_primary_text" value="<?php echo esc_attr(get_option('ytm_primary_text')); ?>" class="ytm-color-picker" /></td>
+                    <td>
+                        <input type="text" id="ytm_primary_text" name="ytm_primary_text" value="<?php echo esc_attr(get_option('ytm_primary_text')); ?>" class="ytm-color-picker" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="description">This color is used for the primary text.</p>
+                    </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Secondary Text Color:</th>
                     <td><input type="text" id="ytm_secondary_text" name="ytm_secondary_text" value="<?php echo esc_attr(get_option('ytm_secondary_text')); ?>" class="ytm-color-picker" /></td>
                 </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="description">This color is used for the secondary text.</p>
+                    </td>
+                </tr>
                 <tr valign="top">
                     <th scope="row">Body Text Color:</th>
                     <td><input type="text" id="ytm_body_text" name="ytm_body_text" value="<?php echo esc_attr(get_option('ytm_body_text')); ?>" class="ytm-color-picker" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="description">This color is used for the body text.</p>
+                    </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">CTA Text Color:</th>
                     <td><input type="text" id="ytm_cta_text" name="ytm_cta_text" value="<?php echo esc_attr(get_option('ytm_cta_text')); ?>" class="ytm-color-picker" /></td>
                 </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="description">This color is used for the text wrapped in primary color, in buttons.</p>
+                    </td>
+                </tr>
                 <tr valign="top">
                     <th scope="row">Primary Background Color:</th>
                     <td><input type="text" id="ytm_primary_bg" name="ytm_primary_bg" value="<?php echo esc_attr(get_option('ytm_primary_bg')); ?>" class="ytm-color-picker" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <p class="description">This color is used for the primary background.</p>
+                    </td>
                 </tr>
                 <tr valign="top">
                     <th scope="row">Secondary Background Color:</th>
                     <td><input type="text" id="ytm_secondary_bg" name="ytm_secondary_bg" value="<?php echo esc_attr(get_option('ytm_secondary_bg')); ?>" class="ytm-color-picker" /></td>
                 </tr>
-                <tr valign="top">
-                    <th scope="row">Primary Line Color:</th>
-                    <td><input type="text" id="ytm_primary_line" name="ytm_primary_line" value="<?php echo esc_attr(get_option('ytm_primary_line')); ?>" class="ytm-color-picker" /></td>
+                <tr>
+                    <td colspan="2">
+                        <p class="description">This color is used for the secondary background.</p>
+                    </td>
                 </tr>
             </table>
             <?php submit_button(); ?>

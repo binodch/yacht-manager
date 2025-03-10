@@ -1,12 +1,14 @@
 <?php
-
 // Server-side Render Function
 function render_grid_search_block($attributes) { 
+
     $title = esc_html($attributes['title']);
     
     $entity_per_page = 12;
     $current_page = 1;
     $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+
+    $entity_content = '';
     
     $destination = $total_guests = $cabins = $selected_destination = '';
     $start_date = $end_date = $manufacture_from = $manufacture_to = '';
@@ -92,72 +94,69 @@ function render_grid_search_block($attributes) {
     $destinations = yacht_manager_get_assigned_yacht_region();
     $yacht_types = yacht_manager_curl_yacht_types();
     // $charter_types = yacht_manager_curl_charter_types();
-    $charter_types = []; ?>
+    $charter_types = [];
     
-    <div class="ytm-filter-main">
+    $entity_content .= '<div class="ytm-filter-main">
         <div class="container">
             <div class="ytm-filter-block">
-                <div class="ytm-dropfilter-wrap">
-                    <?php 
-                    if( !empty($title) ) { ?>
-                        <div class="filter-title">
-                            <h3><?php echo esc_html($title); ?></h3>
-                        </div>
-                        <?php 
-                    } ?>
-                    <div class="row">
+                <div class="ytm-gridfilter-wrap">';
+
+                    if( !empty($title) ) {
+                        $entity_content .= '<div class="filter-title">
+                            <h3>'. esc_html($title) .'</h3>
+                        </div>';
+                    }
+                    $entity_content .= '<div class="row">
                         <div class="col-md-3">
                             <div class="filter-main">
                                 <form id="ytm-filter-form" method="post" action="">
                                     <div class="ytm-filter-section">
-                                        <div class="ytm-filter-sidebar">
-                                            <!-- Destination -->
-                                            <div class="ytm-filter-element sidebar-destination">
+                                        <div class="ytm-filter-sidebar">';
+
+                                            $entity_content .= '<div class="ytm-filter-element sidebar-destination">
                                                 <div class="ytm-element-item">
                                                     <span for="destination" class="form-label">Where</span>
                                                     <div class="dropdown form-element-destination">
-                                                        <button class="btn input-text dropdown-toggle w-100" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <?php echo $selected_destination ? ucwords(str_replace('-', ' ', $selected_destination)) : 'Search destinations'; ?>
-                                                        </button>
-                                                        <?php 
-                                                        if( $destinations && is_array($destinations) && count($destinations)>0 ) { ?>
-                                                            <ul class="dropdown-menu" aria-labelledby="destinationDropdown">
-                                                            <div class="dropdown-text">Popular Destinations</div>
-                                                                <?php
+                                                        <button class="btn input-text dropdown-toggle w-100" type="button" id="destinationDropdown" data-bs-toggle="dropdown" aria-expanded="false">';
+                                                            $selected_destination = $selected_destination ? ucwords(str_replace('-', ' ', $selected_destination)) : 'Search destinations';
+                                                        $entity_content .= $selected_destination;
+                                                        $entity_content .= '</button>';
+
+                                                        if( $destinations && is_array($destinations) && count($destinations)>0 ) {
+                                                            $entity_content .= '<ul class="dropdown-menu" aria-labelledby="destinationDropdown">
+                                                            <div class="dropdown-text">Popular Destinations</div>';
                                                                 foreach( $destinations as $slug=>$dest ) { 
-                                                                    $active = ($selected_destination==$slug) ? 'active': ''; ?>
-                                                                    <li>
-                                                                        <a class="dropdown-item <?php echo esc_attr($active); ?>" data-region="<?php echo esc_attr($slug); ?>" href="#">
-                                                                            <?php echo esc_html($dest); ?>
-                                                                        </a>
-                                                                    </li>
-                                                                <?php 
-                                                                } ?>
-                                                            </ul>
-                                                        <?php 
-                                                        } ?>
-                                                    </div>
+                                                                    $active = ($selected_destination==$slug) ? 'active': '';
+                                                                    $entity_content .= '<li>
+                                                                        <a class="dropdown-item '. esc_attr($active) .'" data-region="'. esc_attr($slug) .'" href="#">'
+                                                                            . esc_html($dest) .
+                                                                        '</a>
+                                                                    </li>';
+                                                                }
+                                                            $entity_content .= '</ul>';
+                                                        }
+                                                    $entity_content .= '</div>
                                                 </div>
-                                            </div>
-                                            <!-- Start Date -->
-                                            <div class="ytm-filter-element sidebar-checkin">
+                                            </div>';
+
+                                            $entity_content .= '<div class="ytm-filter-element sidebar-checkin">
                                                 <div class="ytm-element-item">
                                                     <label for="start-date" class="form-label">Check in</label>
                                                     <input type="date" id="startDate" name="start-date" class="form-control input-text" placeholder="Add date">
                                                 </div>
-                                            </div>
-                                            <!-- End Date -->
-                                            <div class="ytm-filter-element sidebar-checkout">
+                                            </div>';
+
+                                            $entity_content .= '<div class="ytm-filter-element sidebar-checkout">
                                                 <div class="ytm-element-item">
                                                     <label for="end-date" class="form-label">Check out</label>
                                                     <input type="date" id="endDate" name="end-date" class="form-control input-text" placeholder="Add date">
                                                 </div>
-                                            </div>
-                                            <!-- Number of Guests -->
-                                            <div class="ytm-filter-element sidebar-guest">
+                                            </div>';
+
+                                            $entity_content .= '<div class="ytm-filter-element sidebar-guest">
                                                 <div class="ytm-element-item">
                                                     <span for="destination" class="form-label">Where</span>
-                                                    <!-- Bootstrap Dropdown -->
+
                                                     <div class="dropdown">
                                                         <button class="btn dropdown-toggle" type="button" id="customerDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                                             <span id="customerCount" class="input-text">Add guests</span>
@@ -203,78 +202,71 @@ function render_grid_search_block($attributes) {
                                                                 </div>
                                                             </li>
                                                         </ul>
-                                                        <!-- Single hidden input for total number of guests -->
+
                                                         <input type="hidden" name="totalGuests" id="totalGuestsInput" value="1">
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- Select Yacht -->
-                                            <?php
+                                            </div>';
+                                            
                                             if( !empty($yachttype) ) {
                                                 $yacht_types_arr = array_map('trim', explode(',', $yachttype));
                                             } else {
                                                 $yacht_types_arr = [];
-                                            } ?>
-                                            <div class="ytm-filter-element sidebar-yacht">
+                                            }
+
+                                            $entity_content .= '<div class="ytm-filter-element sidebar-yacht">
                                                 <div class="ytm-element-item">
                                                     <span for="yacht" class="form-label">Yacht type</span>
                                                     <div class="dropdown form-element-yacht">
                                                         <button class="btn dropdown-toggle input-text w-100 text-start" type="button" id="yachtDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                                             Select a yacht
-                                                        </button>
-                                                        <?php 
-                                                        if( $yacht_types && is_array($yacht_types) && count($yacht_types) > 0 ) { ?>
-                                                            <ul class="dropdown-menu w-100" aria-labelledby="yachtDropdown">
-                                                                <?php 
+                                                        </button>';
+
+                                                        if( $yacht_types && is_array($yacht_types) && count($yacht_types) > 0 ) {
+                                                            $entity_content .= '<ul class="dropdown-menu w-100" aria-labelledby="yachtDropdown">';
                                                                 foreach( $yacht_types as $key => $ytype ) { 
-                                                                    $checked = in_array($key, $yacht_types_arr) ? 'checked' : ''; ?>
-                                                                    <li>
-                                                                        <label class="dropdown-item">
-                                                                            <?php echo esc_html($ytype); ?> 
-                                                                            <input type="checkbox" class="yacht-checkbox" data-ytype="<?php echo absint($key); ?>" value="<?php echo esc_html($ytype); ?>" <?php echo $checked; ?>>
+                                                                    $checked = in_array($key, $yacht_types_arr) ? 'checked' : '';
+                                                                    $entity_content .= '<li>
+                                                                        <label class="dropdown-item">';
+                                                                            $entity_content .= esc_html($ytype);
+                                                                            $entity_content .= '<input type="checkbox" class="yacht-checkbox" data-ytype="'. absint($key) .'" value="'. esc_html($ytype) .'" '.$checked .'>
                                                                         </label>
-                                                                    </li>
-                                                                <?php 
-                                                                } ?>
-                                                            </ul>
-                                                        <?php 
-                                                        } ?>
-                                                    </div>
+                                                                    </li>';
+                                                                }
+                                                            $entity_content .= '</ul>';
+                                                        }
+                                                    $entity_content .= '</div>
                                                 </div>
-                                            </div>
-                                            <!-- advanced filter -->
-                                            <div class="ytm-filter-element advanced-filters">
+                                            </div>';
+                                            
+                                            $entity_content .= '<div class="ytm-filter-element advanced-filters">
                                                 <div class="ytm-element-item input-text">
-                                                    <!-- Button trigger modal -->
                                                     <button type="button" class="btn ytm-modal-popup" data-toggle="modal" data-target="#ytm-advanced-filter-modal">
                                                         Advanced filters
                                                     </button>
                                                 </div>
-                                            </div>
-                                            <input type="hidden" name="destination" id="banner-destination" value="">
-                                            <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="<?php echo absint($current_page); ?>">
+                                            </div>';
+                                            $entity_content .= '<input type="hidden" name="destination" id="banner-destination" value="">
+                                            <input type="hidden" name="ytm_paginate" id="ytm-paginate" value="'. absint($current_page) .'">
                                             <input type="hidden" name="ytm_yacht_type" id="ytm-yacht-type" value="">
-                                            <!-- <input type="hidden" name="ytm_charter_type[]" id="ytm-charter-type" value=""> -->
                                             <input type="hidden" name="ytm_cabin" id="ytm-cabin" value="">
                                             <input type="hidden" name="ytm_manufacture_from" id="ytm-manufacture-from" value="">
-                                            <input type="hidden" name="ytm_manufacture_to" id="ytm-manufacture-to" value="">
-                                            <!-- Submit Button -->
-                                            <div class="button-wrap">
+                                            <input type="hidden" name="ytm_manufacture_to" id="ytm-manufacture-to" value="">';
+
+                                            $entity_content .= '<div class="button-wrap">
                                                 <button type="submit" class="btn btn-primary">Find a charter</button>
-                                            </div>
-                                        </div>
+                                            </div>';
+                                        $entity_content .= '</div>
                                     </div>
                                 </form>
                             </div>
-                        </div>
-                        <div class="col-md-9">
-                            <?php
-                            if ($entity_query->have_posts()) { ?>
-                                <div class="ytm-entity-result">
+                        </div>';
+                        $entity_content .= '<div class="col-md-9">';
+                            if ($entity_query->have_posts()) {
+                                $entity_content .= '<div class="ytm-entity-result">
                                     <div class="ytm-entity-list">
-                                        <div class="row">
+                                        <div class="row">';
 
-                                            <?php 
                                             while ($entity_query->have_posts()) {
                                                 $entity_query->the_post();
                                                 $yacht_id = get_the_ID();
@@ -297,81 +289,81 @@ function render_grid_search_block($attributes) {
                                                 $currency = yacht_manager_get_currency_symbol($currency);
                                                 $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
                                                 $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
-                                                $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : ''; ?>
+                                                $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : '';
 
-                                                <div class="col-md-4">
+                                                $entity_content .= '<div class="col-md-6">
                                                     <div class="ytm-list-item">
-                                                        <div class="ytm-item-single">
-                                                            <div class="ytm-item-image <?php echo ($thumbnail_id) ? '' : 'noimage'; ?>">
-                                                                <a href="<?php the_permalink(); ?>">
-                                                                    <?php if( $thumbnail_id ) {
-                                                                        echo wp_get_attachment_image($thumbnail_id, 'medium_large'); 
-                                                                    } ?>
-                                                                </a>
-                                                            </div>
-                                                            <div class="ytm-item-content">
-                                                                <div class="ytm-item-name">
+                                                        <div class="ytm-item-single">';
+                                                            $thumb_class = $thumbnail_id ? '' : 'noimage';
+                                                            $entity_content .= '<div class="ytm-item-image '. $thumb_class .'">
+                                                                <a href="'. get_permalink() .'">';
+                                                                    if( $thumbnail_id ) {
+                                                                        $entity_content .= wp_get_attachment_image($thumbnail_id, 'medium_large'); 
+                                                                    }
+                                                                $entity_content .= '</a>
+                                                            </div>';
+                                                            $entity_content .= '<div class="ytm-item-content">';
+                                                                $entity_content .= '<div class="ytm-item-name">
                                                                     <h3>
-                                                                        <a class="ytm-item-entity" href="<?php the_permalink(); ?>">
-                                                                            <?php echo esc_html(ucwords(strtolower(get_the_title($yacht_id)))); ?>
-                                                                        </a>
+                                                                        <a class="ytm-item-entity" href="'. get_permalink() .'">';
+                                                                            $entity_content .= esc_html(ucwords(strtolower(get_the_title($yacht_id))));
+                                                                        $entity_content .= '</a>
                                                                     </h3>
-                                                                </div>
-                                                                <?php if( $currency && $unit && $price ) { ?>
-                                                                    <div class="ytm-item-cost">
-                                                                        <p><?php echo ucfirst(strtolower($unit)) .': <span>From '. $currency . $price .'</span>'; ?></p>
-                                                                    </div>
-                                                                <?php } ?>
-                                                                <div class="ytm-item-meta">
-                                                                    <?php if( $built_year ) { ?>
-                                                                        <div class="ytm-meta-item meta-builtyear">
-                                                                            <span><?php echo $built_year; ?></span>
-                                                                        </div>
-                                                                    <?php }
+                                                                </div>';
+                                                                if( $currency && $unit && $price ) {
+                                                                    $entity_content .= '<div class="ytm-item-cost">
+                                                                        <p>'. ucfirst(strtolower($unit)) .': <span>From '. $currency . $price .'</span></p>
+                                                                    </div>';
+                                                                }
+                                                                $entity_content .= '<div class="ytm-item-meta">';
+                                                                    if( $built_year ) {
+                                                                        $entity_content .= '<div class="ytm-meta-item meta-builtyear">
+                                                                            <span>'. $built_year .'</span>
+                                                                        </div>';
+                                                                    }
                                                                     if( $yacht_length ) { 
                                                                         $unit_ft = $yacht_length ? $yacht_length : '-';
                                                                         $unit_m = $yacht_length ? round($unit_ft/3.281, 2) : '';
-                                                                        $unit_length = $unit_m ? $unit_m.'m' . ' (' . $unit_ft . 'ft)' : '-'; ?>
-                                                                        <div class="ytm-meta-item meta-length">
-                                                                            <span><?php echo $unit_length; ?></span>
-                                                                        </div>
-                                                                    <?php }
-                                                                    if( $yacht_cabins ) { ?>
-                                                                        <div class="ytm-meta-item meta-cabins">
-                                                                            <span><?php echo $yacht_cabins; ?></span>
-                                                                        </div>
-                                                                    <?php }
-                                                                    if( $yacht_make ) { ?>
-                                                                        <div class="ytm-meta-item meta-make">
-                                                                            <span><?php echo $yacht_make; ?></span>
-                                                                        </div>
-                                                                    <?php } ?>
-                                                                </div>
-                                                            </div>
+                                                                        $unit_length = $unit_m ? $unit_m.'m' . ' (' . $unit_ft . 'ft)' : '-';
+                                                                        $entity_content .= '<div class="ytm-meta-item meta-length">
+                                                                            <span>'. $unit_length .'</span>
+                                                                        </div>';
+                                                                    }
+                                                                    if( $yacht_cabins ) {
+                                                                        $entity_content .= '<div class="ytm-meta-item meta-cabins">
+                                                                            <span><'. $yacht_cabins .'</span>
+                                                                        </div>';
+                                                                    }
+                                                                    if( $yacht_make ) {
+                                                                        $entity_content .= '<div class="ytm-meta-item meta-make">
+                                                                            <span>'. $yacht_make .'</span>
+                                                                        </div>';
+                                                                    }
+                                                                $entity_content .= '</div>';
+                                                            $entity_content .= '</div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <?php 
-                                            } wp_reset_postdata(); ?>
+                                                </div>';
 
-                                        </div>
-                                    </div>
-                                    <?php 
-                                    if( $total_entity > $entity_per_page ) { ?>
-                                        <div class="ytm-entity-pagination">
-                                            <?php echo paginate_links([
+                                            } wp_reset_postdata();
+
+                                        $entity_content .= '</div>
+                                    </div>';
+                                    
+                                    if( $total_entity > $entity_per_page ) {
+                                        $entity_content .= '<div class="ytm-entity-pagination">';
+                                            $entity_content .= paginate_links([
                                                 'total'   => $entity_query->max_num_pages,
                                                 'current' => max(1, get_query_var('paged')),
                                                 'prev_text' => '<span class="icon prev-icon"></span>',
                                                 'next_text' => '<span class="icon next-icon"></span>',
-                                            ]); ?>
-                                        </div>
-                                    <?php 
-                                    } ?>
-                                </div>
-                            <?php 
-                            } else { ?>
-                                <div class="ytm-entity-result">
+                                            ]);
+                                        $entity_content .= '</div>';
+                                    }
+                                $entity_content .= '</div>';
+                            
+                            } else {
+                                $entity_content .= '<div class="ytm-entity-result">
                                     <div class="ytm-entity-list">
                                         <div class="row">
                                             <div class="col-md-12">
@@ -381,18 +373,16 @@ function render_grid_search_block($attributes) {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <?php 
-                            } ?>
-                        </div>
+                                </div>';
+                            }
+                        $entity_content .= '</div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </div>';
     
-    <!-- Modal -->
-    <div class="modal ytm-advanced-filter-modal fade" id="ytm-advanced-filter-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+   $entity_content .= ' <div class="modal ytm-advanced-filter-modal fade" id="ytm-advanced-filter-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -401,33 +391,29 @@ function render_grid_search_block($attributes) {
                     <span aria-hidden="true">x</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <?php 
-                    if ($charter_types && is_array($charter_types) && count($charter_types) > 0) { ?>
-                        <div class="modal-option modal-charter-type">
+                <div class="modal-body">';
+                    if ($charter_types && is_array($charter_types) && count($charter_types) > 0) {
+                        $entity_content .= '<div class="modal-option modal-charter-type">
                             <div class="ytm-filter-element">
                                 <div class="ytm-element-item">
                                     <span class="form-label">Charter Type</span>
                                     <div class="form-element-yacht">
-                                        <ul class="checkbox-list p-2">
-                                            <?php 
-                                            foreach ($charter_types as $ctype) { ?>
-                                                <li class="checkbox-item">
+                                        <ul class="checkbox-list p-2">';
+                                            foreach ($charter_types as $ctype) {
+                                                $entity_content .= '<li class="checkbox-item">
                                                     <label>
-                                                        <input type="checkbox" class="yacht-checkbox-ct" value="<?php echo esc_attr($ctype); ?>">
-                                                        <?php echo esc_html($ctype); ?>
-                                                    </label>
-                                                </li>
-                                            <?php 
-                                            } ?>
-                                        </ul>
+                                                        <input type="checkbox" class="yacht-checkbox-ct" value="'. esc_attr($ctype) .'">';
+                                                        $entity_content .= esc_html($ctype);
+                                                    $entity_content .= '</label>
+                                                </li>';
+                                            }
+                                        $entity_content .= '</ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    <?php 
-                    } ?>
-                    <div class="modal-option modal-cabin">
+                        </div>';
+                    }
+                    $entity_content .= '<div class="modal-option modal-cabin">
                         <div class="ytm-filter-element">
                             <div class="ytm-element-item">
                                 <span class="form-label">Cabin</span>
@@ -437,57 +423,58 @@ function render_grid_search_block($attributes) {
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <!-- <span class="border-line"></span> -->
-                    <div class="modal-option modal-manufacture-year">
+                    </div>';
+                    $entity_content .= '<div class="modal-option modal-manufacture-year">
                         <div class="ytm-filter-element">
                             <div class="ytm-element-item">
-                                <span class="form-label">Manufacture year</span>
-                                <?php $manufacture_year = yacht_manager_manufacture_year(); ?>
-                                <div class="form-element-dates">
+                                <span class="form-label">Manufacture year</span>';
+                                $manufacture_year = yacht_manager_manufacture_year();
+                                $entity_content .= '<div class="form-element-dates">
                                     <div class="ytm-manufacture-from">
                                         <div class="ytm-filter-element">
                                             <div class="ytm-element-item">
                                                 <select class="form-select" name="yacht_manufacture_from" id="yacht-manufacture-from">
-                                                    <option value="" disabled>Select year</option>
-                                                    <?php if( $manufacture_year && is_array($manufacture_year) && count($manufacture_year) > 0 ) { 
+                                                    <option value="" disabled>Select year</option>';
+                                                    if( $manufacture_year && is_array($manufacture_year) && count($manufacture_year) > 0 ) { 
                                                         foreach( $manufacture_year as $myear ) { 
-                                                            $selected_attr = ($myear==$manufacture_from) ? 'selected' : ''; ?>
-                                                            <option value="<?php echo absint($myear); ?>" <?php echo $selected_attr; ?>>
-                                                                <?php echo esc_html($myear); ?>
-                                                            </option>
-                                                        <?php 
+                                                            $selected_attr = ($myear==$manufacture_from) ? 'selected' : '';
+                                                            $entity_content .= '<option value="'. absint($myear) .'" '. $selected_attr .'>';
+                                                            $entity_content .= esc_html($myear);
+                                                            $entity_content .= '</option>';
                                                         } 
-                                                    } ?>
-                                                </select>
+                                                    }
+                                                $entity_content .= '</select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="ytm-manufacture-to">
+                                    </div>';
+                                    $entity_content .= '<div class="ytm-manufacture-to">
                                         <div class="ytm-filter-element">
                                             <div class="ytm-element-item">
                                                 <select class="form-select" name="yacht_manufacture_to" id="yacht-manufacture-to">
-                                                    <option value="" disabled>Select year</option>
-                                                    <?php if( $manufacture_year && is_array($manufacture_year) && count($manufacture_year) > 0 ) { 
+                                                    <option value="" disabled>Select year</option>';
+                                                    if( $manufacture_year && is_array($manufacture_year) && count($manufacture_year) > 0 ) { 
                                                         foreach( $manufacture_year as $myear ) { 
-                                                            $selected_attr = ($myear==$manufacture_to) ? 'selected' : ''; ?>
-                                                        <option value="<?php echo absint($myear); ?>" <?php echo $selected_attr; ?>>
-                                                            <?php echo esc_html($myear); ?>
-                                                        </option>
-                                                    <?php } } ?>
-                                                </select>
+                                                            $selected_attr = ($myear==$manufacture_to) ? 'selected' : '';
+                                                            $entity_content .= '<option value="'. absint($myear) .'" '.$selected_attr .'>';
+                                                                $entity_content .= esc_html($myear);
+                                                            $entity_content .= '</option>';
+                                                        } 
+                                                    }
+                                                $entity_content .= '</select>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </div>';
+                                $entity_content .= '</div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
+                </div>';
+                $entity_content .= '<div class="modal-footer">
                     <button type="button" class="btn ytm-advanced-btn-submit ytm-modal-close">Apply filter</button>
-                </div>
-            </div>
+                </div>';
+            $entity_content .= '</div>
         </div>
-    </div>
-<?php }
+    </div>';
+
+    return $entity_content;
+}

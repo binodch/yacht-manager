@@ -25,3 +25,8 @@
 .primary-line {
     color: var(--primary-line);
 }
+
+body {
+    background-color: var(--primary-bg) !important;
+    color: var(--body-text) !important;
+}
