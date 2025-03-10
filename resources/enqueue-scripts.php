@@ -146,29 +146,35 @@ add_action('admin_enqueue_scripts', 'yacht_manager_enqueue_admin_assets');
 // dynamic pull styles
 function yacht_manager_myplugin_dynamic_css() {
     $primary_text = get_option('ytm_primary_text', '#000000');
-    $secondary_text = get_option('ytm_secondary_text', '#a8a8a8');
     $body_text = get_option('ytm_body_text', '#5e5e5e');
+    $card_primary_text = get_option('ytm_card_primary_text', '#1d2b46');
+    $card_secondary_text = get_option('ytm_card_secondary_text', '#a8a8a8');
     $cta_text = get_option('ytm_cta_text', '#1d2b46');
     $primary_bg = get_option('ytm_primary_bg', '#f0f0f0');
     $secondary_bg = get_option('ytm_secondary_bg', '#f9f9f9');
+    $primary_line = get_option('ytm_primary_line', '#f5f5f5');
 
     $primary_gradient = yacht_manager_hexToRgba($primary_bg, 0);
     $btn_gradient = yacht_manager_hexToRgba($primary_text, 0.2);
     $secondary_gradient = yacht_manager_hexToRgba($primary_bg, 0.9);
     $bg_gradient = yacht_manager_hexToRgba($primary_text, 0.1);
+    $card_text_gradient = yacht_manager_hexToRgba($card_primary_text, 0.2);
 
     $custom_css_content = "
         :root {
             --primary-text: ". $primary_text .";
-            --secondary-text: ". $secondary_text .";
             --body-text: ". $body_text .";
+            --card-primary-text: ". $card_primary_text .";
+            --card-secondary-text: ". $card_secondary_text .";
             --cta-text: ". $cta_text .";
             --primary-bg: ". $primary_bg .";
             --secondary-bg: ". $secondary_bg .";
+            --primary-line: ". $primary_line .";
             --primary-gradient: ". $primary_gradient .";
             --secondary-gradient: ". $secondary_gradient .";
             --btn-gradient: ". $btn_gradient .";
             --bg-gradient: ". $bg_gradient .";
+            --card-text-gradient: ". $card_text_gradient .";
         }";
     wp_add_inline_style('wp-color-picker', $custom_css_content);
     wp_add_inline_style('yacht-manager-global', $custom_css_content);

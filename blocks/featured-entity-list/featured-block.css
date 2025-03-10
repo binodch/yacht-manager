@@ -91,7 +91,7 @@
   text-decoration: none;
 }
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-name .ytm-item-entity:hover {
-  color: var(--secondary-text);
+  color: var(--card-secondary-text);
 }
 
 .ytm-section-featured-entity .ytm-featured-entity-wrap .ytm-entity-content .ytm-item-cost p {
