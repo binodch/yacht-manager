@@ -262,7 +262,7 @@
     width: 100%;
     border-radius: 1136.65px;
     border: 1.14px solid var(--btn-gradient);
-    background-color: var(--cta-color);
+    background-color: var(--primary-text);
     color: var(--cta-text);
     padding: 12px 28px;
 }

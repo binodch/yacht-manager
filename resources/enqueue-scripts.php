@@ -36,8 +36,8 @@ function yacht_manager_enqueue_public_assets() {
         YACHT_MANAGER_VERSION
     );
     wp_enqueue_style(
-        'yacht-manager-yacht-single-color',
-        plugin_dir_url(__FILE__) . '../assets/css/yacht-single/color.css',
+        'yacht-manager-yacht-color-styl',
+        plugin_dir_url(__FILE__) . '../assets/css/color.css',
         [],
         YACHT_MANAGER_VERSION
     );
@@ -151,7 +151,6 @@ function yacht_manager_myplugin_dynamic_css() {
     $cta_text = get_option('ytm_cta_text', '#1d2b46');
     $primary_bg = get_option('ytm_primary_bg', '#f0f0f0');
     $secondary_bg = get_option('ytm_secondary_bg', '#f9f9f9');
-    $primary_line = get_option('ytm_primary_line', '#d5d5d5');
 
     $primary_gradient = yacht_manager_hexToRgba($primary_bg, 0);
     $btn_gradient = yacht_manager_hexToRgba($primary_text, 0.2);
@@ -166,7 +165,6 @@ function yacht_manager_myplugin_dynamic_css() {
             --cta-text: ". $cta_text .";
             --primary-bg: ". $primary_bg .";
             --secondary-bg: ". $secondary_bg .";
-            --primary-line: ". $primary_line .";
             --primary-gradient: ". $primary_gradient .";
             --secondary-gradient: ". $secondary_gradient .";
             --btn-gradient: ". $btn_gradient .";
