@@ -1,0 +1,19 @@
+.custom-grid-search-block {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    padding: 20px 0;
+}
+
+.custom-grid-search-block .grid-title-wrapper input[type="text"] {
+    width: 60%;
+}
+
+.custom-grid-search-block .grid-title-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.custom-grid-search-block .grid-search-text {
+    margin: 0;
+}
