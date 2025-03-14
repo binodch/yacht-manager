@@ -25,10 +25,10 @@
 
 /* view more button */
 .single-yacht .yacht-single-content .content-description .see-more-btn {
-    color: #777777;
+    color: #fff;
     background: none;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 27px;
     letter-spacing: -0.011em;
     border: none;
@@ -47,7 +47,7 @@
     background-size: contain;
     width: 10px;
     height: 4.7px;
-    background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.15226C1 1.15226 4.68244 5.84787 6.00004 5.84788C7.31763 5.84789 11 1.15222 11 1.15222' stroke='%233C3C3C' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+    background-image: url("data:image/svg+xml,%3Csvg width='12' height='7' viewBox='0 0 12 7' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.15226C1 1.15226 4.68244 5.84787 6.00004 5.84788C7.31763 5.84789 11 1.15222 11 1.15222' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
     background-repeat: no-repeat;
 }
 

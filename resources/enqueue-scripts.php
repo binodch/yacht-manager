@@ -149,7 +149,7 @@ function yacht_manager_myplugin_dynamic_css() {
     $body_text = get_option('ytm_body_text', '#5e5e5e');
     $card_primary_text = get_option('ytm_card_primary_text', '#1d2b46');
     $card_secondary_text = get_option('ytm_card_secondary_text', '#a8a8a8');
-    $cta_text = get_option('ytm_cta_text', '#1d2b46');
+    // $cta_text = get_option('ytm_cta_text', '#1d2b46');
     $primary_bg = get_option('ytm_primary_bg', '#f0f0f0');
     $secondary_bg = get_option('ytm_secondary_bg', '#f9f9f9');
     $primary_line = get_option('ytm_primary_line', '#f5f5f5');
@@ -166,7 +166,6 @@ function yacht_manager_myplugin_dynamic_css() {
             --body-text: ". $body_text .";
             --card-primary-text: ". $card_primary_text .";
             --card-secondary-text: ". $card_secondary_text .";
-            --cta-text: ". $cta_text .";
             --primary-bg: ". $primary_bg .";
             --secondary-bg: ". $secondary_bg .";
             --primary-line: ". $primary_line .";

@@ -8,7 +8,6 @@ function yacht_manager_myplugin_register_settings() {
         'ytm_secondary_text',
         'ytm_body_text',
         'ytm_card_primary_text',
-        'ytm_cta_text',
         'ytm_primary_bg',
         'ytm_secondary_bg',
         'ytm_primary_line',
@@ -19,7 +18,6 @@ function yacht_manager_myplugin_register_settings() {
         '#a8a8a8',
         '#5e5e5e',
         '#ffffff',
-        '#1d2b46',
         '#f0f0f0',
         '#f9f9f9',
         '#f5f5f5',
@@ -119,7 +117,7 @@ function yacht_manager_myplugin_settings_page() { ?>
                         <p class="description">This color is used for the secondary text.</p>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td colspan="2">
                         <h3 class="label">Filter Color</h3>
                     </td>
@@ -132,7 +130,7 @@ function yacht_manager_myplugin_settings_page() { ?>
                     <td colspan="2">
                         <p class="description">This color is used for text color inside primary color, button.</p>
                     </td>
-                </tr>
+                </tr> -->
             </table>
             <?php submit_button(); ?>
         </form>

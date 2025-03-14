@@ -288,7 +288,7 @@ function render_grid_search_block($attributes) {
                                                 $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
                                                 $currency = yacht_manager_get_currency_symbol($currency);
                                                 $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
-                                                $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
+                                                $price = is_numeric($price) ? number_format(floatval($price), 0) : '';
                                                 $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : '';
 
                                                 $entity_content .= '<div class="col-md-6">
