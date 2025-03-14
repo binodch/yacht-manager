@@ -47,7 +47,7 @@ $yacht_zones = get_post_meta($yacht_id, 'yacht_zones', true);
 $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
 
 <section class="single-yacht primary-bg">
-    <div class="yacht-single-banner position-relative d-flex flex-column-reverse flex-lg-row">
+    <div class="yacht-single-banner">
         <div class="yacht-single-heading">
             <div class="yacht-heading-main">
                 <div class="yacht-heading-main-info d-flex flex-row flex-lg-column">
@@ -158,15 +158,17 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
             <div class="row">
                 <div class="col-lg-8">
                     <div class="content-description">
-                        <div class="description-about">
-                            <h2 class="primary-text">About</h2>
-                            <div id="yacht-about" class="yacht-about-text yacht-full-content body-text">
-                                <?php the_content(); ?>
+                        <?php if( !empty(get_the_content()) ) { ?>
+                            <div class="description-about">
+                                <h2 class="primary-text">About</h2>
+                                <div id="yacht-about" class="yacht-about-text yacht-full-content body-text">
+                                    <?php the_content(); ?>
+                                </div>
+                                <button class="see-more-btn" id="about-see-more">Read More</button>
                             </div>
-                            <button class="see-more-btn" id="about-see-more">Read More</button>
-                        </div>
-
                         <?php 
+                        }
+                        
                         if( !empty($yacht_amenities) ) { ?>
                             <div class="description-amenities">
                                 <h2 class="primary-text">Amenities and Entertainment</h2>
@@ -194,19 +196,10 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                                 <button class="see-more-btn" id="amenities-see-more">View More</button>
                             </div>
                         <?php 
-                        } ?>
-                        <div class="description-gallery">
-                            <h2 class="primary-text">Gallery</h2>
-                            <div class="gallery-list">
-                                <div class="yacht-swiper-container">
-                                    <div class="yacht-swiper-gradient gradient-left"></div>
-                                    <div class="yacht-swiper-gradient gradient-right"></div>
-                                        <?php yacht_manager_display_downloaded_images($yacht_id); ?>
-                                    <div class="swiper-button-next"></div>
-                                    <div class="swiper-button-prev"></div>
-                                </div>
-                            </div>
-                        </div>
+                        }
+                        
+                        yacht_manager_display_downloaded_images($yacht_id); ?>
+
                         <div class="description-specs">
                             <h5 class="primary-text">Specification</h5>
                             <div class="specs-list">
