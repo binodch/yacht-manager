@@ -98,6 +98,3 @@ require_once plugin_dir_path(__FILE__) . 'includes/enquire/enquire-submit.php';
 
 // enquire form export
 require_once plugin_dir_path(__FILE__) . 'includes/enquire/enquire-export.php';
-
-// wp rest route
-require_once plugin_dir_path(__FILE__) . 'includes/api/route/rest.php';

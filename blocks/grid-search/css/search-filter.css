@@ -99,9 +99,13 @@
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .btn {
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: max-content;
     padding: unset;
     border: none;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-element-destination,
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-element-yacht {
+    max-width: max-content;
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .dropdown-toggle::after {
@@ -204,7 +208,7 @@
     border: 1px solid var(--primary-bg);
     border-radius: 50%;
     width: 25px;
-    padding: revert;
+    height: 25px;
     color: #000000;
 }
 

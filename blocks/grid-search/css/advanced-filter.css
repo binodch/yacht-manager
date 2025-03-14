@@ -53,6 +53,7 @@
     font-size: 18px;
     line-height: 27px;
     letter-spacing: -0.011em;
+    color: #000000;
 }
 
 /* cabin range */
@@ -75,21 +76,22 @@
     border-radius: 0;
     -webkit-appearance: none;
     width: 100%;
-    height: 5px;
+    height: 2px;
+    background-color: var(--primary-bg);
 }
 
 
 .ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-range .form-range::-webkit-slider-runnable-track {
     width: 300px;
     height: 2px;
-    background: #f0f0f0;
+    background: #f00;
     border: none;
     border-radius: 3px;
 }
 
 .ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-range .form-range::-webkit-slider-thumb {
     -webkit-appearance: none;
-    border: 2px solid #f0f0f0;
+    border: 2px solid #0f0;
     box-shadow: 2px rgba(0, 0 , 0, 0.25);
     height: 16px;
     width: 16px;
@@ -103,7 +105,7 @@
 }
 
 .ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-range .form-range:focus::-webkit-slider-runnable-track {
-    background: #ccc;
+    background: #00f;
 }
 .ytm-advanced-filter-modal .modal-body .ytm-element-item .form-element-range #rangeValue {
     display: block;
