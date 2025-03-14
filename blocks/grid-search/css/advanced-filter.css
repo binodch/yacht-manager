@@ -162,9 +162,9 @@
     background-repeat: no-repeat;
     background-position: right 10px center;
     background-size: 16px;
-    padding-right: 30px;
     width: 100%;
-    padding: 10px 32px;
+    padding: 14px 15px;
+    background-color: #fff;
 }
 
 .ytm-advanced-filter-modal .form-element-dates .ytm-manufacture-from .form-select:hover,
