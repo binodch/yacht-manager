@@ -95,17 +95,31 @@ function yacht_manager_display_downloaded_images($yacht_id) {
 
     $images = glob($downloads_dir . '/*.{jpg,jpeg,png,gif,webp}', GLOB_BRACE);
 
-    if (!empty($images)) {
-        echo "<div class='swiper-wrapper'>";
-        foreach ($images as $img) {
-            $img_url = plugin_dir_url(__FILE__) . $dir_path . basename($img);
-            echo "
-                <div class='swiper-slide'>
-                    <img src='{$img_url}' width='100%' alt='img' />
+    if (!empty($images)) { ?>
+        <div class="description-gallery">
+            <h2 class="primary-text">Gallery</h2>
+            <div class="gallery-list">
+                <div class="yacht-swiper-container">
+                    <div class="yacht-swiper-gradient gradient-left"></div>
+                    <div class="yacht-swiper-gradient gradient-right"></div>
+                        <div class='swiper-wrapper'>
+                            <?php 
+                            foreach ($images as $img) {
+                                $img_url = plugin_dir_url(__FILE__) . $dir_path . basename($img);
+                                echo "
+                                    <div class='swiper-slide'>
+                                        <img src='{$img_url}' width='100%' alt='img' />
+                                    </div>
+                                ";
+                            } ?>
+                        </div>
+                        
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
-            ";
-        }
-        echo "</div>";
+            </div>
+        </div>
+    <?php
     }
     return;
 }

@@ -65,7 +65,7 @@
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item.active,
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item:hover {
     background-color: var(--primary-bg);
-    color: var(--cta-text);
+    color: var(--primary-text);
 }
 /* search destinations */
 
@@ -257,7 +257,7 @@
     appearance: none;
     width: 16px;
     height: 16px;
-    border: 1px solid var(--primary-text);
+    border: 1px solid var(--primary-bg);
     border-radius: 6px;
     cursor: pointer;
     position: relative;
@@ -266,7 +266,7 @@
 
 
 .ytm-element-item .form-element-yacht .dropdown-item input[type="checkbox"]:checked {
-    background-color: var(--primary-text);
+    background-color: var(--primary-bg);
 }
 /* select yacht */
 
