@@ -4,6 +4,10 @@
     padding: 80px 0;
 }
 
+.ytm-filter-main .ytm-filter-block .filter-title .title {
+    color: var(--secondary-color);
+}
+
 .ytm-filter-main .ytm-entity-result .row {
     row-gap: 32px;
     margin: 0 -16px;

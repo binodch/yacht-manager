@@ -28,5 +28,5 @@
 
 body {
     background-color: var(--primary-bg) !important;
-    color: var(--body-text) !important;
+    /* color: var(--body-text) !important; */
 }
