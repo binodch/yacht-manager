@@ -4,6 +4,10 @@
     padding: 80px 0;
 }
 
+.ytm-filter-main .ytm-filter-block .filter-title .title {
+    color: var(--secondary-color);
+}
+
 .ytm-filter-main .ytm-entity-result .row {
     row-gap: 32px;
     margin: 0 -16px;
@@ -38,6 +42,7 @@
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image img {
     height: 100%;
+    width: auto;
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-image.noimage {
@@ -47,6 +52,10 @@
 /* item content */
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content {
     margin-top: 12px;
+}
+
+.ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-name h3 {
+    margin-bottom: 2px;
 }
 
 .ytm-filter-main .ytm-entity-result .ytm-item-single .ytm-item-content .ytm-item-symbol {
@@ -75,6 +84,7 @@
   font-size: 14px;
   line-height: 21px;
   letter-spacing: -0.011em;
+  margin-top: 0;
   margin-bottom: unset;
   color: var(--card-primary-text);
 }

@@ -3,6 +3,7 @@
     justify-content: space-between;
     flex-direction: column;
     padding: 0 12px 0 1.66666666667%;
+    position: relative;
 }
 
 .single-yacht .yacht-single-banner .yacht-single-heading {
@@ -27,6 +28,7 @@
 /* heading builts */
 .single-yacht .yacht-heading-main .yacht-heading-builts {
     display: flex;
+    flex-direction: column;
     margin-bottom: 24px;
     width: max-content;
     gap: unset;
@@ -39,7 +41,7 @@
 }
 
 .single-yacht .yacht-heading-main .yacht-heading-builts .single-border {
-    border: 1px solid rgba(0, 0, 0, 0.1)
+    border: 1px solid var(--primary-text);
 }
 
 @media (min-width:1024px) {
@@ -67,7 +69,6 @@
 }
 
 .single-yacht .yacht-single-image::before{
-    left: 0;
     top: 0;
     width: 50%;
     height: 100%;
@@ -153,7 +154,7 @@
 }
 
 .single-yacht .yacht-single-banner .yacht-single-blueprint .yacht-blueprint-item:not(:last-child) {
-    border-right: 1px solid #ccc;
+    border-right: 1px solid #dfdfdf;
     padding-right: 27px;
 }
 
@@ -168,6 +169,7 @@
     font-size: 16px;
     line-height: 24px;
     letter-spacing: -0.011em;
+    color: #878787;
 }
 
 .single-yacht .yacht-single-banner .yacht-blueprint-item .blueprint-value {
@@ -178,6 +180,7 @@
     display: flex;
     align-items: center;
     gap: 4px;
+    color: #323232;
 }
 
 .single-yacht .yacht-single-banner .yacht-blueprint-item .blueprint-value:before {
@@ -226,13 +229,15 @@
 /* about section */
 .single-yacht .yacht-single-content .description-about {
     padding-bottom: 45px;
-    border-bottom: 1px solid #d5d5d5;
 }
 
 .single-yacht .yacht-single-content .description-about h2 {
     margin-bottom: 23px;
 }
 
+.single-yacht .yacht-single-content .description-about .about-text p {
+    margin-top: 0;
+}
 .single-yacht .yacht-single-content .description-about .about-text p:last-child {
     margin-bottom: 0;
 }
@@ -241,6 +246,7 @@
 /* amenities section */
 .single-yacht .yacht-single-content .description-amenities {
     padding: 45px 0;
+    border-top: 1px solid #d5d5d5;
 }
 
 .single-yacht .yacht-single-content .description-amenities h2 {
@@ -311,6 +317,7 @@
     line-height: 36px;
     letter-spacing: -0.011em;
     margin-bottom: 24px;
+    margin-top: 0;
 }
 
 .single-yacht .yacht-single-content .description-specs .specs-label {
@@ -319,6 +326,7 @@
     line-height: 24px;
     letter-spacing: -0.011em;
     width: 235px;
+    color: var(--body-text);
 }
 
 .single-yacht .yacht-single-content .description-specs .specs-list-item {
@@ -409,8 +417,8 @@
 }
 
 .single-yacht .content-enquire .enquire-form .field-button .btn {
-    color: var(--cta-text);
-    background-color: var(--primary-text);
+    color: var(--primary-text);
+    background-color: var(--primary-bg);
     padding: 11.37px 27.28px;
     border-radius: 1136.65px;
     border: 1px solid rgba(185, 234, 255, 0.2);
@@ -433,10 +441,14 @@
         bottom: 72px;
         right: 59px;
     }
+    .yacht-single-heading .yacht-heading-main .yacht-single-blueprint {
+        right: 8% !important;
+    }
     .single-yacht .yacht-single-banner {
         align-items: center;
         flex-direction: row;
         padding: unset;
+        position: relative;
     }
 }
 
@@ -445,7 +457,7 @@
         position: absolute;
         z-index: 9;
         bottom: 0;
-        right: 60px;
+        right: 20%;
     }
     .single-yacht .yacht-single-banner .yacht-single-heading {
         width: 590px;
@@ -454,7 +466,7 @@
         max-width: 590px;
     }
     .single-yacht .yacht-heading-main .yacht-heading-link .btn {
-        color: var(--cta-text);
+        color: var(--primary-bg);
         background-color: var(--primary-text);
         border-radius: 1136.65px;
         border: 1.14px solid rgba(185, 234, 255, 0.2);
@@ -484,6 +496,7 @@
 @media (max-width: 992px) {
     .single-yacht .yacht-single-banner {
         padding: 0;
+        flex-direction: column-reverse;
     }
     .single-yacht .yacht-single-banner .yacht-single-heading {
         padding: 0 16px;

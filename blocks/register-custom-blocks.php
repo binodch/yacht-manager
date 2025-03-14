@@ -38,6 +38,7 @@ function yacht_manager_register_custom_block() {
         [],
         YACHT_MANAGER_VERSION
     );
+    /*
     wp_enqueue_script(
         'yacht-manager-featured-entity-block-editor',
         plugin_dir_url(__FILE__) . 'featured-entity-list/featured-block.js',
@@ -58,6 +59,7 @@ function yacht_manager_register_custom_block() {
             ),
         ),
     ));
+    */
     
     // dropfilter block
     wp_enqueue_style(
@@ -78,6 +80,7 @@ function yacht_manager_register_custom_block() {
         [],
         YACHT_MANAGER_VERSION
     );
+    /*
     wp_enqueue_script(
         'yacht-manager-dropfilter-block-editor',
         plugin_dir_url(__FILE__) . 'dropfilter-option/dropfilter-block.js',
@@ -98,6 +101,7 @@ function yacht_manager_register_custom_block() {
             ),
         ),
     ));
+    */
 
     // grid search block
     wp_enqueue_style(

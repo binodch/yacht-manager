@@ -47,7 +47,7 @@ $yacht_zones = get_post_meta($yacht_id, 'yacht_zones', true);
 $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
 
 <section class="single-yacht primary-bg">
-    <div class="yacht-single-banner position-relative d-flex flex-column-reverse flex-lg-row">
+    <div class="yacht-single-banner">
         <div class="yacht-single-heading">
             <div class="yacht-heading-main">
                 <div class="yacht-heading-main-info d-flex flex-row flex-lg-column">
@@ -85,7 +85,7 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                         $currency = !empty($week_pricing_arr['currency']) ? $week_pricing_arr['currency'] : '';
                         $currency = yacht_manager_get_currency_symbol($currency);
                         $price = !empty($week_pricing_arr['displayPrice']) ? $week_pricing_arr['displayPrice'] : '';
-                        $price = is_numeric($price) ? number_format(floatval($price), 2) : '';
+                        $price = is_numeric($price) ? number_format(floatval($price), 0) : '';
                         $unit = !empty($week_pricing_arr['unit']) ? $week_pricing_arr['unit'] : ''; 
                         
                         if( $currency && $price && $unit ) { ?>
@@ -99,40 +99,40 @@ $thumbnail_id = get_post_thumbnail_id($yacht_id); ?>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-type">
                             <div class="yacht-type-item">
-                                <div class="blueprint-label yacht-type-label secondary-text">Yacht Type</div>
-                                <div class="blueprint-value yacht-type-value primary-text"><?php echo esc_html($yacht_type); ?></div>
+                                <div class="blueprint-label yacht-type-label">Yacht Type</div>
+                                <div class="blueprint-value yacht-type-value"><?php echo esc_html($yacht_type); ?></div>
                             </div>
                         </div>
                     </div>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-length">
                             <div class="yacht-length-item">
-                                <div class="blueprint-label yacht-length-label secondary-text">Length</div>
-                                <div class="blueprint-value yacht-length-value primary-text"><?php echo esc_html($yacht_length_m); ?></div>
+                                <div class="blueprint-label yacht-length-label">Length</div>
+                                <div class="blueprint-value yacht-length-value"><?php echo esc_html($yacht_length_m); ?></div>
                             </div>
                         </div>
                     </div>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-cabins">
                             <div class="yacht-cabins-item">
-                                <div class="blueprint-label yacht-cabins-label secondary-text">Cabins</div>
-                                <div class="blueprint-value yacht-cabins-value primary-text"><?php echo esc_html($yacht_cabins); ?>6</div>
+                                <div class="blueprint-label yacht-cabins-label">Cabins</div>
+                                <div class="blueprint-value yacht-cabins-value"><?php echo esc_html($yacht_cabins); ?>6</div>
                             </div>
                         </div>
                     </div>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-guests">
                             <div class="yacht-guests-item">
-                                <div class="blueprint-label yacht-guests-label secondary-text">Guests</div>
-                                <div class="blueprint-value yacht-guests-value primary-text"><?php echo esc_html($yacht_sleeps); ?></div>
+                                <div class="blueprint-label yacht-guests-label">Guests</div>
+                                <div class="blueprint-value yacht-guests-value"><?php echo esc_html($yacht_sleeps); ?></div>
                             </div>
                         </div>
                     </div>
                     <div class="yacht-blueprint-item">
                         <div class="blueprint-yacht-crew">
                             <div class="yacht-crew-item">
-                                <div class="blueprint-label yacht-crew-label secondary-text">Crew</div>
-                                <div class="blueprint-value yacht-crew-value primary-text"><?php echo esc_html($yacht_maxcrew); ?></div>
+                                <div class="blueprint-label yacht-crew-label">Crew</div>
+                                <div class="blueprint-value yacht-crew-value"><?php echo esc_html($yacht_maxcrew); ?></div>
                             </div>
                         </div>
                     </div>
