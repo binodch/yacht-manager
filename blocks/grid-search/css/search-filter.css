@@ -64,8 +64,8 @@
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item.active,
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-destination .dropdown-menu .dropdown-item:hover {
-    background-color: var(--primary-text);
-    color: var(--cta-text);
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
 }
 /* search destinations */
 
@@ -77,6 +77,11 @@
     color: #1a1a1a;
     padding: unset;
     text-align: left;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element input[type="date"],
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element input[type="date"]:focus-visible {
+    border: none;
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .input-text::placeholder {
@@ -94,9 +99,13 @@
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .btn {
     text-overflow: ellipsis;
     overflow: hidden;
-    max-width: max-content;
     padding: unset;
     border: none;
+}
+
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-element-destination,
+.ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .form-element-yacht {
+    max-width: max-content;
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element .dropdown-toggle::after {
@@ -148,7 +157,7 @@
 }
 
 .flatpickr-months .flatpickr-prev-month:hover svg, .flatpickr-months .flatpickr-next-month:hover svg {
-    fill: var(--primary-text) !important;
+    fill: var(--primary-bg) !important;
 }
 
 .flatpickr-months .flatpickr-prev-month.flatpickr-prev-month {
@@ -157,19 +166,21 @@
 
 .flatpickr-calendar .dayContainer .flatpickr-day:hover,
 .flatpickr-calendar .dayContainer .flatpickr-day.selected {
-    background: var(--primary-text);
-    border: 1px solid var(--primary-text);
+    background: var(--primary-bg);
+    border: 1px solid var(--primary-bg);
     color: var(--cta-text);
 }
 
 .flatpickr-calendar .dayContainer .flatpickr-day.today {
-    border-color: var(--primary-text);
+    border-color: var(--primary-bg);
 }
 /* calender css */
 
 /* add guest */
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-guest .dropdown-menu {
     width: 307px;
+    border-radius: 24px;
+    padding: 20px;
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-guest .dropdown-menu .guest-dropdown {
@@ -190,13 +201,14 @@
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-guest .guest-dropdown .plus-minus-counter label {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-guest .guest-dropdown .plus-minus-counter .btn {
-    border: 1px solid var(--primary-text);
+    border: 1px solid var(--primary-bg);
     border-radius: 50%;
     width: 25px;
-    padding: revert;
+    height: 25px;
     color: #000000;
 }
 
@@ -235,6 +247,7 @@
     background-color: transparent;
 }
 .ytm-filter-sidebar .ytm-element-item .form-element-yacht .dropdown-item:active {
+    color: #1a1a1a;
     background-color: transparent;
 }
 
@@ -250,7 +263,7 @@
     appearance: none;
     width: 16px;
     height: 16px;
-    border: 1px solid var(--primary-text);
+    border: 1px solid var(--primary-bg);
     border-radius: 6px;
     cursor: pointer;
     position: relative;
@@ -259,7 +272,7 @@
 
 
 .ytm-element-item .form-element-yacht .dropdown-item input[type="checkbox"]:checked {
-    background-color: var(--primary-text);
+    background-color: var(--primary-bg);
 }
 /* select yacht */
 
@@ -275,8 +288,8 @@
 .ytm-filter-section .ytm-filter-sidebar .button-wrap .btn {
     border-radius: 1136.65px;
     border: 1.14px solid rgba(185, 234, 255, 0.2);
-    background-color: var(--primary-text);
-    color: var(--cta-text);
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
     padding: 12px 28px;
     width: 100%;
 }
