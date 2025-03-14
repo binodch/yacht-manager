@@ -197,6 +197,7 @@
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-guest .guest-dropdown .plus-minus-counter label {
     display: flex;
     align-items: center;
+    gap: 10px;
 }
 
 .ytm-filter-section .ytm-filter-sidebar .ytm-filter-element.sidebar-guest .guest-dropdown .plus-minus-counter .btn {
@@ -242,6 +243,7 @@
     background-color: transparent;
 }
 .ytm-filter-sidebar .ytm-element-item .form-element-yacht .dropdown-item:active {
+    color: #1a1a1a;
     background-color: transparent;
 }
 
