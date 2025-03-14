@@ -13,13 +13,13 @@ function yacht_manager_enqueue_public_assets() {
     );
     wp_enqueue_style(
         'yacht-manager-public',
-        plugin_dir_url(__FILE__) . '../assets/css/style.min.css',
+        plugin_dir_url(__FILE__) . '../assets/css/style.css',
         [],
         YACHT_MANAGER_VERSION
     );
     wp_enqueue_style(
         'yacht-manager-btstap-styl',
-        'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
+        plugin_dir_url(__FILE__) . '../assets/css/bootstrap.css',
         [],
         YACHT_MANAGER_VERSION
     );

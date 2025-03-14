@@ -103,7 +103,7 @@ function render_grid_search_block($attributes) {
 
                     if( !empty($title) ) {
                         $entity_content .= '<div class="filter-title">
-                            <h3>'. esc_html($title) .'</h3>
+                            <h3 class="title">'. esc_html($title) .'</h3>
                         </div>';
                     }
                     $entity_content .= '<div class="row">
